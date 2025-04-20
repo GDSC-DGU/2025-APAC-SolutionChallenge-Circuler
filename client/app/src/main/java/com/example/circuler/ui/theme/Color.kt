@@ -9,13 +9,13 @@ val Black = Color(0xFF000000)
 
 @Immutable
 data class CirculerColors(
-    val White: Color,
-    val Black: Color,
+    val white: Color,
+    val black: Color,
 )
 
 val defaultCirculerColors = CirculerColors(
-    White = White,
-    Black = Black
+    white = White,
+    black = Black
 )
 
 val LocalColors = staticCompositionLocalOf { defaultCirculerColors }
