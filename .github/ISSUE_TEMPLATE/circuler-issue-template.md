@@ -1,13 +1,4 @@
 ---
-name: CIRCULER issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
----
-
----
 name: ISSUE_CIRCULER
 about: "\U0001F3E0 이슈 템플릿 \U0001F3E0 "
 title: "[type] 작업 내용"
