@@ -1,4 +1,4 @@
-package com.example.circuler
+package com.example.circuler.presentation.navigator
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
