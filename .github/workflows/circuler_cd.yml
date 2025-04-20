@@ -3,6 +3,7 @@ name: Circuler Firebase Distribution Workflow
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # 수동 실행 옵션
 
 defaults:
   run:
