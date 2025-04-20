@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.ktlint)
 }
 
 val properties = Properties().apply {
@@ -84,4 +85,12 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+}
+
+ktlint {
+    android = true
+    debug = true
+    coloredOutput = true
+    verbose = true
+    outputToConsole = true
 }
