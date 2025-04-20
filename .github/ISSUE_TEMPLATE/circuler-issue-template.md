@@ -1,13 +1,13 @@
 ---
 name: ISSUE_CIRCULER
-about: "\U0001F3E0 이슈 템플릿 \U0001F3E0 "
+about: "Circuler 이슈 템플릿"
 title: "[type] 작업 내용"
 labels: ''
 assignees: ''
 
 ---
 
-## **🏠 ISSUE**
+## **♻️ ISSUE**
 
 - 이슈에 대한 설명
 
