@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".CirculerApp"
+        android:name=".Circuler"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Circuler"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="35">
         <activity
             android:name=".presentation.navigator.MainActivity"
             android:exported="true"
