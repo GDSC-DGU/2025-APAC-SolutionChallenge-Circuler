@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 val properties = Properties().apply {
@@ -85,6 +87,12 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+
+    // Firebase
+    implementation(platform(libs.google.firebase.bom))
+    implementation(libs.google.firebase.crashlytics)
+    implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.firebase.analytics)
 }
 
 ktlint {
