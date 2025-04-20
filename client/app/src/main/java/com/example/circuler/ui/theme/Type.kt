@@ -1,34 +1,38 @@
 package com.example.circuler.ui.theme
 
-import androidx.compose.material3.Typography
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.circuler.R
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+val PretendardBold = FontFamily(Font(R.font.pretendard_bold, FontWeight.Bold))
+val PretendardSemiBold = FontFamily(Font(R.font.pretendard_semibold, FontWeight.SemiBold))
+val PretendardMedium = FontFamily(Font(R.font.pretendard_medium, FontWeight.Medium))
+val PretendardRegular = FontFamily(Font(R.font.pretendard_regular, FontWeight.Normal))
+
+@Immutable
+data class CirculerTypography(
+    //head
+    val head1: TextStyle,
+    val head2: TextStyle,
 )
+
+val defaultCirculerTypography = CirculerTypography(
+    //head
+    head1 = TextStyle(
+        fontFamily = PretendardMedium,
+        fontSize = 32.sp,
+        lineHeight = 38.sp
+    ),
+    head2 = TextStyle(
+        fontFamily = PretendardMedium,
+        fontSize = 28.sp,
+        lineHeight = 34.sp
+    )
+)
+
+val LocalTypo = staticCompositionLocalOf { defaultCirculerTypography }
