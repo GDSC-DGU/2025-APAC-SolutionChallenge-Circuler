@@ -16,13 +16,13 @@ val PretendardRegular = FontFamily(Font(R.font.pretendard_regular, FontWeight.No
 
 @Immutable
 data class CirculerTypography(
-    //head
+    // head
     val head1: TextStyle,
-    val head2: TextStyle,
+    val head2: TextStyle
 )
 
 val defaultCirculerTypography = CirculerTypography(
-    //head
+    // head
     head1 = TextStyle(
         fontFamily = PretendardMedium,
         fontSize = 32.sp,

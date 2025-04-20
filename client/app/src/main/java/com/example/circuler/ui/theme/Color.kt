@@ -10,7 +10,7 @@ val Black = Color(0xFF000000)
 @Immutable
 data class CirculerColors(
     val white: Color,
-    val black: Color,
+    val black: Color
 )
 
 val defaultCirculerColors = CirculerColors(

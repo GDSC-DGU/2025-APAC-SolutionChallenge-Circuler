@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-    //Test
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.bundles.test)
@@ -67,7 +67,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     implementation(platform(libs.androidx.compose.bom))
 
-    //kotlinx
+    // kotlinx
     implementation(libs.kotlinx.immutable)
 
     // Network

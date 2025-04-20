@@ -121,7 +121,7 @@ fun ReqresScreen(
                         style = CirculerTheme.typography.head1,
                         color = CirculerTheme.colors.black,
                         textAlign = TextAlign.Center,
-                        fontSize = 30.sp,
+                        fontSize = 30.sp
                     )
                 }
             }
