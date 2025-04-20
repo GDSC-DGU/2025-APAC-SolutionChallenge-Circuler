@@ -1,0 +1,53 @@
+name: Circuler PR Builder
+
+on:
+  pull_request:
+    branches: [ main ]
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./client
+
+jobs:
+  build:
+    name: PR Checker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: client
+
+      - name: Gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('client/**/*.gradle*', 'client/**/gradle-wrapper.properties', 'client/**/buildSrc/**/*.kt') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      - name: Change gradlew permissions
+        run: chmod +x ./gradlew
+
+      - name: Touch local.properties
+        run: touch local.properties
+
+      - name: Add base URL to local.properties
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+        run: echo "base.url=\"$BASE_URL\"" >> local.properties
+
+      - name: Lint Check
+        run: ./gradlew ktlintCheck -PcompileSdkVersion=35
+
+      - name: Build with Gradle
+        run: ./gradlew build -PcompileSdkVersion=35
