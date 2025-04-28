@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.ktlint)
 }
 
 val properties = Properties().apply {
@@ -54,7 +55,7 @@ android {
 }
 
 dependencies {
-    //Test
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.bundles.test)
@@ -66,7 +67,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     implementation(platform(libs.androidx.compose.bom))
 
-    //kotlinx
+    // kotlinx
     implementation(libs.kotlinx.immutable)
 
     // Network
@@ -84,4 +85,12 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+}
+
+ktlint {
+    android = true
+    debug = true
+    coloredOutput = true
+    verbose = true
+    outputToConsole = true
 }

@@ -30,7 +30,7 @@ fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
 fun Modifier.circulerButtonClickable(
     onClick: () -> Unit,
     pressedColor: Color = Color.Transparent,
-    isPressed: Boolean = false,
+    isPressed: Boolean = false
 ): Modifier = composed {
     this
         .clickable(
@@ -50,20 +50,20 @@ fun Modifier.topBorder(
         color = color,
         start = Offset(0f, 0f),
         end = Offset(size.width, 0f),
-        strokeWidth = height,
+        strokeWidth = height
     )
 }
 
 fun Modifier.bottomBorder(
     color: Color,
-    height: Float,
+    height: Float
 ) = this.drawWithContent {
     drawContent()
     drawLine(
         color = color,
         start = Offset(0f, size.height),
         end = Offset(size.width, size.height),
-        strokeWidth = height,
+        strokeWidth = height
     )
 }
 
@@ -85,7 +85,7 @@ fun Modifier.roundedBackgroundWithBorder(
     cornerRadius: Dp,
     backgroundColor: Color,
     borderColor: Color = Color.Transparent,
-    borderWidth: Dp = 0.dp,
+    borderWidth: Dp = 0.dp
 ): Modifier {
     return this
         .clip(RoundedCornerShape(cornerRadius))

@@ -17,7 +17,7 @@ data class ResponseReqresDto(
     @SerialName("total")
     val total: Int,
     @SerialName("total_pages")
-    val totalPages: Int,
+    val totalPages: Int
 ) {
     @Serializable
     data class Data(
@@ -30,7 +30,7 @@ data class ResponseReqresDto(
         @SerialName("id")
         val id: Int,
         @SerialName("last_name")
-        val lastName: String,
+        val lastName: String
     ) {
         fun toEntity() =
             ReqresEntity(
@@ -41,12 +41,11 @@ data class ResponseReqresDto(
             )
     }
 
-
     @Serializable
     data class Support(
         @SerialName("text")
         val text: String,
         @SerialName("url")
-        val url: String,
+        val url: String
     )
 }
