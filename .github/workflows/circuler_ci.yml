@@ -3,6 +3,8 @@ name: Circuler PR Builder
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - 'client/**'
 
 defaults:
   run:
