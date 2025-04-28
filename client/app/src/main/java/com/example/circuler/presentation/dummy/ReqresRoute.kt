@@ -29,6 +29,7 @@ import coil.compose.AsyncImage
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
+import com.example.circuler.ui.theme.CirculerTheme
 
 @Composable
 fun ReqresRoute(
@@ -117,8 +118,10 @@ fun ReqresScreen(
                     Text(
                         modifier = Modifier.padding(top = 30.dp),
                         text = state.data,
+                        style = CirculerTheme.typography.head1,
+                        color = CirculerTheme.colors.black,
                         textAlign = TextAlign.Center,
-                        fontSize = 30.sp,
+                        fontSize = 30.sp
                     )
                 }
             }
@@ -132,6 +135,6 @@ fun ReqresScreenPreview() {
     ReqresScreen(
         paddingValues = PaddingValues(),
         navigateUp = {},
-        state = UiState.Loading
+        state = UiState.Success("성공")
     )
 }
