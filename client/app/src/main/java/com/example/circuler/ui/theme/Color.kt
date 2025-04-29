@@ -48,7 +48,7 @@ data class CirculerColors(
     val grayScale9: Color,
     val grayScale10: Color,
     val grayScale11: Color,
-    val grayScale12: Color,
+    val grayScale12: Color
 )
 
 val defaultCirculerColors = CirculerColors(
@@ -69,7 +69,7 @@ val defaultCirculerColors = CirculerColors(
     grayScale9 = GrayScale9,
     grayScale10 = GrayScale10,
     grayScale11 = GrayScale11,
-    grayScale12 = GrayScale12,
+    grayScale12 = GrayScale12
 )
 
 val LocalColors = staticCompositionLocalOf { defaultCirculerColors }
