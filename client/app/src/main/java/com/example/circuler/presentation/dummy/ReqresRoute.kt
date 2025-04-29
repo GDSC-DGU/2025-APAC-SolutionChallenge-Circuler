@@ -118,8 +118,8 @@ fun ReqresScreen(
                     Text(
                         modifier = Modifier.padding(top = 30.dp),
                         text = state.data,
-                        style = CirculerTheme.typography.head1,
-                        color = CirculerTheme.colors.black,
+                        style = CirculerTheme.typography.heading1B20,
+                        color = CirculerTheme.colors.green1,
                         textAlign = TextAlign.Center,
                         fontSize = 30.sp
                     )
@@ -132,9 +132,11 @@ fun ReqresScreen(
 @Preview
 @Composable
 fun ReqresScreenPreview() {
-    ReqresScreen(
-        paddingValues = PaddingValues(),
-        navigateUp = {},
-        state = UiState.Success("성공")
-    )
+    CirculerTheme {
+        ReqresScreen(
+            paddingValues = PaddingValues(),
+            navigateUp = {},
+            state = UiState.Success("성공")
+        )
+    }
 }
