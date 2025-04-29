@@ -1,4 +1,4 @@
-# 2025-APAC-SolutionChallenge-Circuler 
+# 2025-APAC-SolutionChallenge-Circulo 
 
 ### 📋 Commit Message Convention
 | Tag | Description |
