@@ -27,7 +27,7 @@ public class PackageSubmission extends BaseEntity {
     // 포장재를 요청한 소상공인
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storeman_id")
-    private User storeMane;
+    private User storeMan;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "request_id")
