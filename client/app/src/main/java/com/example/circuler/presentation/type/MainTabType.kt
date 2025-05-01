@@ -13,7 +13,7 @@ import com.example.circuler.presentation.navigator.route.Route
 enum class MainTabType(
     val tabIcon: ImageVector,
     @StringRes val tabTitle: Int,
-    val route: MainTabRoute,
+    val route: MainTabRoute
 ) {
     HOME(
         tabIcon = Icons.Outlined.Home,

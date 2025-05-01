@@ -14,7 +14,7 @@ import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
 
 class MainNavigator(
-    val navController: NavHostController,
+    val navController: NavHostController
 ) {
     private val currentDestination: NavDestination?
         @Composable get() = navController
@@ -71,7 +71,7 @@ class MainNavigator(
 
 @Composable
 fun rememberMainNavigator(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController = rememberNavController()
 ): MainNavigator = remember(navController) {
     MainNavigator(navController)
 }

@@ -55,7 +55,6 @@ fun HomeRoute(
         navigateUp = navigateUp,
         state = state.uiState
     )
-
 }
 
 @Composable
@@ -117,7 +116,7 @@ fun HomeScreen(
                         modifier = Modifier.padding(top = 30.dp),
                         text = state.data,
                         textAlign = TextAlign.Center,
-                        fontSize = 30.sp,
+                        fontSize = 30.sp
                     )
                 }
             }

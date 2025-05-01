@@ -10,7 +10,7 @@ sealed interface Route {
     data object Login : Route
 
     @Serializable
-    data object AddPackage: Route
+    data object AddPackage : Route
 
     @Serializable
     data object EntirePackageRequest : Route

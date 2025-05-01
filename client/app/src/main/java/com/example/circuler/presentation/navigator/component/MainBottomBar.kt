@@ -39,7 +39,7 @@ fun MainBottomBar(
     tabs: ImmutableList<MainTabType>,
     currentTabSelected: MainTabType?,
     onTabSelected: (MainTabType) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     AnimatedVisibility(
         visible = isVisible,
@@ -55,7 +55,7 @@ fun MainBottomBar(
             horizontalArrangement = Arrangement.spacedBy(
                 space = (LocalConfiguration.current.screenWidthDp * 0.189).dp,
                 Alignment.CenterHorizontally
-            ),
+            )
         ) {
             tabs.forEach { tabItem ->
                 MainBottomBarItem(
@@ -63,7 +63,7 @@ fun MainBottomBar(
                     tabType = tabItem,
                     onTabSelected = onTabSelected,
                     tabIcon = tabItem.tabIcon,
-                    tabTitle = tabItem.tabTitle,
+                    tabTitle = tabItem.tabTitle
                 )
             }
         }
@@ -77,7 +77,7 @@ private fun MainBottomBarItem(
     onTabSelected: (MainTabType) -> Unit,
     tabIcon: ImageVector,
     @StringRes tabTitle: Int,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -96,7 +96,7 @@ private fun MainBottomBarItem(
                 CirculerTheme.colors.green1
             } else {
                 CirculerTheme.colors.grayScale10
-            },
+            }
         )
 
         Text(
@@ -106,7 +106,7 @@ private fun MainBottomBarItem(
                 CirculerTheme.colors.green1
             } else {
                 CirculerTheme.colors.grayScale12
-            },
+            }
         )
     }
 }
@@ -123,7 +123,7 @@ fun MainBottomBarPreview() {
                 .padding(vertical = 12.dp),
             tabs = MainTabType.entries.toPersistentList(),
             currentTabSelected = MainTabType.HOME,
-            onTabSelected = {},
+            onTabSelected = {}
         )
     }
 }
