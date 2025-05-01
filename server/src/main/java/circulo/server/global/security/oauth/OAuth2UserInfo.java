@@ -1,4 +1,4 @@
-package circulo.server.global.security;
+package circulo.server.global.security.oauth;
 
 import circulo.server.global.apiPayload.code.exception.custom.AuthException;
 import circulo.server.global.apiPayload.code.status.ErrorStatus;

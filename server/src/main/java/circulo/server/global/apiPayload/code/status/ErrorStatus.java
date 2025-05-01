@@ -16,7 +16,13 @@ public enum ErrorStatus implements BaseErrorCode {
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "Forbidden request."),
 
     // Auth 관련 에러
-    UNSUPPORTED_SOCIAL_TYPE(HttpStatus.BAD_REQUEST, "AUTH4001", "지원하지 않는 소셜 로그인 타입입니다.");
+    UNSUPPORTED_SOCIAL_TYPE(HttpStatus.BAD_REQUEST, "AUTH401", "지원하지 않는 소셜 로그인 타입입니다."),
+    MISSING_AUTHORITY(HttpStatus.FORBIDDEN, "AUTH403", "토큰에 포함된 인증 정보가 부족합니다."),
+
+    // Token 관련 에러
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN401", "유효하지 않은 토큰입니다."),
+    EXPIRED_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN402", "토큰이 만료되었습니다."),
+    INVALID_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN403", "refresh 토큰이 유효하지 않거나 존재하지 않습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
