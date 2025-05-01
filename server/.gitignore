@@ -38,3 +38,5 @@ out/
 
 ### yml ###
 *.yml
+src/main/resources/application.yml
+/server/src/main/resources/application.yml
