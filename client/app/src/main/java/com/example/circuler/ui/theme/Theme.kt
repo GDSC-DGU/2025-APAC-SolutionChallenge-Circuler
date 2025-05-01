@@ -38,7 +38,7 @@ fun ProvideCirculerColorsAndTypography(
 
 @Composable
 fun CirculerTheme(
-    backgroundColor: Color = defaultCirculerColors.white,
+    backgroundColor: Color = defaultCirculerColors.grayScale1,
     content: @Composable () -> Unit
 ) {
     ProvideCirculerColorsAndTypography(
