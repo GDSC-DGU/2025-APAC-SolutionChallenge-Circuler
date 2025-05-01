@@ -7,6 +7,9 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 val properties = Properties().apply {
@@ -54,7 +57,7 @@ android {
 }
 
 dependencies {
-    //Test
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.bundles.test)
@@ -66,7 +69,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     implementation(platform(libs.androidx.compose.bom))
 
-    //kotlinx
+    // kotlinx
     implementation(libs.kotlinx.immutable)
 
     // Network
@@ -84,4 +87,18 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+
+    // Firebase
+    implementation(platform(libs.google.firebase.bom))
+    implementation(libs.google.firebase.crashlytics)
+    implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.firebase.analytics)
+}
+
+ktlint {
+    android = true
+    debug = true
+    coloredOutput = true
+    verbose = true
+    outputToConsole = true
 }
