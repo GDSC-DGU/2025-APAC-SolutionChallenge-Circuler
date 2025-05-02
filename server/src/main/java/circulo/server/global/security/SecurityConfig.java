@@ -1,6 +1,7 @@
 package circulo.server.global.security;
 
 import circulo.server.global.security.jwt.JwtTokenFilter;
+import circulo.server.global.security.oauth.CustomOauth2UserService;
 import circulo.server.global.security.oauth.OAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public class SecurityConfig {
 
     private final JwtTokenFilter jwtTokenFilter;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final CustomOauth2UserService customOauth2UserService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -46,6 +48,9 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .httpBasic(httpBasic -> httpBasic.disable())
                 .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .userService(customOauth2UserService)
+                        )
                         .successHandler(oAuth2SuccessHandler)
                 )
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

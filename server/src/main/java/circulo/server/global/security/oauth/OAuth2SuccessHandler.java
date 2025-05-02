@@ -31,16 +31,8 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException {
 
-        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-
-        String email = oAuth2User.getAttribute("email");
-        String name = oAuth2User.getAttribute("name");
-
-        User user = userRepository.findByEmail(email)
-                .orElseGet(() -> userRepository.save(User.builder()
-                        .email(email)
-                        .name(name)
-                        .build()));
+        CustomOAuth2User customOAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+        User user = customOAuth2User.getUser();
 
         TokenInfo token = jwtTokenProvider.generateToken(user.getId());
 
@@ -48,12 +40,6 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         response.setHeader("Authorization", "Bearer " + token.getAccessToken());
         response.setContentType("application/json;charset=UTF-8");
 
-        // 선택: 바디에 유저 정보와 토큰 포함
-        Map<String, Object> responseBody = Map.of(
-                "email", user.getEmail(),
-                "name", user.getName(),
-                "token", token
-        );
-        response.getWriter().write(objectMapper.writeValueAsString(responseBody));
+        objectMapper.writeValue(response.getWriter(), token);
     }
 }
