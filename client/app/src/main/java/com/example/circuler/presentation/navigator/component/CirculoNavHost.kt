@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.example.circuler.presentation.navigator.MainNavigator
 import com.example.circuler.presentation.type.MainTabType
+import com.example.circuler.presentation.ui.add.navigation.addNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
 
@@ -26,10 +27,11 @@ fun CirculoNavHost(
         popExitTransition = { ExitTransition.None }
     ) {
         homeNavGraph(
-            navigateToAddPackaging = { navigator.navigate(MainTabType.REQUEST_PACKAGE) },
-            navigateToRequestedPackages = navigator::navigateToHistory, // todo: 올바른 경로로 수정
+            navigateToAddPackaging = navigator::navigateToAddPackaging,
+            navigateToRequestedPackages = { navigator.navigate(MainTabType.REQUEST_PACKAGE) },
             navigateToReadyToGoPackages = navigator::navigateToHistory // todo: 올바른 경로로 수정
         )
         historyNavGraph()
+        addNavGraph()
     }
 }
