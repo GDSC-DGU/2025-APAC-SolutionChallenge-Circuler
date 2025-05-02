@@ -1,4 +1,4 @@
-package circulo.server.global.security;
+package circulo.server.global.redis;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;

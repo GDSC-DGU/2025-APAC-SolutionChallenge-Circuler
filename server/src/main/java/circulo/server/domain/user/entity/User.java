@@ -25,6 +25,7 @@ public class User extends BaseEntity {
     @Column(length = 255)
     private String location;
 
-    private Integer point;
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private Integer point = 0;
 
 }
