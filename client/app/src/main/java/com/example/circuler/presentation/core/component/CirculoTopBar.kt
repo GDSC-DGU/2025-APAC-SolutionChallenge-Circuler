@@ -35,14 +35,14 @@ fun CirculoTopBar(
     title: String? = null,
     titleStyle: TextStyle = CirculerTheme.typography.heading5Sb18,
     titleColor: Color = CirculerTheme.colors.grayScale12,
-    trailingIcon: @Composable () -> Unit = {},
+    trailingIcon: @Composable () -> Unit = {}
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .background(color = backgroundColor)
             .height(48.dp)
-            .padding(horizontal = 4.dp, vertical = 2.dp),
+            .padding(horizontal = 4.dp, vertical = 2.dp)
     ) {
         Box(
             modifier = Modifier
@@ -81,7 +81,7 @@ private fun RoomieTopBarPreview() {
                 .background(color = CirculerTheme.colors.green2),
             verticalArrangement = Arrangement.spacedBy(5.dp)
         ) {
-            //leading, title 있음
+            // leading, title 있음
             CirculoTopBar(
                 leadingIcon = {
                     Icon(
@@ -94,7 +94,7 @@ private fun RoomieTopBarPreview() {
                 title = "제목"
             )
 
-            //leading 있음
+            // leading 있음
             CirculoTopBar(
                 leadingIcon = {
                     Icon(
@@ -106,7 +106,7 @@ private fun RoomieTopBarPreview() {
                 }
             )
 
-            //배경 투명색
+            // 배경 투명색
             CirculoTopBar(
                 backgroundColor = Color.Transparent,
                 leadingIcon = {
@@ -116,10 +116,10 @@ private fun RoomieTopBarPreview() {
                         imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left),
                         contentDescription = "백버튼"
                     )
-                },
+                }
             )
 
-            //title 있음
+            // title 있음
             CirculoTopBar(
                 title = "제목"
             )

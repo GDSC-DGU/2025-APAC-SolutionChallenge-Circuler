@@ -39,7 +39,9 @@ import com.example.circuler.R
 import com.example.circuler.presentation.core.component.CirculoTopBar
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
+import com.example.circuler.presentation.type.HomeNavigateButtonType
 import com.example.circuler.presentation.ui.home.component.HomeMainButton
+import com.example.circuler.presentation.ui.home.component.HomeNavigateButton
 import com.example.circuler.ui.theme.CirculerTheme
 
 @Composable
@@ -84,7 +86,7 @@ fun HomeScreen(
             .fillMaxSize()
             .background(CirculerTheme.colors.grayScale1)
             .padding(bottom = paddingValues.calculateBottomPadding()),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         stickyHeader {
             CirculoTopBar(
@@ -131,15 +133,34 @@ fun HomeScreen(
 
         item {
             HomeMainButton(
-                modifier = Modifier
-                    .padding(horizontal = 20.dp),
                 onClick = {
-                    //todo: navigate
+                    // todo: navigate
                 }
             )
         }
 
-
+        item {
+            Row(
+                modifier = Modifier
+                    .padding(start = 20.dp, end = 20.dp, top = 50.dp),
+                horizontalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                HomeNavigateButton(
+                    modifier = Modifier.weight(1f),
+                    homeNavigateButtonType = HomeNavigateButtonType.REQUEST,
+                    onClick = {
+                        // todo: navigate
+                    }
+                )
+                HomeNavigateButton(
+                    modifier = Modifier.weight(1f),
+                    homeNavigateButtonType = HomeNavigateButtonType.DELIVERY,
+                    onClick = {
+                        // todo: navigate
+                    }
+                )
+            }
+        }
     }
 }
 

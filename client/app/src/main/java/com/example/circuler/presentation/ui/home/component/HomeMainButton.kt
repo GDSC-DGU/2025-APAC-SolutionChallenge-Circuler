@@ -31,11 +31,11 @@ import com.example.circuler.ui.theme.CirculerTheme
 @Composable
 fun HomeMainButton(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
-            .padding(top = 20.dp)
+            .padding(top = 40.dp, start = 20.dp, end = 20.dp)
             .fillMaxWidth()
             .height((LocalConfiguration.current.screenHeightDp * 0.228).dp)
             .clip(RoundedCornerShape(20.dp))
@@ -47,9 +47,9 @@ fun HomeMainButton(
             painter = painterResource(id = R.drawable.img_add_packaging),
             contentDescription = null,
             alpha = 0.3f,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Crop
 
-            )
+        )
 
         Column(
             modifier = Modifier
