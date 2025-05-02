@@ -22,7 +22,8 @@ public enum ErrorStatus implements BaseErrorCode {
     // Token 관련 에러
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN401", "유효하지 않은 토큰입니다."),
     EXPIRED_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN402", "토큰이 만료되었습니다."),
-    INVALID_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN403", "refresh 토큰이 유효하지 않거나 존재하지 않습니다.");
+    INVALID_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN403", "refresh 토큰이 유효하지 않거나 존재하지 않습니다."),
+    NULL_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN404", "토큰이 NULL 값입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
