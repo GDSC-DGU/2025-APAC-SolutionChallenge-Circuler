@@ -48,6 +48,9 @@ import com.example.circuler.ui.theme.CirculerTheme
 fun HomeRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToAddPackaging: () -> Unit,
+    navigateToRequestedPackages: () -> Unit,
+    navigateToReadyToGoPackages: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -59,6 +62,9 @@ fun HomeRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is HomeSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
+                    HomeSideEffect.NavigateToAddPackaging -> navigateToAddPackaging()
+                    HomeSideEffect.NavigateToReadyToGoPackages -> navigateToReadyToGoPackages()
+                    HomeSideEffect.NavigateToRequestedPackages -> navigateToRequestedPackages()
                 }
             }
     }
@@ -66,6 +72,9 @@ fun HomeRoute(
     HomeScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
+        navigateToAddPackaging = viewModel::navigateToAddPackaging,
+        navigateToRequestedPackages = viewModel::navigateToRequestedPackages,
+        navigateToReadyToGoPackages = viewModel::navigateToReadyToGoPackages,
         state = state.uiState
     )
 }
@@ -75,6 +84,9 @@ fun HomeRoute(
 fun HomeScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToAddPackaging: () -> Unit,
+    navigateToRequestedPackages: () -> Unit,
+    navigateToReadyToGoPackages: () -> Unit,
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
@@ -134,7 +146,7 @@ fun HomeScreen(
         item {
             HomeMainButton(
                 onClick = {
-                    // todo: navigate
+                    navigateToAddPackaging()
                 }
             )
         }
@@ -149,14 +161,14 @@ fun HomeScreen(
                     modifier = Modifier.weight(1f),
                     homeNavigateButtonType = HomeNavigateButtonType.REQUEST,
                     onClick = {
-                        // todo: navigate
+                        navigateToRequestedPackages()
                     }
                 )
                 HomeNavigateButton(
                     modifier = Modifier.weight(1f),
                     homeNavigateButtonType = HomeNavigateButtonType.DELIVERY,
                     onClick = {
-                        // todo: navigate
+                        navigateToReadyToGoPackages()
                     }
                 )
             }
@@ -171,7 +183,10 @@ fun HomeScreenPreview() {
         HomeScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            state = UiState.Loading
+            state = UiState.Loading,
+            navigateToAddPackaging = { },
+            navigateToRequestedPackages = { },
+            navigateToReadyToGoPackages = { }
         )
     }
 }
