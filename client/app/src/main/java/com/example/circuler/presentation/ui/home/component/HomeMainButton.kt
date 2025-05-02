@@ -65,7 +65,7 @@ fun HomeMainButton(
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "Add Packaging",
-                style = CirculerTheme.typography.body4R12,
+                style = CirculerTheme.typography.title3M16,
                 color = CirculerTheme.colors.grayScale12
             )
         }
