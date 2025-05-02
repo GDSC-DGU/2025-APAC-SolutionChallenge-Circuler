@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Circuler</string>
+
+    <string name="home">home</string>
+    <string name="history">history</string>
+
 </resources>
