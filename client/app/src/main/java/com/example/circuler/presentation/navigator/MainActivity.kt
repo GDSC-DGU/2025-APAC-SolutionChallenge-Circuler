@@ -15,11 +15,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navigator: MainNavigator = rememberMainNavigator()
+
             CirculerTheme {
-                ReqresRoute(
-                    paddingValues = PaddingValues(),
-                    navigateUp = {}
-                )
+                MainScreen(navigator = navigator)
             }
         }
     }
