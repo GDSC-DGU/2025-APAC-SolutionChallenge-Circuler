@@ -29,19 +29,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
 import com.example.circuler.presentation.core.component.CirculoTopBar
-import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
+import com.example.circuler.presentation.ui.home.component.HomeMainButton
 import com.example.circuler.ui.theme.CirculerTheme
 
 @Composable
@@ -131,6 +129,15 @@ fun HomeScreen(
             )
         }
 
+        item {
+            HomeMainButton(
+                modifier = Modifier
+                    .padding(horizontal = 20.dp),
+                onClick = {
+                    //todo: navigate
+                }
+            )
+        }
 
 
     }
