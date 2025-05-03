@@ -14,6 +14,7 @@ import com.example.circuler.presentation.ui.add.navigation.navigateToAddPackagin
 import com.example.circuler.presentation.ui.delivery.navigation.navigateToDeliveryPackage
 import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
+import com.example.circuler.presentation.ui.request.navigation.navigateToRequestPackage
 
 class MainNavigator(
     val navController: NavHostController
@@ -64,11 +65,14 @@ class MainNavigator(
 
     fun navigateToAddPackaging() {
         navController.navigateToAddPackaging()
-
     }
 
     fun navigateToReadyToGoPackages() {
         navController.navigateToDeliveryPackage()
+    }
+
+    fun navigateToRequestPackage() {
+        navController.navigateToRequestPackage()
     }
 
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean =

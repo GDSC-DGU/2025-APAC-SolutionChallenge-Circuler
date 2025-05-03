@@ -7,11 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.example.circuler.presentation.navigator.MainNavigator
-import com.example.circuler.presentation.type.MainTabType
 import com.example.circuler.presentation.ui.add.navigation.addNavGraph
 import com.example.circuler.presentation.ui.delivery.navigation.deliveryNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
+import com.example.circuler.presentation.ui.request.navigation.requestGraph
 
 @Composable
 fun CirculoNavHost(
@@ -29,11 +29,12 @@ fun CirculoNavHost(
     ) {
         homeNavGraph(
             navigateToAddPackaging = navigator::navigateToAddPackaging,
-            navigateToRequestedPackages = { navigator.navigate(MainTabType.REQUEST_PACKAGE) },
-            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages // todo: 올바른 경로로 수정
+            navigateToRequestedPackages = navigator::navigateToRequestPackage,
+            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages
         )
         historyNavGraph()
         addNavGraph()
         deliveryNavGraph()
+        requestGraph()
     }
 }
