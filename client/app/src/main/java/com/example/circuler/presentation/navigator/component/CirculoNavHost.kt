@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import com.example.circuler.presentation.navigator.MainNavigator
 import com.example.circuler.presentation.type.MainTabType
 import com.example.circuler.presentation.ui.add.navigation.addNavGraph
+import com.example.circuler.presentation.ui.delivery.navigation.deliveryNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
 
@@ -29,9 +30,10 @@ fun CirculoNavHost(
         homeNavGraph(
             navigateToAddPackaging = navigator::navigateToAddPackaging,
             navigateToRequestedPackages = { navigator.navigate(MainTabType.REQUEST_PACKAGE) },
-            navigateToReadyToGoPackages = navigator::navigateToHistory // todo: 올바른 경로로 수정
+            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages // todo: 올바른 경로로 수정
         )
         historyNavGraph()
         addNavGraph()
+        deliveryNavGraph()
     }
 }

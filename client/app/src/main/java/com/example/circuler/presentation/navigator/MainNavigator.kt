@@ -11,6 +11,7 @@ import com.example.circuler.presentation.navigator.route.MainTabRoute
 import com.example.circuler.presentation.navigator.route.Route
 import com.example.circuler.presentation.type.MainTabType
 import com.example.circuler.presentation.ui.add.navigation.navigateToAddPackaging
+import com.example.circuler.presentation.ui.delivery.navigation.navigateToDeliveryPackage
 import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
 
@@ -67,7 +68,7 @@ class MainNavigator(
     }
 
     fun navigateToReadyToGoPackages() {
-
+        navController.navigateToDeliveryPackage()
     }
 
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean =
