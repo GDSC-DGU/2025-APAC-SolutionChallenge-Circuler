@@ -4,4 +4,7 @@
     <string name="home">home</string>
     <string name="history">history</string>
 
+    <string name="requested_packages">Requested Packages</string>
+    <string name="ready_to_go_packages">Ready-to-Go Packages</string>
+
 </resources>
