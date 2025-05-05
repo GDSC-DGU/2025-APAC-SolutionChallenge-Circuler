@@ -16,7 +16,7 @@ fun NavController.navigateToUploadPackaging(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.uploadNavGraph(
-    navigateUp: () -> Unit,
+    navigateUp: () -> Unit
 ) {
     composable<Route.UploadPhoto> {
         UploadPackagingRoute(

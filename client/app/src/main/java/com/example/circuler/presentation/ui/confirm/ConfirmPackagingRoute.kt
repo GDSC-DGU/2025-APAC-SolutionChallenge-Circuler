@@ -91,7 +91,7 @@ fun ConfirmPackagingScreen(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left),
                     contentDescription = "back"
                 )
-            },
+            }
         )
 
         ConfirmTitle()
@@ -100,7 +100,7 @@ fun ConfirmPackagingScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.CenterVertically),
+            verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.CenterVertically)
         ) {
             CirculoTextGroup()
 

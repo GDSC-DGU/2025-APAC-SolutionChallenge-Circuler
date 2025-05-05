@@ -62,7 +62,7 @@ fun UploadPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: UiState<String>,
-    //todo: navigateToUploadPackage: () -> Unit,
+    // todo: navigateToUploadPackage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -74,7 +74,7 @@ fun UploadPackagingScreen(
             .statusBarsPadding()
             .navigationBarsPadding()
     ) {
-        //todo: UiState.Success
+        // todo: UiState.Success
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -99,13 +99,12 @@ fun UploadPackagingScreen(
                     .align(Alignment.BottomCenter),
                 text = "accept",
                 onClick = {
-                    //todo: navigateToSubmit
+                    // todo: navigateToSubmit
                 }
             )
         }
 
-
-        //todo: UiState.Loading
+        // todo: UiState.Loading
 //        Box(
 //            modifier = Modifier
 //                .height((LocalConfiguration.current.screenHeightDp).dp),

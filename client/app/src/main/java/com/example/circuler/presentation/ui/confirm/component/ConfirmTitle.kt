@@ -15,7 +15,7 @@ fun ConfirmTitle(
         modifier = modifier
             .padding(start = 20.dp, top = 24.dp, bottom = 60.dp),
         text = "Please check \n" +
-                "if the selected packaging is correct",
+            "if the selected packaging is correct",
         style = CirculerTheme.typography.heading3M20,
         color = CirculerTheme.colors.grayScale12
     )
