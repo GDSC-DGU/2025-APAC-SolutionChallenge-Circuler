@@ -1,4 +1,4 @@
-package com.example.circuler.presentation.ui.add.navigation
+package com.example.circuler.presentation.ui.confirm.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.navigation.NavController
@@ -6,20 +6,20 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.example.circuler.presentation.navigator.route.Route
-import com.example.circuler.presentation.ui.add.AddPackagingRoute
+import com.example.circuler.presentation.ui.confirm.ConfirmPackagingRoute
 
-fun NavController.navigateToAddPackaging(navOptions: NavOptions? = null) {
+fun NavController.navigateToConfirmPackaging(navOptions: NavOptions? = null) {
     navigate(
-        route = Route.AddPackage,
+        route = Route.ConfirmPackage,
         navOptions = navOptions
     )
 }
 
-fun NavGraphBuilder.addNavGraph(
+fun NavGraphBuilder.confirmNavGraph(
     navigateUp: () -> Unit
 ) {
-    composable<Route.AddPackage> {
-        AddPackagingRoute(
+    composable<Route.ConfirmPackage> {
+        ConfirmPackagingRoute(
             paddingValues = PaddingValues(),
             navigateUp = navigateUp
         )

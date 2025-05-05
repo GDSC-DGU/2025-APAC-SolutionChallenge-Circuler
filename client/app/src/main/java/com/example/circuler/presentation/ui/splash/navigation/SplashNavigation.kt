@@ -14,8 +14,7 @@ fun NavController.navigateToSplash(navOptions: NavOptions? = null) {
     )
 }
 
-fun NavGraphBuilder.splashNavGraph(
-) {
+fun NavGraphBuilder.splashNavGraph() {
     composable<Route.Splash> {
         SplashScreen()
     }

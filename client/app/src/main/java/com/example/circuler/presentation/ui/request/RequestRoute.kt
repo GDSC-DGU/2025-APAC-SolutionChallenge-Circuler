@@ -36,10 +36,12 @@ import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
 import com.example.circuler.ui.theme.CirculerTheme
 
+// todo: navigateToConfirmPackaging id 값 물고가기
 @Composable
 fun RequestRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToConfirmPackaging: () -> Unit,
     viewModel: RequestViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -51,6 +53,7 @@ fun RequestRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is RequestSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
+                    RequestSideEffect.NavigateToConfirmPackaging -> navigateToConfirmPackaging()
                 }
             }
     }
@@ -58,6 +61,7 @@ fun RequestRoute(
     RequestScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
+        navigateToConfirmPackaging = viewModel::navigateToConfirmPackaging,
         state = state.uiState
     )
 }
@@ -67,6 +71,7 @@ fun RequestRoute(
 fun RequestScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToConfirmPackaging: () -> Unit,
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
@@ -170,7 +175,10 @@ fun RequestScreen(
                     quantity = item.quantity,
                     distance = item.distance,
                     type = item.type
-                )
+                ),
+                onClick = {
+                    navigateToConfirmPackaging()
+                }
             )
         }
     }
@@ -183,6 +191,7 @@ fun RequestScreenPreview() {
         RequestScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
+            navigateToConfirmPackaging = {},
             state = UiState.Loading
         )
     }

@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.navOptions
 import com.example.circuler.presentation.navigator.MainNavigator
 import com.example.circuler.presentation.ui.add.navigation.addNavGraph
+import com.example.circuler.presentation.ui.confirm.navigation.confirmNavGraph
 import com.example.circuler.presentation.ui.delivery.navigation.deliveryNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
@@ -42,7 +43,7 @@ fun CirculoNavHost(
                     launchSingleTop = true
                 }
                 navigator.navigateToHome(navOptions = navOptions)
-            },
+            }
         )
         homeNavGraph(
             navigateToAddPackaging = navigator::navigateToAddPackaging,
@@ -51,16 +52,20 @@ fun CirculoNavHost(
         )
         historyNavGraph()
         addNavGraph(
-            navigateUp = navigator::popBackStackIfNotHome,
+            navigateUp = navigator::popBackStackIfNotHome
         )
         deliveryNavGraph(
-            navigateUp = navigator::popBackStackIfNotHome,
+            navigateUp = navigator::popBackStackIfNotHome
         )
         requestGraph(
             navigateUp = navigator::popBackStackIfNotHome,
+            navigateToConfirmPackaging = navigator::navigateToConfirmPackaging
+        )
+        confirmNavGraph(
+            navigateUp = navigator::popBackStackIfNotHome
         )
         submitNavGraph(
-            navigateUp = navigator::popBackStackIfNotHome,
+            navigateUp = navigator::popBackStackIfNotHome
         )
     }
 }

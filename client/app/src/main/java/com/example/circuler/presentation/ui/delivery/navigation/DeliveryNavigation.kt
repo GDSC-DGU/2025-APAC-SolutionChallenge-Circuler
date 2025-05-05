@@ -16,7 +16,7 @@ fun NavController.navigateToDeliveryPackage(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.deliveryNavGraph(
-    navigateUp: () -> Unit,
+    navigateUp: () -> Unit
 ) {
     composable<Route.DeliveryPackage> {
         DeliveryRoute(

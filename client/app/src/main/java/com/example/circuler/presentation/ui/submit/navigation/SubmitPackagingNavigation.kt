@@ -16,7 +16,7 @@ fun NavController.navigateToSubmitPackaging(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.submitNavGraph(
-    navigateUp: () -> Unit,
+    navigateUp: () -> Unit
 ) {
     composable<Route.SubmittedPackage> {
         SubmitPackagingRoute(

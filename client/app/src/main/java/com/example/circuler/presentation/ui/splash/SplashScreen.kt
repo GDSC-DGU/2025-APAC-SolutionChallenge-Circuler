@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.example.circuler.R
 import com.example.circuler.ui.theme.CirculerTheme
 
-
 @Composable
 fun SplashScreen() {
     Column(
