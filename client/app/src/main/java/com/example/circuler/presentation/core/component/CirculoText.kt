@@ -18,6 +18,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.circuler.ui.theme.CirculerTheme
 
+
+@Composable
+fun CirculoText(
+    title: String,
+    subTitle: String,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = title,
+            style = CirculerTheme.typography.body3M14,
+            color = CirculerTheme.colors.grayScale7
+        )
+        Spacer(
+            modifier = Modifier
+                .size(20.dp)
+        )
+        Text(
+            text = subTitle,
+            style = CirculerTheme.typography.body1R14,
+            color = CirculerTheme.colors.grayScale12
+        )
+    }
+}
+
 @Composable
 fun CirculoTextWithIcon(
     icon: ImageVector,
@@ -65,8 +93,12 @@ private fun CirculoTextPreview() {
             modifier = Modifier
                 .background(CirculerTheme.colors.green4),
             verticalArrangement = Arrangement.spacedBy(5.dp, alignment = Alignment.CenterVertically)
-
         ) {
+            CirculoText(
+                title = "Quantity",
+                subTitle = "5"
+            )
+
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Quantity",

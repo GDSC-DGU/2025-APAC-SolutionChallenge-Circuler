@@ -74,7 +74,7 @@ fun CirculoTopBar(
 
 @Preview
 @Composable
-private fun RoomieTopBarPreview() {
+private fun CirculoTopBarPreview() {
     CirculerTheme {
         Column(
             modifier = Modifier
