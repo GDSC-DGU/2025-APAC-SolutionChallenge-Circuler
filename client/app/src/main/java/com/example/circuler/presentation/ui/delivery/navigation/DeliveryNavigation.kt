@@ -15,11 +15,13 @@ fun NavController.navigateToDeliveryPackage(navOptions: NavOptions? = null) {
     )
 }
 
-fun NavGraphBuilder.deliveryNavGraph() {
+fun NavGraphBuilder.deliveryNavGraph(
+    navigateUp: () -> Unit,
+) {
     composable<Route.DeliveryPackage> {
         DeliveryRoute(
             paddingValues = PaddingValues(),
-            navigateUp = {}
+            navigateUp = navigateUp
         )
     }
 }

@@ -15,11 +15,13 @@ fun NavController.navigateToAddPackaging(navOptions: NavOptions? = null) {
     )
 }
 
-fun NavGraphBuilder.addNavGraph() {
+fun NavGraphBuilder.addNavGraph(
+    navigateUp: () -> Unit,
+) {
     composable<Route.AddPackage> {
         AddPackagingRoute(
             paddingValues = PaddingValues(),
-            navigateUp = {}
+            navigateUp = navigateUp
         )
     }
 }

@@ -41,9 +41,17 @@ fun CirculoNavHost(
             navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages
         )
         historyNavGraph()
-        addNavGraph()
-        deliveryNavGraph()
-        requestGraph()
-        submitNavGraph()
+        addNavGraph(
+            navigateUp = navigator::popBackStackIfNotHome,
+        )
+        deliveryNavGraph(
+            navigateUp = navigator::popBackStackIfNotHome,
+        )
+        requestGraph(
+            navigateUp = navigator::popBackStackIfNotHome,
+        )
+        submitNavGraph(
+            navigateUp = navigator::popBackStackIfNotHome,
+        )
     }
 }
