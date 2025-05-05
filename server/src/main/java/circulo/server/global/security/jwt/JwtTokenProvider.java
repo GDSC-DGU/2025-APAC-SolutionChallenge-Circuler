@@ -120,8 +120,7 @@ public class JwtTokenProvider {
                 new SimpleGrantedAuthority(claims.get("auth").toString())
         );
 
-        UserDetails userDetails = new User(userId, "", authorities);
-        return new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
+        return new UsernamePasswordAuthenticationToken(userId.toString(), null, authorities);
     }
 
     // Claims 파싱
