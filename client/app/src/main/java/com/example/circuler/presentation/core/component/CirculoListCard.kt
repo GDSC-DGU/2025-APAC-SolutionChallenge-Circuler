@@ -150,6 +150,64 @@ fun CirculoListCardWithMethod(
     }
 }
 
+//todo: entity 수정가능성
+@Composable
+fun CirculoListCardWithButton(
+    listCardWithMethodEntity: ListCardWithMethodEntity,
+    modifier: Modifier = Modifier,
+    onButtonClick: () -> Unit = {},
+) {
+    Box(
+        contentAlignment = Alignment.CenterStart,
+        modifier = modifier
+            .fillMaxWidth()
+            .customShadow(
+                spotColor = CirculerTheme.colors.grayScale5,
+                ambientColor = CirculerTheme.colors.grayScale5
+            )
+            .roundedBackgroundWithBorder(
+                cornerRadius = 20.dp,
+                backgroundColor = CirculerTheme.colors.grayScale1,
+            )
+            .clip(
+                shape = RoundedCornerShape(20.dp)
+            )
+            .padding(horizontal = 15.dp, vertical = 30.dp),
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(18.dp, alignment = Alignment.CenterVertically)
+        ) {
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Packaging type",
+                subTitle = listCardWithMethodEntity.id
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Quantity",
+                subTitle = listCardWithMethodEntity.quantity
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Shop Location",
+                subTitle = listCardWithMethodEntity.location
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Distance",
+                subTitle = listCardWithMethodEntity.method
+            )
+
+            CirculoButton(
+                text = "accept",
+                textStyle = CirculerTheme.typography.body4R12,
+                verticalPadding = 10.dp,
+                onClick = onButtonClick
+            )
+        }
+    }
+}
+
 
 @Preview
 @Composable
@@ -172,6 +230,15 @@ private fun CirculoListCardPreview() {
             )
 
             CirculoListCardWithMethod(
+                listCardWithMethodEntity = ListCardWithMethodEntity(
+                    id = "1",
+                    location = "123",
+                    method = "plastic",
+                    quantity = "12"
+                )
+            )
+
+            CirculoListCardWithButton(
                 listCardWithMethodEntity = ListCardWithMethodEntity(
                     id = "1",
                     location = "123",
