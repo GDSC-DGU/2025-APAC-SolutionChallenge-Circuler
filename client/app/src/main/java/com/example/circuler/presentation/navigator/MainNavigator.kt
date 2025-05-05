@@ -10,8 +10,11 @@ import androidx.navigation.navOptions
 import com.example.circuler.presentation.navigator.route.MainTabRoute
 import com.example.circuler.presentation.navigator.route.Route
 import com.example.circuler.presentation.type.MainTabType
+import com.example.circuler.presentation.ui.add.navigation.navigateToAddPackaging
+import com.example.circuler.presentation.ui.delivery.navigation.navigateToDeliveryPackage
 import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
+import com.example.circuler.presentation.ui.request.navigation.navigateToRequestPackage
 
 class MainNavigator(
     val navController: NavHostController
@@ -58,6 +61,18 @@ class MainNavigator(
 
     fun navigateToHistory() {
         navController.navigate(MainTabRoute.RequestPackage)
+    }
+
+    fun navigateToAddPackaging() {
+        navController.navigateToAddPackaging()
+    }
+
+    fun navigateToReadyToGoPackages() {
+        navController.navigateToDeliveryPackage()
+    }
+
+    fun navigateToRequestPackage() {
+        navController.navigateToRequestPackage()
     }
 
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean =
