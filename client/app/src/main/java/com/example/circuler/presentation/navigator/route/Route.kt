@@ -25,6 +25,9 @@ sealed interface Route {
     data object DeliveryPackage : Route
 
     @Serializable
+    data object SubmittedPackage : Route
+
+    @Serializable
     data object Map : Route
 }
 

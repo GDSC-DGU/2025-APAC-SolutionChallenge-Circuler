@@ -12,6 +12,7 @@ import com.example.circuler.presentation.ui.delivery.navigation.deliveryNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
 import com.example.circuler.presentation.ui.request.navigation.requestGraph
+import com.example.circuler.presentation.ui.submit.navigation.submitNavGraph
 
 @Composable
 fun CirculoNavHost(
@@ -36,5 +37,6 @@ fun CirculoNavHost(
         addNavGraph()
         deliveryNavGraph()
         requestGraph()
+        submitNavGraph()
     }
 }
