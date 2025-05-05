@@ -18,6 +18,7 @@ import com.example.circuler.presentation.ui.login.navigation.loginNavGraph
 import com.example.circuler.presentation.ui.request.navigation.requestGraph
 import com.example.circuler.presentation.ui.splash.navigation.splashNavGraph
 import com.example.circuler.presentation.ui.submit.navigation.submitNavGraph
+import com.example.circuler.presentation.ui.upload.navigation.uploadNavGraph
 
 @Composable
 fun CirculoNavHost(
@@ -62,6 +63,10 @@ fun CirculoNavHost(
             navigateToConfirmPackaging = navigator::navigateToConfirmPackaging
         )
         confirmNavGraph(
+            navigateUp = navigator::popBackStackIfNotHome,
+            navigateToUploadPackage = navigator::navigateToUploadPackaging
+        )
+        uploadNavGraph(
             navigateUp = navigator::popBackStackIfNotHome
         )
         submitNavGraph(

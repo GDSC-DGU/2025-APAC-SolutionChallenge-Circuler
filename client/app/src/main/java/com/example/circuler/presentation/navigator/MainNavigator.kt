@@ -18,6 +18,7 @@ import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
 import com.example.circuler.presentation.ui.request.navigation.navigateToRequestPackage
 import com.example.circuler.presentation.ui.submit.navigation.navigateToSubmitPackaging
+import com.example.circuler.presentation.ui.upload.navigation.navigateToUploadPackaging
 
 class MainNavigator(
     val navController: NavHostController
@@ -87,6 +88,10 @@ class MainNavigator(
 
     fun navigateToSubmitPackaging() {
         navController.navigateToSubmitPackaging()
+    }
+
+    fun navigateToUploadPackaging() {
+        navController.navigateToUploadPackaging()
     }
 
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean =

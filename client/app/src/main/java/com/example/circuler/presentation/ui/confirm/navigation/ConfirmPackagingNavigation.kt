@@ -16,12 +16,14 @@ fun NavController.navigateToConfirmPackaging(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.confirmNavGraph(
-    navigateUp: () -> Unit
+    navigateUp: () -> Unit,
+    navigateToUploadPackage: () -> Unit
 ) {
     composable<Route.ConfirmPackage> {
         ConfirmPackagingRoute(
             paddingValues = PaddingValues(),
-            navigateUp = navigateUp
+            navigateUp = navigateUp,
+            navigateToUploadPackage = navigateToUploadPackage
         )
     }
 }
