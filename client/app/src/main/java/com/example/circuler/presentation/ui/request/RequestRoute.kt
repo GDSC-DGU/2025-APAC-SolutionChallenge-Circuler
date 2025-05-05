@@ -73,7 +73,7 @@ fun RequestScreen(
     val screenWeigth = LocalConfiguration.current.screenWidthDp
     val height = (screenWeigth * 0.5).dp
 
-    //todo: dummy delete
+    // todo: dummy delete
     val dummyList = listOf(
         ListCardEntity(
             distance = "2.5km",
@@ -117,7 +117,7 @@ fun RequestScreen(
             .fillMaxSize()
             .background(CirculerTheme.colors.grayScale1)
             .statusBarsPadding()
-            .navigationBarsPadding(),
+            .navigationBarsPadding()
     ) {
         stickyHeader {
             CirculoTopBar(
@@ -130,12 +130,12 @@ fun RequestScreen(
                         contentDescription = "back"
                     )
                 },
-                title = "Requested Package List",
+                title = "Requested Package List"
             )
         }
 
         item {
-            //todo: 버튼 디자인
+            // todo: 버튼 디자인
             Text(
                 modifier = Modifier
                     .padding(
@@ -148,7 +148,8 @@ fun RequestScreen(
                         borderWidth = 1.dp
                     )
                     .padding(
-                        horizontal = 9.dp, vertical = 8.dp
+                        horizontal = 9.dp,
+                        vertical = 8.dp
                     ),
                 text = "Packaging Type",
                 textAlign = TextAlign.Start
@@ -157,8 +158,8 @@ fun RequestScreen(
 
         itemsIndexed(
             items = dummyList
-            //todo: 주석 삭제
-            //state.results
+            // todo: 주석 삭제
+            // state.results
         ) { index, item ->
             CirculoListCard(
                 modifier = Modifier

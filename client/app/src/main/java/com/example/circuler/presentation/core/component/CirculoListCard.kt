@@ -25,12 +25,12 @@ import com.example.circuler.presentation.core.extension.roundedBackgroundWithBor
 import com.example.circuler.presentation.type.ChipType
 import com.example.circuler.ui.theme.CirculerTheme
 
-//todo: entity 수정가능성
+// todo: entity 수정가능성
 @Composable
 fun CirculoListCard(
     listCardEntity: ListCardEntity,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
+    onClick: () -> Unit = {}
 ) {
     Box(
         contentAlignment = Alignment.CenterStart,
@@ -38,7 +38,7 @@ fun CirculoListCard(
             .fillMaxWidth()
             .roundedBackgroundWithBorder(
                 cornerRadius = 20.dp,
-                backgroundColor = CirculerTheme.colors.grayScale1,
+                backgroundColor = CirculerTheme.colors.grayScale1
             )
             .clip(
                 shape = RoundedCornerShape(20.dp)
@@ -50,7 +50,7 @@ fun CirculoListCard(
             .clickable {
                 onClick()
             }
-            .padding(start = 15.dp, top = 30.dp, bottom = 30.dp),
+            .padding(start = 15.dp, top = 30.dp, bottom = 30.dp)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(18.dp, alignment = Alignment.CenterVertically)
@@ -76,16 +76,15 @@ fun CirculoListCard(
                 subTitle = listCardEntity.distance
             )
         }
-
     }
 }
 
-//todo: entity 수정가능성
+// todo: entity 수정가능성
 @Composable
 fun CirculoListCardWithMethod(
     listCardWithMethodEntity: ListCardWithMethodEntity,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
+    onClick: () -> Unit = {}
 ) {
     Box(
         contentAlignment = Alignment.CenterStart,
@@ -97,7 +96,7 @@ fun CirculoListCardWithMethod(
             )
             .roundedBackgroundWithBorder(
                 cornerRadius = 20.dp,
-                backgroundColor = CirculerTheme.colors.grayScale1,
+                backgroundColor = CirculerTheme.colors.grayScale1
             )
             .clip(
                 shape = RoundedCornerShape(20.dp)
@@ -105,7 +104,7 @@ fun CirculoListCardWithMethod(
             .clickable {
                 onClick()
             }
-            .padding(horizontal = 15.dp, vertical = 30.dp),
+            .padding(horizontal = 15.dp, vertical = 30.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -140,22 +139,20 @@ fun CirculoListCardWithMethod(
                     .weight(1f)
             )
 
-            //todo: method 처리
+            // todo: method 처리
             CirculoChip(
                 chipType = ChipType.PENDING
             )
         }
-
-
     }
 }
 
-//todo: entity 수정가능성
+// todo: entity 수정가능성
 @Composable
 fun CirculoListCardWithButton(
     listCardWithMethodEntity: ListCardWithMethodEntity,
     modifier: Modifier = Modifier,
-    onButtonClick: () -> Unit = {},
+    onButtonClick: () -> Unit = {}
 ) {
     Box(
         contentAlignment = Alignment.CenterStart,
@@ -167,12 +164,12 @@ fun CirculoListCardWithButton(
             )
             .roundedBackgroundWithBorder(
                 cornerRadius = 20.dp,
-                backgroundColor = CirculerTheme.colors.grayScale1,
+                backgroundColor = CirculerTheme.colors.grayScale1
             )
             .clip(
                 shape = RoundedCornerShape(20.dp)
             )
-            .padding(horizontal = 15.dp, vertical = 30.dp),
+            .padding(horizontal = 15.dp, vertical = 30.dp)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(18.dp, alignment = Alignment.CenterVertically)
@@ -194,7 +191,7 @@ fun CirculoListCardWithButton(
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
-                title = "Distance",
+                title = "Method",
                 subTitle = listCardWithMethodEntity.method
             )
 
@@ -207,7 +204,6 @@ fun CirculoListCardWithButton(
         }
     }
 }
-
 
 @Preview
 @Composable
@@ -226,7 +222,7 @@ private fun CirculoListCardPreview() {
                     id = "1",
                     location = "15m",
                     quantity = "3"
-                ),
+                )
             )
 
             CirculoListCardWithMethod(
@@ -242,7 +238,7 @@ private fun CirculoListCardPreview() {
                 listCardWithMethodEntity = ListCardWithMethodEntity(
                     id = "1",
                     location = "123",
-                    method = "plastic",
+                    method = "self",
                     quantity = "12"
                 )
             )

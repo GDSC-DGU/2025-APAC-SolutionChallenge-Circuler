@@ -70,7 +70,7 @@ fun DeliveryScreen(
     val screenWeigth = LocalConfiguration.current.screenWidthDp
     val height = (screenWeigth * 0.5).dp
 
-    //todo: dummy delete
+    // todo: dummy delete
     val dummyList = listOf(
         ListCardEntity(
             distance = "2.5km",
@@ -114,7 +114,7 @@ fun DeliveryScreen(
             .fillMaxSize()
             .background(CirculerTheme.colors.grayScale1)
             .statusBarsPadding()
-            .navigationBarsPadding(),
+            .navigationBarsPadding()
     ) {
         stickyHeader {
             CirculoTopBar(
@@ -127,14 +127,14 @@ fun DeliveryScreen(
                         contentDescription = "back"
                     )
                 },
-                title = "Ready-to-Go Package List",
+                title = "Ready-to-Go Package List"
             )
         }
 
         itemsIndexed(
             items = dummyList
-            //todo: 주석 삭제
-            //state.results
+            // todo: 주석 삭제
+            // state.results
         ) { index, item ->
             CirculoListCard(
                 modifier = Modifier

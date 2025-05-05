@@ -21,7 +21,7 @@ import com.example.circuler.ui.theme.CirculerTheme
 fun CirculoChip(
     chipType: ChipType,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
+    onClick: () -> Unit = {}
 ) {
     Text(
         modifier = modifier
@@ -50,7 +50,6 @@ private fun CirculoChipPreview() {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp, alignment = Alignment.CenterVertically)
         ) {
-
             CirculoChip(
                 chipType = ChipType.MATCHING
             )

@@ -81,7 +81,7 @@ fun HistoryScreen(
     val screenWeigth = LocalConfiguration.current.screenWidthDp
     val height = (screenWeigth * 0.5).dp
 
-    //todo: dummy delete
+    // todo: dummy delete
     val dummyList = listOf(
         ListCardWithMethodEntity(
             id = "1",
@@ -169,8 +169,8 @@ fun HistoryScreen(
 
         itemsIndexed(
             items = dummyList
-            //todo: 주석 삭제
-            //state.results
+            // todo: 주석 삭제
+            // state.results
         ) { index, item ->
             val bottomPadding = if (index == dummyList.lastIndex) 70.dp else 4.dp
 
