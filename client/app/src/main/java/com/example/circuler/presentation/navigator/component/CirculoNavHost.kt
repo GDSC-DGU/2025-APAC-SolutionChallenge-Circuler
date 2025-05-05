@@ -5,9 +5,10 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
+import androidx.navigation.navOptions
 import com.example.circuler.presentation.navigator.MainNavigator
-import com.example.circuler.presentation.type.MainTabType
 import com.example.circuler.presentation.ui.add.navigation.addNavGraph
 import com.example.circuler.presentation.ui.delivery.navigation.deliveryNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
@@ -33,7 +34,15 @@ fun CirculoNavHost(
     ) {
         splashNavGraph()
         loginNavGraph(
-            navigateToHome = { navigator.navigate(tab = MainTabType.HOME) }
+            navigateToHome = {
+                val navOptions = navOptions {
+                    popUpTo(navigator.navController.graph.findStartDestination().id) {
+                        inclusive = true
+                    }
+                    launchSingleTop = true
+                }
+                navigator.navigateToHome(navOptions = navOptions)
+            },
         )
         homeNavGraph(
             navigateToAddPackaging = navigator::navigateToAddPackaging,

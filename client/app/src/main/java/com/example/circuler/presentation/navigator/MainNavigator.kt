@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
@@ -34,6 +35,7 @@ class MainNavigator(
     fun navigate(tab: MainTabType) {
         val navOptions = navOptions {
             popUpTo<MainTabRoute.Home> {
+                inclusive = false
                 saveState = true
             }
             launchSingleTop = true
@@ -56,8 +58,10 @@ class MainNavigator(
         }
     }
 
-    fun navigateToHome() {
-        navController.navigate(MainTabRoute.Home)
+    fun navigateToHome(
+        navOptions: NavOptions
+    ) {
+        navController.navigate(MainTabRoute.Home, navOptions)
     }
 
     fun navigateToHistory() {
