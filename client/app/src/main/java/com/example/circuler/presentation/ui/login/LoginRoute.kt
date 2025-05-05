@@ -2,12 +2,12 @@ package com.example.circuler.presentation.ui.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -24,7 +24,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
-import com.example.circuler.presentation.core.extension.noRippleClickable
+import com.example.circuler.presentation.core.component.CirculoButton
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
 import com.example.circuler.ui.theme.CirculerTheme
@@ -69,26 +69,31 @@ fun LoginScreen(
     val screenWeigth = LocalConfiguration.current.screenWidthDp
     val height = (screenWeigth * 0.5).dp
 
-    Column(
-        modifier = modifier
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
             .background(CirculerTheme.colors.yellow1)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(start = 20.dp, end = 20.dp, bottom = 40.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_circulo_logo_large),
-            contentDescription = null,
-            modifier = Modifier.width((LocalConfiguration.current.screenWidthDp * 0.636).dp),
-            contentScale = ContentScale.Crop
-        )
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.img_circulo_logo_large),
+                contentDescription = null,
+                modifier = Modifier.width((LocalConfiguration.current.screenWidthDp * 0.636).dp),
+                contentScale = ContentScale.Crop
+            )
+        }
 
-        Text(
-            text = "google login",
+        CirculoButton(
             modifier = Modifier
-                .noRippleClickable {
-                    navigateToHome()
-                }
+                .align(Alignment.BottomCenter),
+            text = "google login",
+            onClick = {
+                navigateToHome()
+            }
         )
     }
 }

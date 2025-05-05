@@ -2,9 +2,10 @@ package com.example.circuler.presentation.ui.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,19 +20,23 @@ import com.example.circuler.ui.theme.CirculerTheme
 
 @Composable
 fun SplashScreen() {
-    Column(
+    Box(
         modifier = Modifier
+            .fillMaxSize()
             .background(CirculerTheme.colors.yellow1)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(start = 20.dp, end = 20.dp, bottom = 12.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_circulo_logo_large),
-            contentDescription = null,
-            modifier = Modifier.width((LocalConfiguration.current.screenWidthDp * 0.636).dp),
-            contentScale = ContentScale.Crop
-        )
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.img_circulo_logo_large),
+                contentDescription = null,
+                modifier = Modifier.width((LocalConfiguration.current.screenWidthDp * 0.636).dp),
+                contentScale = ContentScale.Crop
+            )
+        }
     }
 }
 
