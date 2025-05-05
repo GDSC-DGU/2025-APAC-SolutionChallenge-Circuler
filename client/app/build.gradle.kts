@@ -93,6 +93,9 @@ dependencies {
     implementation(libs.google.firebase.crashlytics)
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.firebase.analytics)
+
+    // Lottie
+    implementation(libs.bundles.lottie)
 }
 
 ktlint {
