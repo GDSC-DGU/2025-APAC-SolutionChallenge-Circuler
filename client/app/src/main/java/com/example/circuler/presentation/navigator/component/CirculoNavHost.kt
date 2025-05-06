@@ -53,7 +53,16 @@ fun CirculoNavHost(
         )
         historyNavGraph()
         addNavGraph(
-            navigateUp = navigator::popBackStackIfNotHome
+            navigateUp = navigator::popBackStackIfNotHome,
+            navigateToHome = {
+                val navOptions = navOptions {
+                    popUpTo(navigator.navController.graph.findStartDestination().id) {
+                        inclusive = true
+                    }
+                    launchSingleTop = true
+                }
+                navigator.navigateToHome(navOptions = navOptions)
+            }
         )
         deliveryNavGraph(
             navigateUp = navigator::popBackStackIfNotHome

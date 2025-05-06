@@ -1,6 +1,8 @@
 package com.example.circuler.presentation.ui.add
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.circuler.presentation.ui.login.LoginSideEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -9,6 +11,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class AddPackagingViewModel @Inject constructor() : ViewModel() {
@@ -21,4 +24,11 @@ class AddPackagingViewModel @Inject constructor() : ViewModel() {
     private val _sideEffect: MutableSharedFlow<AddPackagingSideEffect> = MutableSharedFlow()
     val sideEffect: SharedFlow<AddPackagingSideEffect>
         get() = _sideEffect.asSharedFlow()
+
+    fun navigateToHome() =
+        viewModelScope.launch {
+            _sideEffect.emit(
+                AddPackagingSideEffect.NavigateToHome
+            )
+        }
 }
