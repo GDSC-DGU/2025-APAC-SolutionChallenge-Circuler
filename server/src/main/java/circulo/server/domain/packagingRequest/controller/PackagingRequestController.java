@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v0/packagingRequest")
@@ -34,8 +36,8 @@ public class PackagingRequestController {
             description = "전체 포장재 요청 리스트 조회합니다."
     )
     @GetMapping("")
-    public ApiResponse<PackagingRequestResponse.PackagingRequestListResponse> getPackagingRequestList(@Auth Long userId) {
-        PackagingRequestResponse.PackagingRequestListResponse response = packagingRequestQueryService.packagingRequests(userId);
+    public ApiResponse<List<PackagingRequestResponse.PackagingRequestListItem>> getPackagingRequestList(@Auth Long userId) {
+        List<PackagingRequestResponse.PackagingRequestListItem> response = packagingRequestQueryService.packagingRequests(userId);
         return ApiResponse.onSuccess(response);
     }
 

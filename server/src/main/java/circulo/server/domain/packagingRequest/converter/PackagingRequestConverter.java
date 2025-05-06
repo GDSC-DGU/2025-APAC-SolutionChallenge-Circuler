@@ -17,9 +17,9 @@ public class PackagingRequestConverter {
                 .build();
     }
 
-    public PackagingRequestResponse.PackagingRequestListResponse toPackageRequestList(List<PackagingRequest> packagingRequestList) {
+    public List<PackagingRequestResponse.PackagingRequestListItem> toPackageRequestList(List<PackagingRequest> packagingRequestList) {
 
-        List<PackagingRequestResponse.PackagingRequestListItem> result = packagingRequestList.stream()
+        return packagingRequestList.stream()
                 .map(r -> new PackagingRequestResponse.PackagingRequestListItem(
                         r.getId(),
                         r.getPackagingType().name(),
@@ -28,10 +28,6 @@ public class PackagingRequestConverter {
                         "0m" // TODO: 거리 계산 필요시 여기에 적용
                 ))
                 .toList();
-
-        return PackagingRequestResponse.PackagingRequestListResponse.builder()
-                .results(result)
-                .build();
     }
 
     public PackagingRequestResponse.PackagingRequestDetailResponse toPackageRequestDetailResponse(PackagingRequest packagingRequest) {
