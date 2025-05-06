@@ -35,6 +35,7 @@ import com.example.circuler.ui.theme.CirculerTheme
 fun UploadPackagingRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToHome: () -> Unit,
     viewModel: UploadPackagingViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -46,6 +47,7 @@ fun UploadPackagingRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is UploadPackagingSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
+                    UploadPackagingSideEffect.NavigateToHome -> navigateToHome()
                 }
             }
     }
@@ -53,6 +55,7 @@ fun UploadPackagingRoute(
     UploadPackagingScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
+        navigateToHome = viewModel::navigateToHome,
         state = state.uiState
     )
 }
@@ -62,7 +65,7 @@ fun UploadPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: UiState<String>,
-    // todo: navigateToUploadPackage: () -> Unit,
+    navigateToHome: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -99,7 +102,7 @@ fun UploadPackagingScreen(
                     .align(Alignment.BottomCenter),
                 text = "accept",
                 onClick = {
-                    // todo: navigateToSubmit
+                    navigateToHome()
                 }
             )
         }
@@ -121,6 +124,7 @@ fun UploadPackagingScreenPreview() {
         UploadPackagingScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
+            navigateToHome = {},
             state = UiState.Loading
         )
     }

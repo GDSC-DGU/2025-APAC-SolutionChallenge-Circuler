@@ -1,6 +1,8 @@
 package com.example.circuler.presentation.ui.history
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.circuler.presentation.ui.home.HomeSideEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -9,6 +11,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor() : ViewModel() {
@@ -21,4 +24,11 @@ class HistoryViewModel @Inject constructor() : ViewModel() {
     private val _sideEffect: MutableSharedFlow<HistorySideEffect> = MutableSharedFlow()
     val sideEffect: SharedFlow<HistorySideEffect>
         get() = _sideEffect.asSharedFlow()
+
+    fun navigateToSubmit() =
+        viewModelScope.launch {
+            _sideEffect.emit(
+                HistorySideEffect.NavigateToSubmit
+            )
+        }
 }

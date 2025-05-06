@@ -51,7 +51,9 @@ fun CirculoNavHost(
             navigateToRequestedPackages = navigator::navigateToRequestPackage,
             navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages
         )
-        historyNavGraph()
+        historyNavGraph(
+            navigateToSubmit = navigator::navigateToSubmitPackaging
+        )
         addNavGraph(
             navigateUp = navigator::popBackStackIfNotHome,
             navigateToHome = {
@@ -76,7 +78,16 @@ fun CirculoNavHost(
             navigateToUploadPackage = navigator::navigateToUploadPackaging
         )
         uploadNavGraph(
-            navigateUp = navigator::popBackStackIfNotHome
+            navigateUp = navigator::popBackStackIfNotHome,
+            navigateToHome = {
+                val navOptions = navOptions {
+                    popUpTo(navigator.navController.graph.findStartDestination().id) {
+                        inclusive = true
+                    }
+                    launchSingleTop = true
+                }
+                navigator.navigateToHome(navOptions = navOptions)
+            }
         )
         submitNavGraph(
             navigateUp = navigator::popBackStackIfNotHome

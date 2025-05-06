@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.example.circuler.domain.entity.ListCardEntity
 import com.example.circuler.domain.entity.ListCardWithMethodEntity
 import com.example.circuler.presentation.core.extension.customShadow
+import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
 import com.example.circuler.presentation.type.ChipType
 import com.example.circuler.ui.theme.CirculerTheme
@@ -49,7 +50,7 @@ fun CirculoListCard(
                 spotColor = CirculerTheme.colors.grayScale2,
                 ambientColor = CirculerTheme.colors.grayScale2
             )
-            .clickable {
+            .noRippleClickable {
                 onClick()
             }
             .padding(start = 15.dp, top = 30.dp, bottom = 30.dp)
@@ -85,6 +86,7 @@ fun CirculoListCard(
 @Composable
 fun CirculoListCardWithMethod(
     listCardWithMethodEntity: ListCardWithMethodEntity,
+    chipType: ChipType,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -103,7 +105,7 @@ fun CirculoListCardWithMethod(
             .clip(
                 shape = RoundedCornerShape(20.dp)
             )
-            .clickable {
+            .noRippleClickable {
                 onClick()
             }
             .padding(horizontal = 15.dp, vertical = 30.dp)
@@ -143,7 +145,7 @@ fun CirculoListCardWithMethod(
 
             // todo: method 처리
             CirculoChip(
-                chipType = ChipType.PENDING
+                chipType = chipType
             )
         }
     }
@@ -233,7 +235,8 @@ private fun CirculoListCardPreview() {
                     location = "123",
                     method = "plastic",
                     quantity = "12"
-                )
+                ),
+                chipType = ChipType.PENDING
             )
 
             CirculoListCardWithButton(

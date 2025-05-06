@@ -42,12 +42,14 @@ import com.example.circuler.domain.entity.ListCardWithMethodEntity
 import com.example.circuler.presentation.core.component.CirculoListCardWithMethod
 import com.example.circuler.presentation.core.component.CirculoTopBar
 import com.example.circuler.presentation.core.extension.showToast
+import com.example.circuler.presentation.type.ChipType
 import com.example.circuler.ui.theme.CirculerTheme
 
 @Composable
 fun HistoryRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToSubmit: () -> Unit,
     viewModel: HistoryViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -59,6 +61,7 @@ fun HistoryRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is HistorySideEffect.ShowToast -> context.showToast(message = sideEffect.message)
+                    HistorySideEffect.NavigateToSubmit -> navigateToSubmit()
                 }
             }
     }
@@ -66,6 +69,7 @@ fun HistoryRoute(
     HistoryScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
+        navigateToSubmit = viewModel::navigateToSubmit,
         state = state.uiState
     )
 }
@@ -76,6 +80,7 @@ fun HistoryScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: HistoryDataEntity,
+    navigateToSubmit: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -182,7 +187,11 @@ fun HistoryScreen(
                     location = item.location,
                     method = item.method,
                     quantity = item.quantity
-                )
+                ),
+                chipType = ChipType.MATCHING,
+                onClick = {
+                    navigateToSubmit()
+                }
             )
         }
     }
@@ -206,7 +215,8 @@ fun HistoryScreenPreview() {
                         quantity = "6"
                     )
                 )
-            )
+            ),
+            navigateToSubmit = {}
         )
     }
 }

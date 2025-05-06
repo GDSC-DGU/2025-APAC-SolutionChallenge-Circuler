@@ -15,11 +15,14 @@ fun NavController.navigateToHistory(navOptions: NavOptions) {
     )
 }
 
-fun NavGraphBuilder.historyNavGraph() {
+fun NavGraphBuilder.historyNavGraph(
+    navigateToSubmit: () -> Unit
+) {
     composable<MainTabRoute.RequestPackage> {
         HistoryRoute(
             paddingValues = PaddingValues(),
-            navigateUp = {}
+            navigateUp = {},
+            navigateToSubmit = navigateToSubmit
         )
     }
 }
