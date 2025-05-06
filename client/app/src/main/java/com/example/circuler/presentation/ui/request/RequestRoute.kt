@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -19,7 +18,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,9 +29,9 @@ import com.example.circuler.domain.entity.ListCardEntity
 import com.example.circuler.presentation.core.component.CirculoListCard
 import com.example.circuler.presentation.core.component.CirculoTopBar
 import com.example.circuler.presentation.core.extension.noRippleClickable
-import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
+import com.example.circuler.presentation.ui.request.component.RequestSortButton
 import com.example.circuler.ui.theme.CirculerTheme
 
 // todo: navigateToConfirmPackaging id 값 물고가기
@@ -140,25 +138,7 @@ fun RequestScreen(
         }
 
         item {
-            // todo: 버튼 디자인
-            Text(
-                modifier = Modifier
-                    .padding(
-                        all = 20.dp
-                    )
-                    .roundedBackgroundWithBorder(
-                        cornerRadius = 20.dp,
-                        backgroundColor = CirculerTheme.colors.grayScale1,
-                        borderColor = CirculerTheme.colors.grayScale12,
-                        borderWidth = 1.dp
-                    )
-                    .padding(
-                        horizontal = 9.dp,
-                        vertical = 8.dp
-                    ),
-                text = "Packaging Type",
-                textAlign = TextAlign.Start
-            )
+            RequestSortButton()
         }
 
         itemsIndexed(
