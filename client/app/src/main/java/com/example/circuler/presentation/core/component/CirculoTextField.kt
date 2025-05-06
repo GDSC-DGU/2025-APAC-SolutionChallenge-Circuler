@@ -62,7 +62,7 @@ fun CirculoTextField(
         },
         textStyle = CirculerTheme.typography.title1R16.copy(
             color = CirculerTheme.colors.grayScale12,
-            textAlign = textAlign,
+            textAlign = textAlign
         ),
         singleLine = singleLine,
         keyboardOptions = KeyboardOptions(

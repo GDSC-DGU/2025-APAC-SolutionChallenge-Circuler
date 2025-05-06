@@ -111,14 +111,14 @@ fun AddPackagingScreen(
             AddSubTitle(
                 text = "Packaging type"
             )
-            //todo: bottom sheet
+            // todo: bottom sheet
 
             AddSubTitle(
                 text = "Quantity"
             )
             CirculoTextField(
                 paddingValues = PaddingValues(16.dp),
-                //todo: textFieldValue = state.uiState.quantity,
+                // todo: textFieldValue = state.uiState.quantity,
                 onValueChange = onQuantityChanged,
                 keyboardType = KeyboardType.Number,
                 placeHolder = "Please enter a quantity from 1 to 10"
@@ -129,7 +129,7 @@ fun AddPackagingScreen(
             )
             CirculoTextField(
                 paddingValues = PaddingValues(16.dp),
-                //todo: textFieldValue = state.uiState.name,
+                // todo: textFieldValue = state.uiState.name,
                 onValueChange = onLocationChanged
             )
 
@@ -141,14 +141,13 @@ fun AddPackagingScreen(
             CirculoButton(
                 text = "submit",
                 onClick = {
-                    //todo: api post
+                    // todo: api post
                     navigateToHome()
                 }
             )
         }
     }
 }
-
 
 @Preview
 @Composable

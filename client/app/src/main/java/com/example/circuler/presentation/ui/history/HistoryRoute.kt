@@ -190,6 +190,7 @@ fun HistoryScreen(
                 ),
                 chipType = ChipType.MATCHING,
                 onClick = {
+                    // todo: chiptype이 matching일때만 (entity 확인)
                     navigateToSubmit()
                 }
             )

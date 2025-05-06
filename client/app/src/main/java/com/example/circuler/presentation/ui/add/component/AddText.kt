@@ -13,7 +13,7 @@ fun AddTitle(modifier: Modifier = Modifier) {
         modifier = modifier
             .padding(start = 20.dp, top = 24.dp, bottom = 60.dp),
         text = "Please Provide\n" +
-                "packaging request information",
+            "packaging request information",
         style = CirculerTheme.typography.heading3M20,
         color = CirculerTheme.colors.grayScale12
     )
