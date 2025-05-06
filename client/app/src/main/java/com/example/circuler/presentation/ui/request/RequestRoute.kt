@@ -138,7 +138,10 @@ fun RequestScreen(
         }
 
         item {
-            RequestSortButton()
+            RequestSortButton(
+                modifier = Modifier
+                    .padding(start = 20.dp, top = 20.dp)
+            )
         }
 
         itemsIndexed(
