@@ -1,7 +1,6 @@
-package circulo.server.domain.packagingRequest.Service;
+package circulo.server.domain.packagingRequest.service;
 
 import circulo.server.domain.packagingRequest.dto.PackagingRequestResponseDto;
-import circulo.server.domain.packagingRequest.entity.PackagingRequest;
 import circulo.server.domain.packagingRequest.repository.PackagingRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class PackagingRequestService {
     private final PackagingRequestRepository packagingRequestRepository;
 
     public List<PackagingRequestResponseDto> getRequestsByUserId(Long userId) {
-        return packagingRequestRepository.findAllByUserId(userId).stream()
+        return packagingRequestRepository.findAllByUser_Id(userId).stream()
                 .map(PackagingRequestResponseDto::fromEntity)
                 .collect(Collectors.toList());
     }

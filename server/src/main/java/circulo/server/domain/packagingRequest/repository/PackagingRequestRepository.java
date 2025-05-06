@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PackagingRequestRepository extends JpaRepository<PackagingRequest, Long> {
-    List<PackagingRequest> findAllByUserId(Long userId);
+    List<PackagingRequest> findAllByUser_Id(Long userId);
 }
