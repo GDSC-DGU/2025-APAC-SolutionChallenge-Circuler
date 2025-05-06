@@ -2,9 +2,7 @@ package com.example.circuler.presentation.ui.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.circuler.presentation.ui.login.LoginSideEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -12,6 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class AddPackagingViewModel @Inject constructor() : ViewModel() {
@@ -31,4 +30,16 @@ class AddPackagingViewModel @Inject constructor() : ViewModel() {
                 AddPackagingSideEffect.NavigateToHome
             )
         }
+
+    fun updatedLocation(location: String) {
+        _state.value = _state.value.copy(
+            location = location
+        )
+    }
+
+    fun updatedQuantity(quantity: String) {
+        _state.value = _state.value.copy(
+            quantity = quantity
+        )
+    }
 }

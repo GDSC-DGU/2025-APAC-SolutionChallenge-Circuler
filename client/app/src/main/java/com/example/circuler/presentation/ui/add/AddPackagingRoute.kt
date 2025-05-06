@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
 import com.example.circuler.presentation.core.component.CirculoButton
+import com.example.circuler.presentation.core.component.CirculoTextField
 import com.example.circuler.presentation.core.component.CirculoTopBar
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.showToast
@@ -60,7 +62,9 @@ fun AddPackagingRoute(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
         navigateToHome = viewModel::navigateToHome,
-        state = state.uiState
+        state = state.uiState,
+        onLocationChanged = viewModel::updatedLocation,
+        onQuantityChanged = viewModel::updatedQuantity
     )
 }
 
@@ -70,6 +74,8 @@ fun AddPackagingScreen(
     navigateUp: () -> Unit,
     navigateToHome: () -> Unit,
     state: UiState<String>,
+    onLocationChanged: (String) -> Unit,
+    onQuantityChanged: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -105,14 +111,28 @@ fun AddPackagingScreen(
             AddSubTitle(
                 text = "Packaging type"
             )
+            //todo: bottom sheet
 
             AddSubTitle(
                 text = "Quantity"
+            )
+            CirculoTextField(
+                paddingValues = PaddingValues(16.dp),
+                //todo: textFieldValue = state.uiState.quantity,
+                onValueChange = onQuantityChanged,
+                keyboardType = KeyboardType.Number,
+                placeHolder = "Please enter a quantity from 1 to 10"
             )
 
             AddSubTitle(
                 text = "Shop Location"
             )
+            CirculoTextField(
+                paddingValues = PaddingValues(16.dp),
+                //todo: textFieldValue = state.uiState.name,
+                onValueChange = onLocationChanged
+            )
+
             Spacer(
                 modifier = Modifier
                     .weight(1f)
@@ -138,7 +158,9 @@ fun AddPackagingScreenPreview() {
             paddingValues = PaddingValues(),
             navigateUp = {},
             navigateToHome = {},
-            state = UiState.Loading
+            state = UiState.Loading,
+            onLocationChanged = {},
+            onQuantityChanged = {}
         )
     }
 }
