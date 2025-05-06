@@ -8,7 +8,7 @@ public class DeliveryResponse {
     @Getter
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class PackagingRequestDetailResponse {
+    public static class DeliveryPendingResponseDTO {
         private Long deliveryId;
         private Integer submissionQuantity;
         private String submissionLocation;
