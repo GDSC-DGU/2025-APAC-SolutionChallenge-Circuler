@@ -1,4 +1,4 @@
-package com.example.circuler.presentation.ui.delivery
+package com.example.circuler.presentation.ui.submit
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -25,8 +25,8 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
-import com.example.circuler.domain.entity.ListCardEntity
-import com.example.circuler.presentation.core.component.CirculoListCard
+import com.example.circuler.domain.entity.ListCardWithMethodEntity
+import com.example.circuler.presentation.core.component.CirculoListCardWithButton
 import com.example.circuler.presentation.core.component.CirculoTopBar
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.showToast
@@ -34,10 +34,10 @@ import com.example.circuler.presentation.core.util.UiState
 import com.example.circuler.ui.theme.CirculerTheme
 
 @Composable
-fun DeliveryRoute(
+fun SubmitPackagingRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    viewModel: DeliveryViewModel = hiltViewModel()
+    viewModel: SubmitPackagingViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -47,12 +47,12 @@ fun DeliveryRoute(
         viewModel.sideEffect.flowWithLifecycle(lifecycleOwner.lifecycle)
             .collect { sideEffect ->
                 when (sideEffect) {
-                    is DeliverySideEffect.ShowToast -> context.showToast(message = sideEffect.message)
+                    is SubmitPackagingSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
                 }
             }
     }
 
-    DeliveryScreen(
+    SubmitPackagingScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
         state = state.uiState
@@ -61,7 +61,7 @@ fun DeliveryRoute(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DeliveryScreen(
+fun SubmitPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: UiState<String>,
@@ -72,40 +72,35 @@ fun DeliveryScreen(
 
     // todo: dummy delete
     val dummyList = listOf(
-        ListCardEntity(
-            distance = "2.5km",
-            id = "101",
-            location = "서울시 마포구",
-            quantity = "10",
-            type = "플라스틱"
+        ListCardWithMethodEntity(
+            id = "1",
+            location = "서울",
+            method = "재활용",
+            quantity = "5"
         ),
-        ListCardEntity(
-            distance = "1.2km",
-            id = "102",
-            location = "서울시 강남구",
-            quantity = "5",
-            type = "종이"
+        ListCardWithMethodEntity(
+            id = "1",
+            location = "서울",
+            method = "재활용",
+            quantity = "5"
         ),
-        ListCardEntity(
-            distance = "3.0km",
-            id = "103",
-            location = "서울시 송파구",
-            quantity = "7",
-            type = "유리"
+        ListCardWithMethodEntity(
+            id = "1",
+            location = "서울",
+            method = "재활용",
+            quantity = "5"
         ),
-        ListCardEntity(
-            distance = "3.0km",
-            id = "103",
-            location = "서울시 송파구",
-            quantity = "7",
-            type = "유리"
+        ListCardWithMethodEntity(
+            id = "2",
+            location = "부산",
+            method = "소각",
+            quantity = "3"
         ),
-        ListCardEntity(
-            distance = "3.0km",
-            id = "103",
-            location = "서울시 송파구",
-            quantity = "7",
-            type = "유리"
+        ListCardWithMethodEntity(
+            id = "3",
+            location = "인천",
+            method = "매립",
+            quantity = "7"
         )
     )
 
@@ -127,7 +122,7 @@ fun DeliveryScreen(
                         contentDescription = "back"
                     )
                 },
-                title = "Ready-to-Go Package List"
+                title = "Submitted Package List"
             )
         }
 
@@ -136,15 +131,14 @@ fun DeliveryScreen(
             // todo: 주석 삭제
             // state.results
         ) { index, item ->
-            CirculoListCard(
+            CirculoListCardWithButton(
                 modifier = Modifier
                     .padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
-                listCardEntity = ListCardEntity(
+                listCardWithMethodEntity = ListCardWithMethodEntity(
                     id = item.id,
                     location = item.location,
-                    quantity = item.quantity,
-                    distance = item.distance,
-                    type = item.type
+                    method = item.method,
+                    quantity = item.quantity
                 )
             )
         }
@@ -153,9 +147,9 @@ fun DeliveryScreen(
 
 @Preview
 @Composable
-fun DeliveryPreview() {
+fun SubmitPackagingScreenPreview() {
     CirculerTheme {
-        DeliveryScreen(
+        SubmitPackagingScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
             state = UiState.Loading
