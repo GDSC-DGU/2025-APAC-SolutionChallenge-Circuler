@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -24,7 +25,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
-import com.example.circuler.presentation.core.component.CirculoButton
+import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
 import com.example.circuler.ui.theme.CirculerTheme
@@ -73,7 +74,7 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(CirculerTheme.colors.yellow1)
-            .padding(start = 20.dp, end = 20.dp, bottom = 40.dp)
+            .padding(start = 20.dp, end = 20.dp, bottom = 55.dp)
     ) {
         Column(
             modifier = Modifier.align(Alignment.Center),
@@ -87,13 +88,16 @@ fun LoginScreen(
             )
         }
 
-        CirculoButton(
+        Image(
+            painter = painterResource(id = R.drawable.img_google_login),
+            contentDescription = null,
             modifier = Modifier
-                .align(Alignment.BottomCenter),
-            text = "google login",
-            onClick = {
-                navigateToHome()
-            }
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .noRippleClickable {
+                    navigateToHome()
+                },
+            contentScale = ContentScale.Crop
         )
     }
 }
