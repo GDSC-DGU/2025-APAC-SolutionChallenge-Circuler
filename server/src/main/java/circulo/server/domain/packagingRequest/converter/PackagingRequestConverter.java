@@ -11,8 +11,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PackagingRequestConverter {
 
-    public PackagingRequestResponse.packageRequestSuccess toPackageRequestSuccess(PackagingRequest packagingRequest) {
-        return PackagingRequestResponse.packageRequestSuccess.builder()
+    public PackagingRequestResponse.PackageRequestSuccess toPackageRequestSuccess(PackagingRequest packagingRequest) {
+        return PackagingRequestResponse.PackageRequestSuccess.builder()
                 .id(packagingRequest.getId())
                 .build();
     }
@@ -31,6 +31,16 @@ public class PackagingRequestConverter {
 
         return PackagingRequestResponse.PackagingRequestListResponse.builder()
                 .results(result)
+                .build();
+    }
+
+    public PackagingRequestResponse.PackagingRequestDetailResponse toPackageRequestDetailResponse(PackagingRequest packagingRequest) {
+        return PackagingRequestResponse.PackagingRequestDetailResponse.builder()
+                .id(packagingRequest.getId())
+                .quantity(packagingRequest.getQuantity())
+                .location(packagingRequest.getLocation())
+                .type(packagingRequest.getPackagingType().name())
+                .distance("0m")
                 .build();
     }
 }

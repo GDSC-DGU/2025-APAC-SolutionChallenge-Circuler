@@ -24,8 +24,8 @@ public class PackagingRequestController {
             description = "일반 사용자가 포장재 요청 등록을 합니다."
     )
     @PostMapping("")
-    public ApiResponse<PackagingRequestResponse.packageRequestSuccess> createPackagingRequest(@Auth Long userId, @RequestBody @Valid PackagingRequestRequest.CreatePackagingRequest request) {
-        PackagingRequestResponse.packageRequestSuccess response = packagingRequestCommandService.createPackagingRequest(userId, request);
+    public ApiResponse<PackagingRequestResponse.PackageRequestSuccess> createPackagingRequest(@Auth Long userId, @RequestBody @Valid PackagingRequestRequest.CreatePackagingRequest request) {
+        PackagingRequestResponse.PackageRequestSuccess response = packagingRequestCommandService.createPackagingRequest(userId, request);
         return ApiResponse.onSuccess(response);
     }
 
@@ -34,8 +34,18 @@ public class PackagingRequestController {
             description = "전체 포장재 요청 리스트 조회합니다."
     )
     @GetMapping("")
-    public ApiResponse<PackagingRequestResponse.PackagingRequestListResponse> getPackagingRequestLIst(@Auth Long userId) {
+    public ApiResponse<PackagingRequestResponse.PackagingRequestListResponse> getPackagingRequestList(@Auth Long userId) {
         PackagingRequestResponse.PackagingRequestListResponse response = packagingRequestQueryService.packagingRequests(userId);
+        return ApiResponse.onSuccess(response);
+    }
+
+    @Operation(
+            summary = "전체 포장재 요청 리스트 상세 조회 API | by 지희",
+            description = "전체 포장재 요청 리스트 상세 조회합니다."
+    )
+    @GetMapping("/{packagingRequestId}")
+    public ApiResponse<PackagingRequestResponse.PackagingRequestDetailResponse> getPackagingRequestDetail(@Auth Long userId, @PathVariable Long packagingRequestId) {
+        PackagingRequestResponse.PackagingRequestDetailResponse response = packagingRequestQueryService.packagingRequestDetail(userId, packagingRequestId);
         return ApiResponse.onSuccess(response);
     }
 }

@@ -10,7 +10,7 @@ public class PackagingRequestResponse {
     @Builder
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class packageRequestSuccess {
+    public static class PackageRequestSuccess {
         // 포장재 요청 글 id
         Long id;
     }
@@ -31,5 +31,17 @@ public class PackagingRequestResponse {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class PackagingRequestListResponse {
         private List<PackagingRequestListItem> results;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class PackagingRequestDetailResponse {
+        private Long id;
+        private String type;
+        private Integer quantity;
+        private String location;
+        private String distance;
     }
 }

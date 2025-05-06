@@ -4,4 +4,5 @@ import circulo.server.domain.packagingRequest.dto.response.PackagingRequestRespo
 
 public interface PackagingRequestQueryService {
     PackagingRequestResponse.PackagingRequestListResponse packagingRequests(Long userId);
+    PackagingRequestResponse.PackagingRequestDetailResponse packagingRequestDetail(Long userId, Long packagingRequestId);
 }
