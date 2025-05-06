@@ -2,7 +2,6 @@ package circulo.server.domain.packagingRequest.controller;
 
 import circulo.server.domain.packagingRequest.dto.request.PackagingRequestRequest;
 import circulo.server.domain.packagingRequest.dto.response.PackagingRequestResponse;
-import circulo.server.domain.packagingRequest.dto.PackagingRequestResponseDto;
 import circulo.server.domain.packagingRequest.service.PackagingRequestCommandService;
 import circulo.server.domain.packagingRequest.service.PackagingRequestQueryService;
 import circulo.server.domain.packagingRequest.service.PackagingRequestService;
@@ -59,9 +58,9 @@ public class PackagingRequestController {
             description = "소상공인 본인이 올린 포장재 요청글 리스트 조회합니다."
     )
     @GetMapping("/my")
-    public ResponseEntity<List<PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
+    public ResponseEntity<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
         log.info("Received userId: {}", userId);
-        List<PackagingRequestResponseDto> requests = packagingRequestService.getRequestsByUserId(userId);
+        List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestService.getRequestsByUserId(userId);
         return ResponseEntity.ok(requests);
     }
 }
