@@ -22,7 +22,10 @@ public class PackagingRequestQueryServiceImpl implements PackagingRequestQuerySe
     @Override
     @Transactional(readOnly = true)
     public PackagingRequestResponse.PackagingRequestListResponse packagingRequests(Long userId) {
-        List<PackagingRequest> requests = packagingRequestRepository.findAll();
+        List<PackagingRequest> requests = packagingRequestRepository.findAll()
+                .stream()
+                .limit(10)
+                .toList();
 
         return packagingRequestConverter.toPackageRequestList(requests);
     }
