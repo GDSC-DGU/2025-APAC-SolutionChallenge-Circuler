@@ -1,4 +1,4 @@
-package com.example.circuler.presentation.ui.request.navigation
+package com.example.circuler.presentation.ui.enter.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.navigation.NavController
@@ -6,24 +6,24 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.example.circuler.presentation.navigator.route.Route
-import com.example.circuler.presentation.ui.request.RequestRoute
+import com.example.circuler.presentation.ui.enter.EnterPackagingRoute
 
-fun NavController.navigateToRequestPackage(navOptions: NavOptions? = null) {
+fun NavController.navigateToEnterPackaging(navOptions: NavOptions? = null) {
     navigate(
-        route = Route.EntirePackageRequest,
+        route = Route.EnterPackage,
         navOptions = navOptions
     )
 }
 
-fun NavGraphBuilder.requestGraph(
+fun NavGraphBuilder.enterNavGraph(
     navigateUp: () -> Unit,
-    navigateToEnterPackaging: () -> Unit
+    navigateToConfirmPackage: () -> Unit
 ) {
-    composable<Route.EntirePackageRequest> {
-        RequestRoute(
+    composable<Route.EnterPackage> {
+        EnterPackagingRoute(
             paddingValues = PaddingValues(),
             navigateUp = navigateUp,
-            navigateToEnterPackaging = navigateToEnterPackaging
+            navigateToConfirmPackage = navigateToConfirmPackage
         )
     }
 }

@@ -14,6 +14,7 @@ import com.example.circuler.presentation.type.MainTabType
 import com.example.circuler.presentation.ui.add.navigation.navigateToAddPackaging
 import com.example.circuler.presentation.ui.confirm.navigation.navigateToConfirmPackaging
 import com.example.circuler.presentation.ui.delivery.navigation.navigateToDeliveryPackage
+import com.example.circuler.presentation.ui.enter.navigation.navigateToEnterPackaging
 import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
 import com.example.circuler.presentation.ui.request.navigation.navigateToRequestPackage
@@ -80,6 +81,10 @@ class MainNavigator(
 
     fun navigateToRequestPackage() {
         navController.navigateToRequestPackage()
+    }
+
+    fun navigateToEnterPackaging() {
+        navController.navigateToEnterPackaging()
     }
 
     fun navigateToConfirmPackaging() {

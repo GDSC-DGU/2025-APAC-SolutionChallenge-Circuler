@@ -34,12 +34,12 @@ import com.example.circuler.presentation.core.util.UiState
 import com.example.circuler.presentation.ui.request.component.RequestSortButton
 import com.example.circuler.ui.theme.CirculerTheme
 
-// todo: navigateToConfirmPackaging id 값 물고가기
+// todo: navigateToEnterPackaging id 값 물고가기
 @Composable
 fun RequestRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToConfirmPackaging: () -> Unit,
+    navigateToEnterPackaging: () -> Unit,
     viewModel: RequestViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -51,7 +51,7 @@ fun RequestRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is RequestSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
-                    RequestSideEffect.NavigateToConfirmPackaging -> navigateToConfirmPackaging()
+                    RequestSideEffect.NavigateToEnterPackaging -> navigateToEnterPackaging()
                 }
             }
     }
@@ -59,7 +59,7 @@ fun RequestRoute(
     RequestScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
-        navigateToConfirmPackaging = viewModel::navigateToConfirmPackaging,
+        navigateToEnterPackaging = viewModel::navigateToEnterPackaging,
         state = state.uiState
     )
 }
@@ -69,7 +69,7 @@ fun RequestRoute(
 fun RequestScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToConfirmPackaging: () -> Unit,
+    navigateToEnterPackaging: () -> Unit,
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
@@ -160,7 +160,7 @@ fun RequestScreen(
                     type = item.type
                 ),
                 onClick = {
-                    navigateToConfirmPackaging()
+                    navigateToEnterPackaging()
                 }
             )
         }
@@ -174,7 +174,7 @@ fun RequestScreenPreview() {
         RequestScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            navigateToConfirmPackaging = {},
+            navigateToEnterPackaging = {},
             state = UiState.Loading
         )
     }

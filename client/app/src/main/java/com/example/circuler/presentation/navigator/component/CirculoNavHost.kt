@@ -12,6 +12,7 @@ import com.example.circuler.presentation.navigator.MainNavigator
 import com.example.circuler.presentation.ui.add.navigation.addNavGraph
 import com.example.circuler.presentation.ui.confirm.navigation.confirmNavGraph
 import com.example.circuler.presentation.ui.delivery.navigation.deliveryNavGraph
+import com.example.circuler.presentation.ui.enter.navigation.enterNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
 import com.example.circuler.presentation.ui.login.navigation.loginNavGraph
@@ -71,7 +72,11 @@ fun CirculoNavHost(
         )
         requestGraph(
             navigateUp = navigator::popBackStackIfNotHome,
-            navigateToConfirmPackaging = navigator::navigateToConfirmPackaging
+            navigateToEnterPackaging = navigator::navigateToEnterPackaging
+        )
+        enterNavGraph(
+            navigateUp = navigator::popBackStackIfNotHome,
+            navigateToConfirmPackage = navigator::navigateToConfirmPackaging
         )
         confirmNavGraph(
             navigateUp = navigator::popBackStackIfNotHome,
