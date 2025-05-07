@@ -1,6 +1,7 @@
 package circulo.server.domain.packageSubmission.entity;
 
 import circulo.server.domain.packageSubmission.entity.enums.DeliveryMethod;
+import circulo.server.domain.packageSubmission.entity.enums.PackageSubmissionStatus;
 import circulo.server.domain.packagingRequest.entity.PackagingRequest;
 import circulo.server.domain.user.entity.User;
 import circulo.server.global.common.domain.BaseEntity;
@@ -33,6 +34,9 @@ public class PackageSubmission extends BaseEntity {
     @JoinColumn(name = "request_id")
     private PackagingRequest packagingRequest;
 
+    @Enumerated(EnumType.STRING)
+    private PackageSubmissionStatus status;
+
     private Integer quantity;
 
     @Enumerated(EnumType.STRING)
@@ -42,5 +46,12 @@ public class PackageSubmission extends BaseEntity {
 
     private Boolean aiVerified;
 
-    private Boolean selectedBySeller;
+    public void accept(PackagingRequest packagingRequest) {
+        this.packagingRequest = packagingRequest;
+        this.storeMan = packagingRequest.getUser();
+    }
+
+    public void changeStatus(PackageSubmissionStatus status) {
+        this.status = status;
+    }
 }

@@ -29,8 +29,8 @@ public class PackagingRequestController {
             description = "일반 사용자가 포장재 요청 등록을 합니다."
     )
     @PostMapping("")
-    public ApiResponse<PackagingRequestResponse.PackageRequestSuccess> createPackagingRequest(@Auth Long userId, @RequestBody @Valid PackagingRequestRequest.CreatePackagingRequest request) {
-        PackagingRequestResponse.PackageRequestSuccess response = packagingRequestCommandService.createPackagingRequest(userId, request);
+    public ApiResponse<PackagingRequestResponse.PackageRequestSuccessResponse> createPackagingRequest(@Auth Long userId, @RequestBody @Valid PackagingRequestRequest.CreatePackagingRequest request) {
+        PackagingRequestResponse.PackageRequestSuccessResponse response = packagingRequestCommandService.createPackagingRequest(userId, request);
         return ApiResponse.onSuccess(response);
     }
 
@@ -39,8 +39,8 @@ public class PackagingRequestController {
             description = "전체 포장재 요청 리스트 조회합니다."
     )
     @GetMapping("")
-    public ApiResponse<PackagingRequestResponse.PackagingRequestListResponse> getPackagingRequestList(@Auth Long userId) {
-        PackagingRequestResponse.PackagingRequestListResponse response = packagingRequestQueryService.packagingRequests(userId);
+    public ApiResponse<List<PackagingRequestResponse.PackagingRequestListItem>> getPackagingRequestList(@Auth Long userId) {
+        List<PackagingRequestResponse.PackagingRequestListItem> response = packagingRequestQueryService.packagingRequests(userId);
         return ApiResponse.onSuccess(response);
     }
 

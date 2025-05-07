@@ -5,7 +5,7 @@ import circulo.server.domain.packagingRequest.dto.response.PackagingRequestRespo
 import java.util.List;
 
 public interface PackagingRequestQueryService {
-    PackagingRequestResponse.PackagingRequestListResponse packagingRequests(Long userId);
+    List<PackagingRequestResponse.PackagingRequestListItem> packagingRequests(Long userId);
     PackagingRequestResponse.PackagingRequestDetailResponse packagingRequestDetail(Long userId, Long packagingRequestId);
     List<PackagingRequestResponse.PackagingRequestResponseDto> getRequestsByUserId(Long userId);
 }
