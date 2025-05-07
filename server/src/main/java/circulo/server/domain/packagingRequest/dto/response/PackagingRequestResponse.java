@@ -10,7 +10,7 @@ public class PackagingRequestResponse {
     @Builder
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class PackageRequestSuccess {
+    public static class PackageRequestSuccessResponse {
         // 포장재 요청 글 id
         Long id;
     }

@@ -11,8 +11,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PackagingRequestConverter {
 
-    public PackagingRequestResponse.PackageRequestSuccess toPackageRequestSuccess(PackagingRequest packagingRequest) {
-        return PackagingRequestResponse.PackageRequestSuccess.builder()
+    public PackagingRequestResponse.PackageRequestSuccessResponse toPackageRequestSuccess(PackagingRequest packagingRequest) {
+        return PackagingRequestResponse.PackageRequestSuccessResponse.builder()
                 .id(packagingRequest.getId())
                 .build();
     }

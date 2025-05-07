@@ -24,7 +24,7 @@ public class PackagingRequestCommandServiceImpl implements PackagingRequestComma
     private final PackagingRequestConverter packagingRequestConverter;
 
     @Override
-    public PackagingRequestResponse.PackageRequestSuccess createPackagingRequest(Long userId, PackagingRequestRequest.CreatePackagingRequest request) {
+    public PackagingRequestResponse.PackageRequestSuccessResponse createPackagingRequest(Long userId, PackagingRequestRequest.CreatePackagingRequest request) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserException(ErrorStatus.USER_NOT_FOUND));
 
         PackagingRequest packagingRequest = PackagingRequest.builder()

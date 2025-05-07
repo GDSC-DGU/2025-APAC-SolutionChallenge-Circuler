@@ -11,6 +11,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PackageSubmissionConverter {
 
+    public PackageSubmissionResponse.PackageSubmissionSuccessResponse toPackageSubmissionSuccessResponse(PackageSubmission packageSubmission) {
+        return new PackageSubmissionResponse.PackageSubmissionSuccessResponse(
+                packageSubmission.getId()
+        );
+    }
+
     public List<PackageSubmissionResponse.PackageSubmissionListItem> toPackageRequestList(List<PackageSubmission> packageSubmissionList) {
 
         return packageSubmissionList.stream()

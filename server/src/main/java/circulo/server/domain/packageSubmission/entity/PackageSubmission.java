@@ -46,12 +46,9 @@ public class PackageSubmission extends BaseEntity {
 
     private Boolean aiVerified;
 
-    private Boolean selectedBySeller;
-
     public void accept(PackagingRequest packagingRequest) {
         this.packagingRequest = packagingRequest;
         this.storeMan = packagingRequest.getUser();
-        this.selectedBySeller = true;
     }
 
     public void changeStatus(PackageSubmissionStatus status) {

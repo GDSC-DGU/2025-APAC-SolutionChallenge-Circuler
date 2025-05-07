@@ -26,8 +26,8 @@ public class PackagingRequestController {
             description = "일반 사용자가 포장재 요청 등록을 합니다."
     )
     @PostMapping("")
-    public ApiResponse<PackagingRequestResponse.PackageRequestSuccess> createPackagingRequest(@Auth Long userId, @RequestBody @Valid PackagingRequestRequest.CreatePackagingRequest request) {
-        PackagingRequestResponse.PackageRequestSuccess response = packagingRequestCommandService.createPackagingRequest(userId, request);
+    public ApiResponse<PackagingRequestResponse.PackageRequestSuccessResponse> createPackagingRequest(@Auth Long userId, @RequestBody @Valid PackagingRequestRequest.CreatePackagingRequest request) {
+        PackagingRequestResponse.PackageRequestSuccessResponse response = packagingRequestCommandService.createPackagingRequest(userId, request);
         return ApiResponse.onSuccess(response);
     }
 

@@ -9,6 +9,12 @@ public class PackageSubmissionResponse {
 
     @Getter
     @AllArgsConstructor
+    public static class PackageSubmissionSuccessResponse {
+        private Long id;
+    }
+
+    @Getter
+    @AllArgsConstructor
     public static class PackageSubmissionListItem {
         private Long id;
         private Integer quantity;
