@@ -9,8 +9,13 @@ import circulo.server.global.handler.annotation.Auth;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v0/packagingRequest")
@@ -47,5 +52,16 @@ public class PackagingRequestController {
     public ApiResponse<PackagingRequestResponse.PackagingRequestDetailResponse> getPackagingRequestDetail(@Auth Long userId, @PathVariable Long packagingRequestId) {
         PackagingRequestResponse.PackagingRequestDetailResponse response = packagingRequestQueryService.packagingRequestDetail(userId, packagingRequestId);
         return ApiResponse.onSuccess(response);
+    }
+
+    @Operation(
+            summary = "소상공인 본인이 올린 포장재 요청글 리스트 조회 API | by 규리",
+            description = "소상공인 본인이 올린 포장재 요청글 리스트 조회합니다."
+    )
+    @GetMapping("/my")
+    public ResponseEntity<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
+        log.info("Received userId: {}", userId);
+        List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestQueryService.getRequestsByUserId(userId);
+        return ResponseEntity.ok(requests);
     }
 }
