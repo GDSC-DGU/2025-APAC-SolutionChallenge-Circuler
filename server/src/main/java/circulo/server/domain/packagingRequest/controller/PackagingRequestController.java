@@ -4,7 +4,6 @@ import circulo.server.domain.packagingRequest.dto.request.PackagingRequestReques
 import circulo.server.domain.packagingRequest.dto.response.PackagingRequestResponse;
 import circulo.server.domain.packagingRequest.service.PackagingRequestCommandService;
 import circulo.server.domain.packagingRequest.service.PackagingRequestQueryService;
-import circulo.server.domain.packagingRequest.service.PackagingRequestService;
 import circulo.server.global.apiPayload.ApiResponse;
 import circulo.server.global.handler.annotation.Auth;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +23,6 @@ public class PackagingRequestController {
 
     private final PackagingRequestCommandService packagingRequestCommandService;
     private final PackagingRequestQueryService packagingRequestQueryService;
-    private final PackagingRequestService packagingRequestService;
 
     @Operation(
             summary = "포장재 요청 등록 API | by 지희",
@@ -63,7 +61,7 @@ public class PackagingRequestController {
     @GetMapping("/my")
     public ResponseEntity<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
         log.info("Received userId: {}", userId);
-        List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestService.getRequestsByUserId(userId);
+        List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestQueryService.getRequestsByUserId(userId);
         return ResponseEntity.ok(requests);
     }
 }
