@@ -2,6 +2,7 @@ package circulo.server.domain.packagingRequest.dto.response;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PackagingRequestResponse {
@@ -43,5 +44,18 @@ public class PackagingRequestResponse {
         private Integer quantity;
         private String location;
         private String distance;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class PackagingRequestResponseDto {
+        private Long requestId;
+        private String packagingType;
+        private Integer quantity;
+        private String location;
+        private String status;
+        private LocalDateTime createdAt;
     }
 }

@@ -24,7 +24,8 @@ public class PackageSubmissionConverter {
                         r.getId(),
                         r.getQuantity(),
                         r.getLocation(),
-                        r.getDeliveryMethod()
+                        r.getDeliveryMethod(),
+                        r.getStatus()
                 ))
                 .toList();
     }

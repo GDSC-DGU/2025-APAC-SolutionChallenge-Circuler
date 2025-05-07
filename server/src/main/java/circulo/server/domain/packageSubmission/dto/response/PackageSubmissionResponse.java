@@ -20,6 +20,7 @@ public class PackageSubmissionResponse {
         private Integer quantity;
         private String location;
         private DeliveryMethod method;
+        private PackageSubmissionStatus status;
     }
 
     @Getter

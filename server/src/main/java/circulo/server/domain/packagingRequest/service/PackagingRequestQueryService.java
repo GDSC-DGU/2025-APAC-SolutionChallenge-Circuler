@@ -7,4 +7,5 @@ import java.util.List;
 public interface PackagingRequestQueryService {
     List<PackagingRequestResponse.PackagingRequestListItem> packagingRequests(Long userId);
     PackagingRequestResponse.PackagingRequestDetailResponse packagingRequestDetail(Long userId, Long packagingRequestId);
+    List<PackagingRequestResponse.PackagingRequestResponseDto> getRequestsByUserId(Long userId);
 }
