@@ -225,7 +225,7 @@ private fun CirculoListCardPreview() {
                     method = "plastic",
                     quantity = "12"
                 ),
-                chipType = ChipType.PENDING
+                chipType = ChipType.IN_PROGRESS
             )
 
             CirculoListCardWithButton(

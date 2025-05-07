@@ -188,7 +188,7 @@ fun HistoryScreen(
                     method = item.method,
                     quantity = item.quantity
                 ),
-                chipType = ChipType.MATCHING,
+                chipType = ChipType.IN_PROGRESS,
                 onClick = {
                     // todo: chiptype이 matching일때만 (entity 확인)
                     navigateToSubmit()
