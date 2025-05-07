@@ -79,7 +79,7 @@ fun EnterPackagingRoute(
         selectedDeliveryIndex = state.selectedDeliveryIndex,
         updateSelectedDeliveryIndex = viewModel::updateDeliverySelectedIndex,
         openDeliveryBottomSheet = viewModel::controlDeliveryBottomSheet,
-        onDismissDeliveryBottomSheetRequest = viewModel::controlDeliveryBottomSheet,
+        onDismissDeliveryBottomSheetRequest = viewModel::controlDeliveryBottomSheet
     )
 }
 
@@ -104,7 +104,7 @@ fun EnterPackagingScreen(
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
-    //todo:
+    // todo:
     val packageOptions = PackagingType.entries.toTypedArray()
     val deliveryOptions = DeliveryType.entries.toTypedArray()
 
@@ -234,7 +234,7 @@ fun EnterPackagingScreenPreview() {
             selectedDeliveryIndex = 0,
             updateSelectedDeliveryIndex = { },
             openDeliveryBottomSheet = { },
-            onDismissDeliveryBottomSheetRequest = { },
+            onDismissDeliveryBottomSheetRequest = { }
         )
     }
 }

@@ -100,7 +100,7 @@ fun AddPackagingScreen(
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
-    //todo:
+    // todo:
     val options = PackagingType.entries.toTypedArray()
 
     Column(
@@ -163,7 +163,7 @@ fun AddPackagingScreen(
                         .padding(all = 10.dp)
                         .size(24.dp),
                     imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_down),
-                    contentDescription = null,
+                    contentDescription = null
                 )
             }
 
@@ -238,7 +238,7 @@ fun AddPackagingScreenPreview() {
             selectedIndex = 0,
             updateSelectedIndex = {},
             openBottomSheet = { },
-            onDismissBottomSheetRequest = { },
+            onDismissBottomSheetRequest = { }
         )
     }
 }

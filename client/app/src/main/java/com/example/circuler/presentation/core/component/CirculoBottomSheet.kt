@@ -42,7 +42,7 @@ fun CirculoBottomSheet(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
-    onDismissRequest: () -> Unit = {},
+    onDismissRequest: () -> Unit = {}
 ) {
     val coroutineScope = rememberCoroutineScope()
     if (isOpenBottomSheet) {
@@ -66,13 +66,13 @@ fun CirculoBottomSheet(
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = title,
                         style = CirculerTheme.typography.title1R16.copy(
                             color = CirculerTheme.colors.grayScale12
-                        ),
+                        )
                     )
                     Spacer(
                         modifier = Modifier

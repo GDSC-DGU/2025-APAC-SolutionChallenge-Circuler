@@ -25,7 +25,7 @@ fun CirculoBottomSheetItem(
     isActive: Boolean,
     activeBgColor: Color,
     activeContentColor: Color,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -39,7 +39,7 @@ fun CirculoBottomSheetItem(
             }
             .padding(vertical = 10.dp, horizontal = 22.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = option,

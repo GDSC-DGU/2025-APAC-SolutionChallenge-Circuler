@@ -9,5 +9,5 @@ data class AddPackagingState(
         type = ""
     ),
     val isOpenBottomSheet: Boolean = false,
-    val selectedIndex: Int = 0,
+    val selectedIndex: Int = 0
 )

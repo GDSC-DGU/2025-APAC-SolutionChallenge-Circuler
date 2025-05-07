@@ -11,5 +11,5 @@ data class EnterPackagingState(
     val isOpenPackageBottomSheet: Boolean = false,
     val selectedPackageIndex: Int = 0,
     val isOpenDeliveryBottomSheet: Boolean = false,
-    val selectedDeliveryIndex: Int = 0,
+    val selectedDeliveryIndex: Int = 0
 )

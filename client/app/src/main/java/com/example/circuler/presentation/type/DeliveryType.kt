@@ -1,8 +1,8 @@
 package com.example.circuler.presentation.type
 
-enum class DeliveryType (
+enum class DeliveryType(
     val text: String
-){
+) {
     SELF(
         text = "self"
     ),
