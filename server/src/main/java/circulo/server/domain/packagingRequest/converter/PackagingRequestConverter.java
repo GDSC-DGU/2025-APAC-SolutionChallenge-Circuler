@@ -43,4 +43,16 @@ public class PackagingRequestConverter {
                 .distance("0m")
                 .build();
     }
+
+    public PackagingRequestResponse.PackagingRequestResponseDto toPackagingRequestResponseDto(PackagingRequest packagingRequest) {
+        return PackagingRequestResponse.PackagingRequestResponseDto.builder()
+                .requestId(packagingRequest.getId())
+                .packagingType(packagingRequest.getPackagingType().name())
+                .quantity(packagingRequest.getQuantity())
+                .location(packagingRequest.getLocation())
+                .status(packagingRequest.getStatus().name())
+                .createdAt(packagingRequest.getCreatedAt())
+                .build();
+    }
+
 }
