@@ -22,4 +22,13 @@ public class PackageSubmissionConverter {
                 ))
                 .toList();
     }
+
+    public PackageSubmissionResponse.PackageSubmissionAcceptedResponse toPackageSubmissionAcceptedResponse(PackageSubmission packageSubmission) {
+        return new PackageSubmissionResponse.PackageSubmissionAcceptedResponse(
+                packageSubmission.getId(),
+                packageSubmission.getPackagingRequest().getId(),
+                packageSubmission.getPackagingRequest().getStatus(),
+                packageSubmission.getStatus()
+        );
+    }
 }

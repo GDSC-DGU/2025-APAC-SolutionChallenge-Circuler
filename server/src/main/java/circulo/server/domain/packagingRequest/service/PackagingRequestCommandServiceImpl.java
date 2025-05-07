@@ -32,7 +32,7 @@ public class PackagingRequestCommandServiceImpl implements PackagingRequestComma
                 .packagingType(request.getType())
                 .quantity(request.getQuantity())
                 .location(request.getLocation())
-                .status(PackagingRequestStatus.MATCHING)
+                .status(PackagingRequestStatus.IN_PROGRESS)
                 .build();
 
         packagingRequestRepository.save(packagingRequest);

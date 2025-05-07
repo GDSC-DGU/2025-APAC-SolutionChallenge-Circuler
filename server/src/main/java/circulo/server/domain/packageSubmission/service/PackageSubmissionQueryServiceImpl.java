@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class PackageSubmissionQueryServiceImpl implements PackageSubmissionQueryService{
 
     private final PackageSubmissionRepository packageSubmissionRepository;
     private final PackageSubmissionConverter packageSubmissionConverter;
 
     @Override
+    @Transactional(readOnly = true)
     public List<PackageSubmissionResponse.PackageSubmissionListItem> packageSubmissions(Long packagingRequestId) {
         List<PackageSubmission> submissions = packageSubmissionRepository.findAllByPackagingRequestId(packagingRequestId);
 

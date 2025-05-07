@@ -1,10 +1,9 @@
 package circulo.server.domain.packageSubmission.dto.response;
 
 import circulo.server.domain.packageSubmission.entity.enums.DeliveryMethod;
-import circulo.server.domain.packagingRequest.dto.response.PackagingRequestResponse;
+import circulo.server.domain.packageSubmission.entity.enums.PackageSubmissionStatus;
+import circulo.server.domain.packagingRequest.entity.enums.PackagingRequestStatus;
 import lombok.*;
-
-import java.util.List;
 
 public class PackageSubmissionResponse {
 
@@ -15,6 +14,15 @@ public class PackageSubmissionResponse {
         private Integer quantity;
         private String location;
         private DeliveryMethod method;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class PackageSubmissionAcceptedResponse {
+        private Long packageSubmissionId;
+        private Long packagingRequestId;
+        private PackagingRequestStatus totalStatus;
+        private PackageSubmissionStatus detailStatus;
     }
 
 }
