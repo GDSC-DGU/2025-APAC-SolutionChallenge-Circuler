@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.example.circuler.presentation.core.extension.noRippleClickable
+import com.example.circuler.presentation.type.DeliveryType
 import com.example.circuler.presentation.type.PackagingType
 import com.example.circuler.ui.theme.CirculerTheme
 
@@ -59,6 +60,25 @@ fun PackagingTypeContent(
     onClick: (Int) -> Unit = {}
 ) {
     val options = PackagingType.entries.toTypedArray()
+
+    options.forEachIndexed { index, option ->
+        CirculoBottomSheetItem(
+            option = option.text,
+            isActive = activeIndex == index,
+            activeBgColor = CirculerTheme.colors.green4,
+            activeContentColor = CirculerTheme.colors.green1,
+            onClick = { onClick(index) }
+
+        )
+    }
+}
+
+@Composable
+fun DeliveryTypeContent(
+    activeIndex: Int,
+    onClick: (Int) -> Unit = {}
+) {
+    val options = DeliveryType.entries.toTypedArray()
 
     options.forEachIndexed { index, option ->
         CirculoBottomSheetItem(

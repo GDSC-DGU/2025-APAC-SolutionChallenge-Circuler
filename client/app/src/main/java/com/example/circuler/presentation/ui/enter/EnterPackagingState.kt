@@ -8,6 +8,8 @@ data class EnterPackagingState(
         quantity = "",
         type = ""
     ),
-    val isOpenBottomSheet: Boolean = false,
-    val selectedIndex: Int = 0,
+    val isOpenPackageBottomSheet: Boolean = false,
+    val selectedPackageIndex: Int = 0,
+    val isOpenDeliveryBottomSheet: Boolean = false,
+    val selectedDeliveryIndex: Int = 0,
 )

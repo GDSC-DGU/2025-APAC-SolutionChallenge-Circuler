@@ -39,22 +39,25 @@ class EnterPackagingViewModel @Inject constructor() : ViewModel() {
         )
     }
 
-    fun updatedQuantity(quantity: String) {
+
+    fun controlPackageBottomSheet() {
         _state.value = _state.value.copy(
-            uiState = _state.value.uiState.copy(
-                quantity = quantity
-            )
+            isOpenPackageBottomSheet = !_state.value.isOpenPackageBottomSheet
         )
     }
 
-    fun controlBottomSheet() {
+    fun updatePackageSelectedIndex(index: Int) {
+        _state.value = _state.value.copy(selectedPackageIndex = index)
+    }
+
+    fun controlDeliveryBottomSheet() {
         _state.value = _state.value.copy(
-            isOpenBottomSheet = !_state.value.isOpenBottomSheet
+            isOpenDeliveryBottomSheet = !_state.value.isOpenDeliveryBottomSheet
         )
     }
 
-    fun updateSelectedIndex(index: Int) {
-        _state.value = _state.value.copy(selectedIndex = index)
+    fun updateDeliverySelectedIndex(index: Int) {
+        _state.value = _state.value.copy(selectedDeliveryIndex = index)
     }
 
     //todo: post할때 quantity.toInt
