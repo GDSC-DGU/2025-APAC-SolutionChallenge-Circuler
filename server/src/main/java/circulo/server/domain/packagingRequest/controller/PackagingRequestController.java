@@ -36,7 +36,10 @@ public class PackagingRequestController {
         return ApiResponse.onSuccess(response);
     }
 
-
+    @Operation(
+            summary = "전체 포장재 요청 리스트 조회 API | by 지희",
+            description = "전체 포장재 요청 리스트 조회합니다."
+    )
     @GetMapping("")
     public ApiResponse<PackagingRequestResponse.PackagingRequestListResponse> getPackagingRequestList(@Auth Long userId) {
         PackagingRequestResponse.PackagingRequestListResponse response = packagingRequestQueryService.packagingRequests(userId);
