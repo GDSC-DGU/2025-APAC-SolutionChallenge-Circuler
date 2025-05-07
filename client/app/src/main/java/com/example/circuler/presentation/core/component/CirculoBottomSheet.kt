@@ -40,8 +40,8 @@ fun CirculoBottomSheet(
     isOpenBottomSheet: Boolean,
     title: String,
     content: @Composable () -> Unit,
-    sheetState: SheetState,
     modifier: Modifier = Modifier,
+    sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
     onDismissRequest: () -> Unit = {},
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -118,7 +118,9 @@ private fun CirculoBottomSheetPreview() {
                 sheetState = sheetState,
                 title = "Packaging Type",
                 content = {
-                    PackagingTypeContent()
+                    Text(
+                        text = "test"
+                    )
                 },
                 onDismissRequest = {
                     showBottomSheet = false

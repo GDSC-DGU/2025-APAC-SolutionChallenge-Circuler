@@ -9,10 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -58,9 +54,10 @@ fun CirculoBottomSheetItem(
 }
 
 @Composable
-fun PackagingTypeContent() {
-    var activeIndex by remember { mutableIntStateOf(0) }
-
+fun PackagingTypeContent(
+    activeIndex: Int,
+    onClick: (Int) -> Unit = {}
+) {
     val options = PackagingType.entries.toTypedArray()
 
     options.forEachIndexed { index, option ->
@@ -69,9 +66,8 @@ fun PackagingTypeContent() {
             isActive = activeIndex == index,
             activeBgColor = CirculerTheme.colors.green4,
             activeContentColor = CirculerTheme.colors.green1,
-            onClick = {
-                activeIndex = if (activeIndex == index) -1 else index
-            }
+            onClick = { onClick(index) }
+
         )
     }
 }
