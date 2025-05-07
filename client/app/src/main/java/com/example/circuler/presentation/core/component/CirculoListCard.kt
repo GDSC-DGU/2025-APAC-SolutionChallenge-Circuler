@@ -72,11 +72,6 @@ fun CirculoListCard(
                 title = "Shop Location",
                 subTitle = listCardEntity.location
             )
-            CirculoTextWithIcon(
-                icon = Icons.Outlined.Menu,
-                title = "Distance",
-                subTitle = listCardEntity.distance
-            )
         }
     }
 }
@@ -130,11 +125,6 @@ fun CirculoListCardWithMethod(
                     icon = Icons.Outlined.Menu,
                     title = "Shop Location",
                     subTitle = listCardWithMethodEntity.location
-                )
-                CirculoTextWithIcon(
-                    icon = Icons.Outlined.Menu,
-                    title = "Distance",
-                    subTitle = listCardWithMethodEntity.method
                 )
             }
             Spacer(
