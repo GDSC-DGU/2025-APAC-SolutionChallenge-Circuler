@@ -1,7 +1,13 @@
 package com.example.circuler.presentation.ui.add
 
-import com.example.circuler.presentation.core.util.UiState
+import com.example.circuler.domain.entity.AddPackagingEntity
 
 data class AddPackagingState(
-    val uiState: UiState<String> = UiState.Loading
+    val uiState: AddPackagingEntity = AddPackagingEntity(
+        location = "",
+        quantity = "",
+        type = ""
+    ),
+    val isOpenBottomSheet: Boolean = false,
+    val selectedIndex: Int = 0
 )

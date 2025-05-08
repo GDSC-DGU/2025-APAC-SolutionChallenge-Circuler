@@ -1,7 +1,6 @@
 package com.example.circuler.presentation.core.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.example.circuler.domain.entity.ListCardEntity
 import com.example.circuler.domain.entity.ListCardWithMethodEntity
 import com.example.circuler.presentation.core.extension.customShadow
+import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
 import com.example.circuler.presentation.type.ChipType
 import com.example.circuler.ui.theme.CirculerTheme
@@ -49,7 +49,7 @@ fun CirculoListCard(
                 spotColor = CirculerTheme.colors.grayScale2,
                 ambientColor = CirculerTheme.colors.grayScale2
             )
-            .clickable {
+            .noRippleClickable {
                 onClick()
             }
             .padding(start = 15.dp, top = 30.dp, bottom = 30.dp)
@@ -72,11 +72,6 @@ fun CirculoListCard(
                 title = "Shop Location",
                 subTitle = listCardEntity.location
             )
-            CirculoTextWithIcon(
-                icon = Icons.Outlined.Menu,
-                title = "Distance",
-                subTitle = listCardEntity.distance
-            )
         }
     }
 }
@@ -85,6 +80,7 @@ fun CirculoListCard(
 @Composable
 fun CirculoListCardWithMethod(
     listCardWithMethodEntity: ListCardWithMethodEntity,
+    chipType: ChipType,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -103,7 +99,7 @@ fun CirculoListCardWithMethod(
             .clip(
                 shape = RoundedCornerShape(20.dp)
             )
-            .clickable {
+            .noRippleClickable {
                 onClick()
             }
             .padding(horizontal = 15.dp, vertical = 30.dp)
@@ -130,11 +126,6 @@ fun CirculoListCardWithMethod(
                     title = "Shop Location",
                     subTitle = listCardWithMethodEntity.location
                 )
-                CirculoTextWithIcon(
-                    icon = Icons.Outlined.Menu,
-                    title = "Distance",
-                    subTitle = listCardWithMethodEntity.method
-                )
             }
             Spacer(
                 modifier = Modifier
@@ -143,7 +134,7 @@ fun CirculoListCardWithMethod(
 
             // todo: method 처리
             CirculoChip(
-                chipType = ChipType.PENDING
+                chipType = chipType
             )
         }
     }
@@ -233,7 +224,8 @@ private fun CirculoListCardPreview() {
                     location = "123",
                     method = "plastic",
                     quantity = "12"
-                )
+                ),
+                chipType = ChipType.IN_PROGRESS
             )
 
             CirculoListCardWithButton(

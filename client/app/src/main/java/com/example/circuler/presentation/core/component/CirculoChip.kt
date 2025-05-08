@@ -25,7 +25,7 @@ fun CirculoChip(
 ) {
     Text(
         modifier = modifier
-            .width((LocalConfiguration.current.screenWidthDp * 0.181).dp)
+            .width((LocalConfiguration.current.screenWidthDp * 0.201).dp)
             .roundedBackgroundWithBorder(
                 cornerRadius = 7.dp,
                 backgroundColor = chipType.backgroundColor,
@@ -51,16 +51,10 @@ private fun CirculoChipPreview() {
             verticalArrangement = Arrangement.spacedBy(5.dp, alignment = Alignment.CenterVertically)
         ) {
             CirculoChip(
-                chipType = ChipType.MATCHING
+                chipType = ChipType.IN_PROGRESS
             )
             CirculoChip(
-                chipType = ChipType.PENDING
-            )
-            CirculoChip(
-                chipType = ChipType.DELIVERING
-            )
-            CirculoChip(
-                chipType = ChipType.DELIVERED
+                chipType = ChipType.COMPLETED
             )
         }
     }
