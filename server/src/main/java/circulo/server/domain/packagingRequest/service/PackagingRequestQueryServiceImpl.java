@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class PackagingRequestQueryServiceImpl implements PackagingRequestQuerySe
 
     @Override
     @Transactional(readOnly = true)
-    public PackagingRequestResponse.PackagingRequestListResponse packagingRequests(Long userId) {
+    public List<PackagingRequestResponse.PackagingRequestListItem> packagingRequests(Long userId) {
         List<PackagingRequest> requests = packagingRequestRepository.findAll()
                 .stream()
                 .limit(10)
@@ -36,6 +37,15 @@ public class PackagingRequestQueryServiceImpl implements PackagingRequestQuerySe
         PackagingRequest request = packagingRequestRepository.findById(packagingRequestId).orElseThrow(() -> new PackagingRequestException(ErrorStatus.PACKAGING_REQUEST_NOT_FOUND));
 
         return packagingRequestConverter.toPackageRequestDetailResponse(request);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PackagingRequestResponse.PackagingRequestResponseDto> getRequestsByUserId(Long userId) {
+        List<PackagingRequest> requests = packagingRequestRepository.findAllByUser_Id(userId);
+        return requests.stream()
+                .map(packagingRequestConverter::toPackagingRequestResponseDto)
+                .collect(Collectors.toList());
     }
 
 }

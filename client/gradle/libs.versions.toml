@@ -57,6 +57,12 @@ firebaseCrashlytics = "3.0.3"
 firebaseBom = "33.12.0"
 firebaseCrashlyticsBuildtools = "3.0.3"
 
+# Lottie
+lottie = "6.0.0"
+toolsCore = "1.0.0-alpha13"
+accompanist = "0.24.2-alpha"
+monitorVersion = "1.7.2"
+
 [libraries]
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -114,6 +120,12 @@ google-firebase-crashlytics = { group = "com.google.firebase", name = "firebase-
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 
+# Lottie
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref= "lottie" }
+androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
+accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "accompanist"}
+monitor = { group = "androidx.test", name = "monitor", version.ref = "monitorVersion" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -165,4 +177,11 @@ retrofit = [
 hilt = [
     "hilt",
     "hilt-navigation-compose"
+]
+
+lottie = [
+    "lottie-compose",
+    "androidx-tools-core",
+    "accompanist-navigation-animation",
+    "monitor"
 ]

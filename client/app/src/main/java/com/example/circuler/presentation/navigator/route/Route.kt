@@ -16,6 +16,9 @@ sealed interface Route {
     data object EntirePackageRequest : Route
 
     @Serializable
+    data object EnterPackage : Route
+
+    @Serializable
     data object ConfirmPackage : Route
 
     @Serializable

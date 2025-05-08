@@ -15,11 +15,15 @@ fun NavController.navigateToRequestPackage(navOptions: NavOptions? = null) {
     )
 }
 
-fun NavGraphBuilder.requestGraph() {
+fun NavGraphBuilder.requestGraph(
+    navigateUp: () -> Unit,
+    navigateToEnterPackaging: () -> Unit
+) {
     composable<Route.EntirePackageRequest> {
         RequestRoute(
             paddingValues = PaddingValues(),
-            navigateUp = {}
+            navigateUp = navigateUp,
+            navigateToEnterPackaging = navigateToEnterPackaging
         )
     }
 }

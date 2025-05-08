@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
@@ -11,11 +12,14 @@ import com.example.circuler.presentation.navigator.route.MainTabRoute
 import com.example.circuler.presentation.navigator.route.Route
 import com.example.circuler.presentation.type.MainTabType
 import com.example.circuler.presentation.ui.add.navigation.navigateToAddPackaging
+import com.example.circuler.presentation.ui.confirm.navigation.navigateToConfirmPackaging
 import com.example.circuler.presentation.ui.delivery.navigation.navigateToDeliveryPackage
+import com.example.circuler.presentation.ui.enter.navigation.navigateToEnterPackaging
 import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
 import com.example.circuler.presentation.ui.request.navigation.navigateToRequestPackage
 import com.example.circuler.presentation.ui.submit.navigation.navigateToSubmitPackaging
+import com.example.circuler.presentation.ui.upload.navigation.navigateToUploadPackaging
 
 class MainNavigator(
     val navController: NavHostController
@@ -24,7 +28,7 @@ class MainNavigator(
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
 
-    val startDestination = MainTabRoute.Home
+    val startDestination = Route.Login
 
     val currentTab: MainTabType?
         @Composable get() = MainTabType.find { tab ->
@@ -34,6 +38,7 @@ class MainNavigator(
     fun navigate(tab: MainTabType) {
         val navOptions = navOptions {
             popUpTo<MainTabRoute.Home> {
+                inclusive = false
                 saveState = true
             }
             launchSingleTop = true
@@ -56,8 +61,10 @@ class MainNavigator(
         }
     }
 
-    fun navigateToHome() {
-        navController.navigate(MainTabRoute.Home)
+    fun navigateToHome(
+        navOptions: NavOptions
+    ) {
+        navController.navigate(MainTabRoute.Home, navOptions)
     }
 
     fun navigateToHistory() {
@@ -76,8 +83,20 @@ class MainNavigator(
         navController.navigateToRequestPackage()
     }
 
+    fun navigateToEnterPackaging() {
+        navController.navigateToEnterPackaging()
+    }
+
+    fun navigateToConfirmPackaging() {
+        navController.navigateToConfirmPackaging()
+    }
+
     fun navigateToSubmitPackaging() {
         navController.navigateToSubmitPackaging()
+    }
+
+    fun navigateToUploadPackaging() {
+        navController.navigateToUploadPackaging()
     }
 
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean =

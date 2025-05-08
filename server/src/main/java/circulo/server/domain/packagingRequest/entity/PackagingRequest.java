@@ -32,4 +32,8 @@ public class PackagingRequest extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private PackagingRequestStatus status;
+
+    public void changeStatus(PackagingRequestStatus status) {
+        this.status = status;
+    }
 }

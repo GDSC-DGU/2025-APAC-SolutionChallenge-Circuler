@@ -15,11 +15,13 @@ fun NavController.navigateToSubmitPackaging(navOptions: NavOptions? = null) {
     )
 }
 
-fun NavGraphBuilder.submitNavGraph() {
+fun NavGraphBuilder.submitNavGraph(
+    navigateUp: () -> Unit
+) {
     composable<Route.SubmittedPackage> {
         SubmitPackagingRoute(
             paddingValues = PaddingValues(),
-            navigateUp = {}
+            navigateUp = navigateUp
         )
     }
 }
