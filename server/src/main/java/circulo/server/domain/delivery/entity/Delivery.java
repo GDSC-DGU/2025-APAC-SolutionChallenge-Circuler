@@ -42,4 +42,9 @@ public class Delivery extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
+
+    public void assignDeliveryMan(User deliveryMan) {
+        this.deliveryMan = deliveryMan;
+        this.status = DeliveryStatus.IN_PROGRESS;
+    }
 }
