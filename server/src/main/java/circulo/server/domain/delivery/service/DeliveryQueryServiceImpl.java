@@ -1,0 +1,24 @@
+package circulo.server.domain.delivery.service;
+
+import circulo.server.domain.delivery.converter.DeliveryConverter;
+import circulo.server.domain.delivery.dto.response.DeliveryResponse;
+import circulo.server.domain.delivery.repository.DeliveryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class DeliveryQueryServiceImpl implements DeliveryQueryService {
+
+    private final DeliveryRepository deliveryRepository;
+    private final DeliveryConverter deliveryConverter;
+
+    @Override
+    public List<DeliveryResponse.DeliveryPendingResponseDTO> getPendingCourierDeliveries() {
+        return deliveryRepository.findPendingCourierDeliveries().stream()
+                .map(deliveryConverter::toPendingResponseDTO)
+                .toList();
+    }
+}
