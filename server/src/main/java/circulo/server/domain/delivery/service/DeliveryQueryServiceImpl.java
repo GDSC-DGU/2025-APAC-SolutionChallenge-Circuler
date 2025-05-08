@@ -2,7 +2,11 @@ package circulo.server.domain.delivery.service;
 
 import circulo.server.domain.delivery.converter.DeliveryConverter;
 import circulo.server.domain.delivery.dto.response.DeliveryResponse;
+import circulo.server.domain.delivery.entity.Delivery;
+import circulo.server.domain.delivery.entity.enums.DeliveryStatus;
 import circulo.server.domain.delivery.repository.DeliveryRepository;
+import circulo.server.global.apiPayload.code.exception.custom.BadRequestException;
+import circulo.server.global.apiPayload.code.status.ErrorStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +25,12 @@ public class DeliveryQueryServiceImpl implements DeliveryQueryService {
                 .map(deliveryConverter::toPendingResponseDTO)
                 .toList();
     }
+
+    @Override
+    public DeliveryResponse.DeliveryPendingResponseDTO getPendingDeliveryDetail(Long deliveryId) {
+        Delivery delivery = deliveryRepository.findByIdAndStatus(deliveryId, DeliveryStatus.PENDING)
+                .orElseThrow(() -> new BadRequestException(ErrorStatus.DELIVERY_NOT_FOUND));
+        return deliveryConverter.toPendingResponseDTO(delivery);
+    }
 }
+

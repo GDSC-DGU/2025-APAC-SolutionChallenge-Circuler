@@ -34,7 +34,10 @@ public enum ErrorStatus implements BaseErrorCode {
     PACKAGING_REQUEST_NOT_FOUND(HttpStatus.NOT_FOUND, "PR404", "포장재 요청을 찾을 수 없습니다."),
 
     // PackageSubmission 관련 에러
-    PACKAGE_SUBMISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "PS404", "포장재 전달 신청을 찾을 수 없습니다.");
+    PACKAGE_SUBMISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "PS404", "포장재 전달 신청을 찾을 수 없습니다."),
+
+    // Delivery 관련 에러
+    DELIVERY_NOT_FOUND(HttpStatus.NOT_FOUND, "D404", "배달 객체를 찾을 수 없습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
