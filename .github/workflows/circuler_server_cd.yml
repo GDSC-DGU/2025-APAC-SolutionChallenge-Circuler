@@ -30,6 +30,7 @@ jobs:
           script: |
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull mandar2n/circulo:latest
+            docker tag mandar2n/circulo:latest circulo_spring
             docker stop circulo || true
             docker rm circulo || true
             docker-compose -f /home/${{ secrets.VM_USER }}/docker-compose.yml up -d
