@@ -26,9 +26,9 @@ public class DeliveryController {
             description = "배달 대기 상태 리스트 조회합니다."
     )
     @GetMapping("/pending")
-    public ResponseEntity<ApiResponse<List<DeliveryResponse.DeliveryPendingResponseDTO>>> getPendingCourierDeliveries() {
+    public ApiResponse<List<DeliveryResponse.DeliveryPendingResponseDTO>> getPendingCourierDeliveries() {
         List<DeliveryResponse.DeliveryPendingResponseDTO> result = deliveryQueryService.getPendingCourierDeliveries();
-        return ResponseEntity.ok(ApiResponse.onSuccess(result));
+        return ApiResponse.onSuccess(result);
     }
 
     @Operation(
@@ -36,10 +36,10 @@ public class DeliveryController {
             description = "개별 배달 대기 상태 물건 상세 조회합니다."
     )
     @GetMapping("/pending/{deliveryId}")
-    public ResponseEntity<ApiResponse<DeliveryResponse.DeliveryPendingResponseDTO>> getPendingCourierDeliveryDetail(
+    public ApiResponse<DeliveryResponse.DeliveryPendingResponseDTO> getPendingCourierDeliveryDetail(
             @PathVariable Long deliveryId
     ) {
-        return ResponseEntity.ok(ApiResponse.onSuccess(deliveryQueryService.getPendingDeliveryDetail(deliveryId)));
+        return ApiResponse.onSuccess(deliveryQueryService.getPendingDeliveryDetail(deliveryId));
     }
 
     @Operation(
@@ -47,12 +47,12 @@ public class DeliveryController {
             description = "배달 버튼 누르면 해당 사용자를 배달원으로 배달 매칭합니다."
     )
     @PostMapping("/apply/{deliveryId}")
-    public ResponseEntity<ApiResponse<Void>> applyForDelivery(
+    public ApiResponse<Void> applyForDelivery(
             @PathVariable Long deliveryId,
             @Auth Long userId
     ) {
         deliveryCommandService.applyForDelivery(deliveryId, userId);
-        return ResponseEntity.ok(ApiResponse.onSuccess(null));
+        return ApiResponse.onSuccess(null);
     }
 
 }
