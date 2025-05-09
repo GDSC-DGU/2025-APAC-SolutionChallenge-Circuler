@@ -59,10 +59,9 @@ public class PackagingRequestController {
             description = "소상공인 본인이 올린 포장재 요청글 리스트 조회합니다."
     )
     @GetMapping("/my")
-    public ResponseEntity<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
-        log.info("Received userId: {}", userId);
+    public ApiResponse<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
         List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestQueryService.getRequestsByUserId(userId);
-        return ResponseEntity.ok(requests);
+        return ApiResponse.onSuccess(requests);
     }
 
     @Operation(
