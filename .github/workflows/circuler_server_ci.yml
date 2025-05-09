@@ -20,6 +20,7 @@ jobs:
 
       - name: Run Tests
         run: |
+          mkdir -p server/src/test/resources
           echo "spring.datasource.url=${{ secrets.DB_URL }}" >> server/src/test/resources/application.yml
           echo "spring.datasource.username=${{ secrets.DB_USERNAME }}" >> server/src/test/resources/application.yml
           echo "spring.datasource.password=${{ secrets.DB_PASSWORD }}" >> server/src/test/resources/application.yml
