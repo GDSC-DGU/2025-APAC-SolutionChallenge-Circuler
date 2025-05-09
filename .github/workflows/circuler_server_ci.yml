@@ -20,10 +20,44 @@ jobs:
 
       - name: Run Tests
         run: |
-          mkdir -p server/src/test/resources
-          echo "spring.datasource.url=${{ secrets.DB_URL }}" >> server/src/test/resources/application.yml
-          echo "spring.datasource.username=${{ secrets.DB_USERNAME }}" >> server/src/test/resources/application.yml
-          echo "spring.datasource.password=${{ secrets.DB_PASSWORD }}" >> server/src/test/resources/application.yml
+          mkdir -p src/test/resources
+
+          cat <<EOF > src/test/resources/application.yml
+          spring:
+            datasource:
+              driver-class-name: com.mysql.cj.jdbc.Driver
+              url: ${{ secrets.DB_URL }}
+              username: ${{ secrets.DB_USERNAME }}
+              password: ${{ secrets.DB_PASSWORD }}
+            jpa:
+              hibernate:
+                ddl-auto: update
+              properties:
+                hibernate:
+                  format_sql: true
+                  use_sql_comments: true
+                  dialect: org.hibernate.dialect.MySQL8Dialect
+
+            redis:
+              host: ${{ secrets.REDIS_HOST }}
+              port: ${{ secrets.REDIS_PORT }}
+
+            security:
+              oauth2:
+                client:
+                  registration:
+                    google:
+                      client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+                      client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+                      redirect-uri: ${{ secrets.GOOGLE_REDIRECT_URI }}
+                      scope:
+                        - email
+                        - profile
+
+          jwt:
+            secret: ${{ secrets.JWT_SECRET }}
+          EOF
+
           chmod +x ./gradlew
           ./gradlew test
-        working-directory: ./server  # server 디렉토리로 작업 디렉토리 변경
+        working-directory: ./server
