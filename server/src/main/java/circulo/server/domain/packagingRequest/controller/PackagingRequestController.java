@@ -64,4 +64,15 @@ public class PackagingRequestController {
         List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestQueryService.getRequestsByUserId(userId);
         return ResponseEntity.ok(requests);
     }
+
+    @Operation(
+            summary = " 포장재 요청글 완료 처리 API | by 규리",
+            description = "소상공인 본인이 올린 포장재 요청글을 완료 처리해 더이상 제출을 받지 않습니다."
+    )
+    @PostMapping("/{packagingRequestId}/completed")
+    public ApiResponse<Void> completePackagingRequest(@Auth Long userId, @PathVariable Long packagingRequestId) {
+        packagingRequestCommandService.completePackagingRequest(userId, packagingRequestId);
+        return ApiResponse.onSuccess(null);
+    }
+
 }
