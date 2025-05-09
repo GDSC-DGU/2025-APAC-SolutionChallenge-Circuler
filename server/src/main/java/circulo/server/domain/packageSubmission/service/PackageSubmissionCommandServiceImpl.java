@@ -1,5 +1,8 @@
 package circulo.server.domain.packageSubmission.service;
 
+import circulo.server.domain.delivery.entity.Delivery;
+import circulo.server.domain.delivery.entity.enums.DeliveryStatus;
+import circulo.server.domain.delivery.repository.DeliveryRepository;
 import circulo.server.domain.packageSubmission.converter.PackageSubmissionConverter;
 import circulo.server.domain.packageSubmission.dto.request.PackageSubmissionRequest;
 import circulo.server.domain.packageSubmission.dto.response.PackageSubmissionResponse;
@@ -20,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -28,6 +33,7 @@ public class PackageSubmissionCommandServiceImpl implements PackageSubmissionCom
     private final PackageSubmissionRepository packageSubmissionRepository;
     private final PackagingRequestRepository packagingRequestRepository;
     private final UserRepository userRepository;
+    private final DeliveryRepository deliveryRepository;
     private final PackageSubmissionConverter packageSubmissionConverter;
 
     @Override
@@ -77,4 +83,16 @@ public class PackageSubmissionCommandServiceImpl implements PackageSubmissionCom
 
         return packageSubmissionConverter.toPackageSubmissionAcceptedResponse(packageSubmission);
     }
+
+    @Override
+    public void markAsDelivered(Long packageSubmissionId) {
+        PackageSubmission packageSubmission = packageSubmissionRepository.findById(packageSubmissionId)
+                .orElseThrow(() -> new PackageSubmissionException(ErrorStatus.PACKAGE_SUBMISSION_NOT_FOUND));
+
+        packageSubmission.changeStatus(PackageSubmissionStatus.DELIVERED);
+
+        Optional<Delivery> optionalDelivery = deliveryRepository.findByPackageSubmissionId(packageSubmissionId);
+        optionalDelivery.ifPresent(delivery -> delivery.changeStatus(DeliveryStatus.DELIVERED));
+    }
+
 }
