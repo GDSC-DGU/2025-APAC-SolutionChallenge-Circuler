@@ -22,7 +22,11 @@ public class DeliveryQueryServiceImpl implements DeliveryQueryService {
 
     @Override
     public List<DeliveryResponse.DeliveryPendingResponseDTO> getPendingCourierDeliveries() {
-        return deliveryRepository.findPendingCourierDeliveries(DeliveryStatus.PENDING, DeliveryMethod.VIA_COURIER).stream()
+        List<Delivery> deliveries = deliveryRepository.findPendingCourierDeliveries(DeliveryStatus.PENDING, DeliveryMethod.VIA_COURIER);
+        if (deliveries.isEmpty()) {
+            throw new BadRequestException(ErrorStatus.NO_PENDING_DELIVERIES_FOUND); // Handling the error with ErrorStatus enum
+        }
+        return deliveries.stream()
                 .map(deliveryConverter::toPendingResponseDTO)
                 .toList();
     }
