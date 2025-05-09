@@ -34,5 +34,8 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
         AND d.status = :status
     """)
     Optional<Delivery> findByIdAndStatus(@Param("deliveryId") Long deliveryId, @Param("status") DeliveryStatus status);
+
+    Optional<Delivery> findByPackageSubmissionId(Long packageSubmissionId);
+
 }
 

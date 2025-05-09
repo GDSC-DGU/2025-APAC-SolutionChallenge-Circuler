@@ -55,4 +55,15 @@ public class PackageSubmissionController {
 PackageSubmissionResponse.PackageSubmissionAcceptedResponse response = packageSubmissionCommandService.acceptPackageSubmission(userId, packageSubmissionId, packagingRequestId);
         return ApiResponse.onSuccess(response);
     }
+
+    @Operation(
+            summary = "배달 완료 처리 API | by 규리",
+            description = "소상공인이 배달 완료 버튼을 누르면 해당 Packaging Submission을 배달 완료 처리합니다."
+    )
+    @PostMapping("/{packageSubmissionId}/delivered")
+    public ApiResponse<Void> markAsDelivered(@PathVariable Long packageSubmissionId) {
+        packageSubmissionCommandService.markAsDelivered(packageSubmissionId);
+        return ApiResponse.onSuccess(null);
+    }
+
 }

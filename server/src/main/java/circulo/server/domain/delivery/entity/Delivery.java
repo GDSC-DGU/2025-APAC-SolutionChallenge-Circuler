@@ -47,4 +47,8 @@ public class Delivery extends BaseEntity {
         this.deliveryMan = deliveryMan;
         this.status = DeliveryStatus.IN_PROGRESS;
     }
+
+    public void changeStatus(DeliveryStatus status) {
+        this.status = status;
+    }
 }
