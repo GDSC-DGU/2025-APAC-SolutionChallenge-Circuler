@@ -59,9 +59,19 @@ public class PackagingRequestController {
             description = "소상공인 본인이 올린 포장재 요청글 리스트 조회합니다."
     )
     @GetMapping("/my")
-    public ResponseEntity<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
-        log.info("Received userId: {}", userId);
+    public ApiResponse<List<PackagingRequestResponse.PackagingRequestResponseDto>> getMyPackagingRequests(@Auth Long userId) {
         List<PackagingRequestResponse.PackagingRequestResponseDto> requests = packagingRequestQueryService.getRequestsByUserId(userId);
-        return ResponseEntity.ok(requests);
+        return ApiResponse.onSuccess(requests);
     }
+
+    @Operation(
+            summary = " 포장재 요청글 완료 처리 API | by 규리",
+            description = "소상공인 본인이 올린 포장재 요청글을 완료 처리해 더이상 제출을 받지 않습니다."
+    )
+    @PostMapping("/{packagingRequestId}/completed")
+    public ApiResponse<Void> completePackagingRequest(@Auth Long userId, @PathVariable Long packagingRequestId) {
+        packagingRequestCommandService.completePackagingRequest(userId, packagingRequestId);
+        return ApiResponse.onSuccess(null);
+    }
+
 }
