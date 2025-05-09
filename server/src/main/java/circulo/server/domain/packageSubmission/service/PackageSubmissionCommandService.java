@@ -6,4 +6,6 @@ import circulo.server.domain.packageSubmission.dto.response.PackageSubmissionRes
 public interface PackageSubmissionCommandService {
     PackageSubmissionResponse.PackageSubmissionSuccessResponse createPackageSubmission(Long userId, Long packagingRequestId, PackageSubmissionRequest.CreatePackageSubmissionRequest request);
     PackageSubmissionResponse.PackageSubmissionAcceptedResponse acceptPackageSubmission(Long userId, Long packageSubmissionId, Long packagingRequestId);
+
+    void markAsDelivered(Long packageSubmissionId);
 }
