@@ -5,6 +5,7 @@ import circulo.server.domain.delivery.dto.response.DeliveryResponse;
 import circulo.server.domain.delivery.entity.Delivery;
 import circulo.server.domain.delivery.entity.enums.DeliveryStatus;
 import circulo.server.domain.delivery.repository.DeliveryRepository;
+import circulo.server.domain.packageSubmission.entity.enums.DeliveryMethod;
 import circulo.server.global.apiPayload.code.exception.custom.BadRequestException;
 import circulo.server.global.apiPayload.code.status.ErrorStatus;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class DeliveryQueryServiceImpl implements DeliveryQueryService {
 
     @Override
     public List<DeliveryResponse.DeliveryPendingResponseDTO> getPendingCourierDeliveries() {
-        return deliveryRepository.findPendingCourierDeliveries().stream()
+        return deliveryRepository.findPendingCourierDeliveries(DeliveryStatus.PENDING, DeliveryMethod.VIA_COURIER).stream()
                 .map(deliveryConverter::toPendingResponseDTO)
                 .toList();
     }

@@ -2,6 +2,7 @@ package circulo.server.domain.delivery.repository;
 
 import circulo.server.domain.delivery.entity.Delivery;
 import circulo.server.domain.delivery.entity.enums.DeliveryStatus;
+import circulo.server.domain.packageSubmission.entity.enums.DeliveryMethod;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,10 +18,11 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
         JOIN FETCH d.packagingRequest pr
         JOIN FETCH d.user u
         JOIN FETCH d.storeMan sm
-        WHERE d.status = 'PENDING'
-        AND ps.deliveryMethod = 'VIA_COURIER'
+        WHERE d.status = :status
+        AND ps.deliveryMethod = :method
     """)
-    List<Delivery> findPendingCourierDeliveries();
+    List<Delivery> findPendingCourierDeliveries(@Param("status") DeliveryStatus status,
+                                                @Param("method") DeliveryMethod method);
 
     @Query("""
         SELECT d FROM Delivery d
