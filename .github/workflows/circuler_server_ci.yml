@@ -20,6 +20,9 @@ jobs:
 
       - name: Run Tests
         run: |
+          echo "spring.datasource.url=${{ secrets.DB_URL }}" >> server/src/test/resources/application.yml
+          echo "spring.datasource.username=${{ secrets.DB_USERNAME }}" >> server/src/test/resources/application.yml
+          echo "spring.datasource.password=${{ secrets.DB_PASSWORD }}" >> server/src/test/resources/application.yml
           chmod +x ./gradlew
           ./gradlew test
         working-directory: ./server  # server 디렉토리로 작업 디렉토리 변경
