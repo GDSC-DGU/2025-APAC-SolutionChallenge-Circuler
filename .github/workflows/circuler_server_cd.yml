@@ -3,6 +3,7 @@ name: Circulo Server CD
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # 테스트 용도
 
 jobs:
   deploy:
