@@ -1,7 +1,9 @@
 package com.example.circuler.data.di
 
 import com.example.circuler.data.datasource.ReqresDataSource
+import com.example.circuler.data.datasource.UserDataSource
 import com.example.circuler.data.service.ReqresService
+import com.example.circuler.data.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,4 +18,10 @@ internal object DataSourceModule {
     fun providesReqresDataSource(
         reqresService: ReqresService
     ): ReqresDataSource = ReqresDataSource(reqresService)
+
+    @Provides
+    @Singleton
+    fun providesUserDataSource(
+        userService: UserService
+    ): UserDataSource = UserDataSource(userService)
 }
