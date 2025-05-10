@@ -54,8 +54,12 @@ ktlint = "11.5.1"
 # Google
 googleServices = "4.4.2"
 firebaseCrashlytics = "3.0.3"
-firebaseBom = "33.12.0"
+firebaseBom = "33.13.0"
 firebaseCrashlyticsBuildtools = "3.0.3"
+googlePlayService = "21.3.0"
+credentials = "1.5.0"
+credentials-play-service = "1.5.0"
+google-identity = "1.1.1"
 
 # Lottie
 lottie = "6.0.0"
@@ -119,6 +123,10 @@ google-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", ve
 google-firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+google-play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googlePlayService" }
+google-credential = { module = "androidx.credentials:credentials", version.ref = "credentials" }
+google-credentail-service = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials-play-service"}
+google-identity = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "google-identity"}
 
 # Lottie
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref= "lottie" }

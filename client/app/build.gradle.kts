@@ -29,6 +29,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", properties["base.url"].toString())
+        buildConfigField("String", "GOOGLE_CLIENT_ID", properties["google.client.id"].toString())
     }
 
     buildTypes {
@@ -88,11 +89,15 @@ dependencies {
     // Timber
     implementation(libs.timber)
 
-    // Firebase
+    // Google
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.google.firebase.crashlytics)
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.firebase.analytics)
+    implementation(libs.google.play.services.auth)
+    implementation(libs.google.credentail.service)
+    implementation(libs.google.credential)
+    implementation(libs.google.identity)
 
     // Lottie
     implementation(libs.bundles.lottie)
