@@ -4,6 +4,7 @@ import circulo.server.global.security.jwt.JwtTokenFilter;
 import circulo.server.global.security.oauth.CustomOauth2UserService;
 import circulo.server.global.security.oauth.OAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,9 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    @Value("${circulo.domain}")
+    private String circuloDomain;
 
     private final JwtTokenFilter jwtTokenFilter;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
@@ -67,7 +71,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("http://localhost:8080"));
+        configuration.setAllowedOriginPatterns(List.of("http://localhost:8080", circuloDomain));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
