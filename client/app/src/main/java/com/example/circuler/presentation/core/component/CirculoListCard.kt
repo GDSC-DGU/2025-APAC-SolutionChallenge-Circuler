@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.circuler.domain.entity.ListCardEntity
 import com.example.circuler.domain.entity.ListCardWithMethodEntity
+import com.example.circuler.domain.entity.PackageListCardEntity
 import com.example.circuler.presentation.core.extension.customShadow
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
@@ -30,7 +30,7 @@ import com.example.circuler.ui.theme.CirculerTheme
 // todo: entity 수정가능성
 @Composable
 fun CirculoListCard(
-    listCardEntity: ListCardEntity,
+    listCardEntity: PackageListCardEntity,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -65,7 +65,7 @@ fun CirculoListCard(
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Quantity",
-                subTitle = listCardEntity.quantity
+                subTitle = listCardEntity.quantity.toString()
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
@@ -209,12 +209,12 @@ private fun CirculoListCardPreview() {
 
         ) {
             CirculoListCard(
-                listCardEntity = ListCardEntity(
+                listCardEntity = PackageListCardEntity(
                     distance = "16m",
                     type = "plastic",
-                    id = "1",
+                    id = 1,
                     location = "15m",
-                    quantity = "3"
+                    quantity = 3
                 )
             )
 

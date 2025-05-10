@@ -131,23 +131,23 @@ fun DeliveryScreen(
             )
         }
 
-        itemsIndexed(
-            items = dummyList
-            // todo: 주석 삭제
-            // state.results
-        ) { index, item ->
-            CirculoListCard(
-                modifier = Modifier
-                    .padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
-                listCardEntity = ListCardEntity(
-                    id = item.id,
-                    location = item.location,
-                    quantity = item.quantity,
-                    distance = item.distance,
-                    type = item.type
-                )
-            )
-        }
+//        itemsIndexed(
+//            items = dummyList
+//            // todo: 주석 삭제
+//            // state.results
+//        ) { index, item ->
+//            CirculoListCard(
+//                modifier = Modifier
+//                    .padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
+//                listCardEntity = ListCardEntity(
+//                    id = item.id,
+//                    location = item.location,
+//                    quantity = item.quantity,
+//                    distance = item.distance,
+//                    type = item.type
+//                )
+//            )
+//        }
     }
 }
 
