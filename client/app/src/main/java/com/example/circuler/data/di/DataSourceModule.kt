@@ -1,5 +1,8 @@
 package com.example.circuler.data.di
 
+import android.content.SharedPreferences
+import com.example.circuler.data.datalocal.datasource.TokenDataSource
+import com.example.circuler.data.datalocal.datasourceimpl.TokenDataSourceImpl
 import com.example.circuler.data.datasource.ReqresDataSource
 import com.example.circuler.data.datasource.UserDataSource
 import com.example.circuler.data.service.ReqresService
@@ -24,4 +27,10 @@ internal object DataSourceModule {
     fun providesUserDataSource(
         userService: UserService
     ): UserDataSource = UserDataSource(userService)
+
+    @Provides
+    @Singleton
+    fun provideTokenDataStore(sharedPreferences: SharedPreferences): TokenDataSource {
+        return TokenDataSourceImpl(sharedPreferences)
+    }
 }
