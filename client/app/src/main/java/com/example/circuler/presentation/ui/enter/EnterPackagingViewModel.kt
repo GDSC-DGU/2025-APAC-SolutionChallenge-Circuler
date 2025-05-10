@@ -28,13 +28,6 @@ class EnterPackagingViewModel @Inject constructor(
     val sideEffect: SharedFlow<EnterPackagingSideEffect>
         get() = _sideEffect.asSharedFlow()
 
-    fun navigateToConfirmPackage() =
-        viewModelScope.launch {
-            _sideEffect.emit(
-                EnterPackagingSideEffect.NavigateToConfirmPackage
-            )
-        }
-
     fun updatedType(type: String) {
         _state.value = _state.value.copy(
             uiState = _state.value.uiState.copy(
@@ -83,7 +76,11 @@ class EnterPackagingViewModel @Inject constructor(
         submissionRepository.postPackageRequest(requestId = requestId, submissionData = _state.value.uiState)
             .onSuccess {
                 Timber.tag("postPackagingRequest").d("success")
-                _sideEffect.emit(EnterPackagingSideEffect.NavigateToConfirmPackage)
+                _sideEffect.emit(
+                    EnterPackagingSideEffect.NavigateToConfirmPackage(
+                        requestId = requestId
+                    )
+                )
             }
             .onFailure { error ->
                 Timber.e(error)

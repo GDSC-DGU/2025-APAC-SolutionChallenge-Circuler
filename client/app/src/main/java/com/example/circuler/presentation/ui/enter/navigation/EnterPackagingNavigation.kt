@@ -20,7 +20,7 @@ fun NavController.navigateToEnterPackaging(requestId: Int, navOptions: NavOption
 
 fun NavGraphBuilder.enterNavGraph(
     navigateUp: () -> Unit,
-    navigateToConfirmPackage: () -> Unit
+    navigateToConfirmPackage: (Int) -> Unit
 ) {
     composable<Route.EnterPackage> { backStackEntry ->
         val requestId = backStackEntry.toRoute<Route.EnterPackage>().requestId

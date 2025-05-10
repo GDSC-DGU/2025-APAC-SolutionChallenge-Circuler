@@ -6,4 +6,5 @@ import com.example.circuler.domain.entity.PackageListCardEntity
 interface RequestRepository {
     suspend fun getPackages(): Result<List<PackageListCardEntity>>
     suspend fun postPackage(requestPackageData: AddPackagingEntity): Result<Unit>
+    suspend fun getPackageDetail(requestId: Int): Result<PackageListCardEntity>
 }

@@ -48,7 +48,7 @@ fun EnterPackagingRoute(
     paddingValues: PaddingValues,
     requestId: Int,
     navigateUp: () -> Unit,
-    navigateToConfirmPackage: () -> Unit,
+    navigateToConfirmPackage: (Int) -> Unit,
     viewModel: EnterPackagingViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -60,7 +60,7 @@ fun EnterPackagingRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is EnterPackagingSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
-                    EnterPackagingSideEffect.NavigateToConfirmPackage -> navigateToConfirmPackage()
+                    is EnterPackagingSideEffect.NavigateToConfirmPackage -> navigateToConfirmPackage(sideEffect.requestId)
                 }
             }
     }
@@ -68,7 +68,6 @@ fun EnterPackagingRoute(
     EnterPackagingScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
-        navigateToConfirmPackage = viewModel::navigateToConfirmPackage,
         state = state,
         onTypeChanged = viewModel::updatedType,
         onMethodChanged = viewModel::updatedMethod,
@@ -94,7 +93,6 @@ fun EnterPackagingRoute(
 fun EnterPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToConfirmPackage: () -> Unit,
     state: EnterPackagingState,
     onTypeChanged: (String) -> Unit,
     onMethodChanged: (String) -> Unit,
@@ -228,7 +226,6 @@ fun EnterPackagingScreenPreview() {
         EnterPackagingScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            navigateToConfirmPackage = {},
             state = EnterPackagingState(),
             onTypeChanged = {},
             onMethodChanged = {},

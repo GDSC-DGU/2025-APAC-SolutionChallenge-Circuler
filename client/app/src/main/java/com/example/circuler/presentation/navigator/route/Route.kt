@@ -21,7 +21,9 @@ sealed interface Route {
     ) : Route
 
     @Serializable
-    data object ConfirmPackage : Route
+    data class ConfirmPackage(
+        val requestId: Int
+    ) : Route
 
     @Serializable
     data object UploadPhoto : Route

@@ -87,8 +87,8 @@ class MainNavigator(
         navController.navigateToEnterPackaging(requestId = requestId)
     }
 
-    fun navigateToConfirmPackaging() {
-        navController.navigateToConfirmPackaging()
+    fun navigateToConfirmPackaging(requestId: Int) {
+        navController.navigateToConfirmPackaging(requestId = requestId)
     }
 
     fun navigateToSubmitPackaging() {

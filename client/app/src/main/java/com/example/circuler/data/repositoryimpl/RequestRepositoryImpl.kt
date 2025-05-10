@@ -22,4 +22,9 @@ internal class RequestRepositoryImpl @Inject constructor(
             body = requestPackageData.toDto()
         )
     }
+
+    override suspend fun getPackageDetail(requestId: Int): Result<PackageListCardEntity> =
+        runCatching {
+            requestDataSource.getPackagingRequestDetail(requestId = requestId).result.toEntity()
+        }
 }

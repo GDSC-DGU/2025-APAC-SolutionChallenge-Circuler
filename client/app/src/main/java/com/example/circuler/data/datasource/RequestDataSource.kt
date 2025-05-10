@@ -10,6 +10,12 @@ import javax.inject.Inject
 internal class RequestDataSource @Inject constructor(
     private val requestService: RequestService
 ) {
-    suspend fun getPackagingRequest(): BaseResponse<List<ResponsePackagingListDto>> = requestService.getPackagingRequest()
-    suspend fun postPackagingRequest(body: RequestPackageDto): BaseResponse<ResponseRequestPackageDto> = requestService.postPackagingRequest(body = body)
+    suspend fun getPackagingRequest(): BaseResponse<List<ResponsePackagingListDto>> =
+        requestService.getPackagingRequest()
+
+    suspend fun postPackagingRequest(body: RequestPackageDto): BaseResponse<ResponseRequestPackageDto> =
+        requestService.postPackagingRequest(body = body)
+
+    suspend fun getPackagingRequestDetail(requestId: Int): BaseResponse<ResponsePackagingListDto> =
+        requestService.gettPackagingRequestDetail(packagingRequestId = requestId)
 }
