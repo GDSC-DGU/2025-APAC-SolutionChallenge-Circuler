@@ -46,7 +46,11 @@ fun LoginRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is LoginSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
-                    LoginSideEffect.NavigateToHome -> navigateToHome()
+                    is LoginSideEffect.StartGoogleLogin -> viewModel.handleLoginResult(context)
+                    is LoginSideEffect.LoginSuccess -> navigateToHome()
+                    is LoginSideEffect.LoginError -> {
+                        //login error
+                    }
                 }
             }
     }
@@ -54,7 +58,7 @@ fun LoginRoute(
     LoginScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
-        navigateToHome = viewModel::navigateToHome,
+        onLoginButtonClick = viewModel::startGoogleLogin,
         state = state.uiState
     )
 }
@@ -63,7 +67,7 @@ fun LoginRoute(
 fun LoginScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToHome: () -> Unit,
+    onLoginButtonClick: () -> Unit,
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
@@ -95,7 +99,7 @@ fun LoginScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .noRippleClickable {
-                    navigateToHome()
+                    onLoginButtonClick()
                 },
             contentScale = ContentScale.Crop
         )
@@ -109,7 +113,7 @@ fun LoginScreenPreview() {
         LoginScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            navigateToHome = {},
+            onLoginButtonClick = {},
             state = UiState.Loading
         )
     }
