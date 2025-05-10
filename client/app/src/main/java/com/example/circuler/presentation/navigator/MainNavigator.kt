@@ -83,8 +83,8 @@ class MainNavigator(
         navController.navigateToRequestPackage()
     }
 
-    fun navigateToEnterPackaging() {
-        navController.navigateToEnterPackaging()
+    fun navigateToEnterPackaging(requestId: Int) {
+        navController.navigateToEnterPackaging(requestId = requestId)
     }
 
     fun navigateToConfirmPackaging() {

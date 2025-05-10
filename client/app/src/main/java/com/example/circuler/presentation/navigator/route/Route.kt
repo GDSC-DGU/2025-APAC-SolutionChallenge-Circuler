@@ -16,7 +16,9 @@ sealed interface Route {
     data object EntirePackageRequest : Route
 
     @Serializable
-    data object EnterPackage : Route
+    data class EnterPackage(
+        val requestId: Int
+    ) : Route
 
     @Serializable
     data object ConfirmPackage : Route

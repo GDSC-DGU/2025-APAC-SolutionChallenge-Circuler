@@ -46,6 +46,7 @@ import timber.log.Timber
 @Composable
 fun EnterPackagingRoute(
     paddingValues: PaddingValues,
+    requestId: Int,
     navigateUp: () -> Unit,
     navigateToConfirmPackage: () -> Unit,
     viewModel: EnterPackagingViewModel = hiltViewModel()
@@ -83,7 +84,7 @@ fun EnterPackagingRoute(
         openDeliveryBottomSheet = viewModel::controlDeliveryBottomSheet,
         onDismissDeliveryBottomSheetRequest = viewModel::controlDeliveryBottomSheet,
         onButtonClick = {
-            viewModel.postPackagingRequest(requestId = 2)
+            viewModel.postPackagingRequest(requestId = requestId)
         }
     )
 }

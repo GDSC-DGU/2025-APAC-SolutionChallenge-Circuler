@@ -17,7 +17,7 @@ fun NavController.navigateToRequestPackage(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.requestGraph(
     navigateUp: () -> Unit,
-    navigateToEnterPackaging: () -> Unit
+    navigateToEnterPackaging: (Int) -> Unit
 ) {
     composable<Route.EntirePackageRequest> {
         RequestRoute(

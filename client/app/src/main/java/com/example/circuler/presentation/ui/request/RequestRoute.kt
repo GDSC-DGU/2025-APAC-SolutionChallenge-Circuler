@@ -40,12 +40,11 @@ import com.example.circuler.presentation.core.util.EmptyUiState
 import com.example.circuler.presentation.ui.request.component.RequestSortButton
 import com.example.circuler.ui.theme.CirculerTheme
 
-// todo: navigateToEnterPackaging id 값 물고가기
 @Composable
 fun RequestRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToEnterPackaging: () -> Unit,
+    navigateToEnterPackaging: (Int) -> Unit,
     viewModel: RequestViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -64,7 +63,7 @@ fun RequestRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is RequestSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
-                    RequestSideEffect.NavigateToEnterPackaging -> navigateToEnterPackaging()
+                    is RequestSideEffect.NavigateToEnterPackaging -> navigateToEnterPackaging(sideEffect.requestId)
                 }
             }
     }
@@ -82,7 +81,7 @@ fun RequestRoute(
 fun RequestScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToEnterPackaging: () -> Unit,
+    navigateToEnterPackaging: (Int) -> Unit,
     state: EmptyUiState<List<PackageListCardEntity>>,
     modifier: Modifier = Modifier
 ) {
@@ -146,7 +145,7 @@ fun RequestScreen(
                             type = item.type
                         ),
                         onClick = {
-                            navigateToEnterPackaging()
+                            navigateToEnterPackaging(item.id)
                         }
                     )
                 }

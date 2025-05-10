@@ -30,10 +30,12 @@ class RequestViewModel @Inject constructor(
     val sideEffect: SharedFlow<RequestSideEffect>
         get() = _sideEffect.asSharedFlow()
 
-    fun navigateToEnterPackaging() =
+    fun navigateToEnterPackaging(requestId: Int) =
         viewModelScope.launch {
             _sideEffect.emit(
-                RequestSideEffect.NavigateToEnterPackaging
+                RequestSideEffect.NavigateToEnterPackaging(
+                    requestId = requestId
+                )
             )
         }
 
