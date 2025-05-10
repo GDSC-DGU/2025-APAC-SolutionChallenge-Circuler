@@ -1,7 +1,11 @@
 package com.example.circuler.presentation.ui.login
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.circuler.data.datasource.GoogleDataSource
+import com.example.circuler.domain.repository.TokenRepository
+import com.example.circuler.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -11,9 +15,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @HiltViewModel
-class LoginViewModel @Inject constructor() : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val tokenRepository: TokenRepository
+) : ViewModel() {
     // state 관리
     private val _state = MutableStateFlow(LoginState())
     val state: StateFlow<LoginState>
@@ -24,10 +32,56 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val sideEffect: SharedFlow<LoginSideEffect>
         get() = _sideEffect.asSharedFlow()
 
-    fun navigateToHome() =
+    fun startGoogleLogin() =
         viewModelScope.launch {
+            _sideEffect.emit(LoginSideEffect.StartGoogleLogin)
+        }
+
+    fun handleLoginResult(context: Context) {
+        viewModelScope.launch {
+            viewModelScope.launch {
+                try {
+                    val token = GoogleDataSource.signInWithGoogle(context)
+
+                    if (token != null) {
+                        Timber.tag("GoogleLogin").d("success -> $token")
+                        sendTokenToServer(token)
+                    }
+                } catch (e: Exception) {
+                    Timber.tag("GoogleLogin").d("error -> $e")
+                }
+            }
+        }
+    }
+
+    private fun handleLoginError(errorMessage: String) {
+        viewModelScope.launch {
+            _sideEffect.emit(LoginSideEffect.LoginError(errorMessage))
+        }
+    }
+
+    private fun sendTokenToServer(
+        accessToken: String
+    ) {
+        viewModelScope.launch {
+//            userRepository.getAccessToken()
+//                .onSuccess { response ->
+            // todo: token 저장
+//            tokenRepository.setTokens(response.accessToken, response.refreshToken)
+//                    //todo: loginsuccess sideEffect
+//                }.onFailure { throwable ->
+//                    val errorMessage = throwable.localizedMessage ?: "Unknown error"
+//                    handleLoginError(errorMessage)
+//                }
+
+            // todo: test 지우기
+            tokenRepository.setTokens(accessToken, accessToken)
             _sideEffect.emit(
-                LoginSideEffect.NavigateToHome
+                LoginSideEffect.LoginSuccess(
+                    // todo: server로부터 오는 accessToken으로 바꾸기
+                    accessToken
+                )
             )
         }
+    }
 }
