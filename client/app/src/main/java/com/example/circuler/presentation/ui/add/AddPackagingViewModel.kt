@@ -2,8 +2,8 @@ package com.example.circuler.presentation.ui.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.circuler.domain.repository.RequestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -11,9 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
-class AddPackagingViewModel @Inject constructor() : ViewModel() {
+class AddPackagingViewModel @Inject constructor(
+    private val requestRepository: RequestRepository
+) : ViewModel() {
     // state 관리
     private val _state = MutableStateFlow(AddPackagingState())
     val state: StateFlow<AddPackagingState>
@@ -30,6 +34,14 @@ class AddPackagingViewModel @Inject constructor() : ViewModel() {
                 AddPackagingSideEffect.NavigateToHome
             )
         }
+
+    fun updatedType(type: String) {
+        _state.value = _state.value.copy(
+            uiState = _state.value.uiState.copy(
+                type = type
+            )
+        )
+    }
 
     fun updatedLocation(location: String) {
         _state.value = _state.value.copy(
@@ -57,5 +69,14 @@ class AddPackagingViewModel @Inject constructor() : ViewModel() {
         _state.value = _state.value.copy(selectedIndex = index)
     }
 
-    // todo: post할때 quantity.toInt
+    fun postPackageRequest() = viewModelScope.launch {
+        requestRepository.postPackage(_state.value.uiState)
+            .onSuccess {
+                Timber.tag("postpackage").d("success")
+                _sideEffect.emit(AddPackagingSideEffect.NavigateToHome)
+            }
+            .onFailure { error ->
+                Timber.e(error)
+            }
+    }
 }
