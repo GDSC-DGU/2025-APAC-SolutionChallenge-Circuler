@@ -49,7 +49,7 @@ fun LoginRoute(
                     is LoginSideEffect.StartGoogleLogin -> viewModel.handleLoginResult(context)
                     is LoginSideEffect.LoginSuccess -> navigateToHome()
                     is LoginSideEffect.LoginError -> {
-                        //login error
+                        // login error
                     }
                 }
             }

@@ -13,6 +13,6 @@ interface RequestService {
     @POST("/api/v0/packagingRequest")
     suspend fun postPackagingRequest(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
-        @Body body: RequestPackageDto,
+        @Body body: RequestPackageDto
     ): BaseResponse<ResponseRequestPackageDto>
 }

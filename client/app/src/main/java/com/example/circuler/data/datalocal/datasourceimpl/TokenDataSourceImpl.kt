@@ -6,7 +6,7 @@ import com.example.circuler.data.datalocal.datasource.TokenDataSource
 import javax.inject.Inject
 
 class TokenDataSourceImpl @Inject constructor(
-    private val tokenDataSource: SharedPreferences,
+    private val tokenDataSource: SharedPreferences
 ) : TokenDataSource {
     override var accessToken: String
         get() = tokenDataSource.getString(ACCESS_TOKEN, "") ?: ""

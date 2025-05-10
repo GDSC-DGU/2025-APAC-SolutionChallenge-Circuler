@@ -7,6 +7,7 @@ import com.example.circuler.data.datasource.GoogleDataSource
 import com.example.circuler.domain.repository.TokenRepository
 import com.example.circuler.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -15,7 +16,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -31,7 +31,6 @@ class LoginViewModel @Inject constructor(
     private val _sideEffect: MutableSharedFlow<LoginSideEffect> = MutableSharedFlow()
     val sideEffect: SharedFlow<LoginSideEffect>
         get() = _sideEffect.asSharedFlow()
-
 
     fun startGoogleLogin() =
         viewModelScope.launch {
@@ -67,7 +66,7 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
 //            userRepository.getAccessToken()
 //                .onSuccess { response ->
-            //todo: token 저장
+            // todo: token 저장
 //            tokenRepository.setTokens(response.accessToken, response.refreshToken)
 //                    //todo: loginsuccess sideEffect
 //                }.onFailure { throwable ->
@@ -75,12 +74,12 @@ class LoginViewModel @Inject constructor(
 //                    handleLoginError(errorMessage)
 //                }
 
-            //todo: test 지우기
+            // todo: test 지우기
             tokenRepository.setTokens(accessToken, accessToken)
             _sideEffect.emit(
                 LoginSideEffect.LoginSuccess(
-                    //todo: server로부터 오는 accessToken으로 바꾸기
-                    accessToken,
+                    // todo: server로부터 오는 accessToken으로 바꾸기
+                    accessToken
                 )
             )
         }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 internal class RequestRepositoryImpl @Inject constructor(
     private val requestDataSource: RequestDataSource
-): RequestRepository {
+) : RequestRepository {
     override suspend fun postPackage(
         requestPackageData: AddPackagingEntity
     ): Result<Unit> = runCatching {

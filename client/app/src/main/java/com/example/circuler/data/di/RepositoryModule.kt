@@ -32,5 +32,4 @@ internal interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsRequestRepository(requestRepositoryImpl: RequestRepositoryImpl): RequestRepository
-
 }

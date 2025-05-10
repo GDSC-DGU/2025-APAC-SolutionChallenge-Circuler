@@ -7,6 +7,6 @@ import retrofit2.http.Header
 interface UserService {
     @GET("/api/v0/packagingRequest")
     suspend fun getAccessToken(
-        @Header("Authorization") accessToken: String = "Bearer $TOKEN",
-        ): ResponseLoginDto
+        @Header("Authorization") accessToken: String = "Bearer $TOKEN"
+    ): ResponseLoginDto
 }
