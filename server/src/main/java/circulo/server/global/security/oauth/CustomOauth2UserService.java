@@ -26,6 +26,7 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         OAuth2UserInfo userInfo = OAuth2UserInfo.of(oAuth2User.getAttributes());
+
         User user = userRepository.findByEmail(userInfo.getEmail())
                 .orElseGet(() -> userRepository.save(User.builder()
                         .email(userInfo.getEmail())
