@@ -2,13 +2,14 @@ package com.example.circuler.data.di
 
 import com.example.circuler.data.service.ReqresService
 import com.example.circuler.data.service.RequestService
+import com.example.circuler.data.service.SubmissionService
 import com.example.circuler.data.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -27,4 +28,9 @@ object ServiceModule {
     @Singleton
     fun provideRequestService(retrofit: Retrofit): RequestService =
         retrofit.create(RequestService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSubmissionService(retrofit: Retrofit): SubmissionService =
+        retrofit.create(SubmissionService::class.java)
 }

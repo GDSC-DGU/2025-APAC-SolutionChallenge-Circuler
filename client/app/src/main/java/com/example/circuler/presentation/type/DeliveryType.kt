@@ -3,8 +3,8 @@ package com.example.circuler.presentation.type
 enum class DeliveryType(
     val text: String
 ) {
-    SELF(
-        text = "self"
+    DIRECT(
+        text = "direct"
     ),
     DELIVERY(
         text = "delivery"
