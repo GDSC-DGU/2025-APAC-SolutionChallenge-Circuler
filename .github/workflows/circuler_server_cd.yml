@@ -1,4 +1,4 @@
-name: Circulo Server CD
+name: Circuler Server CD
 
 on:
   push:
@@ -20,8 +20,24 @@ jobs:
 
       - name: Copy docker-compose.yml to server
         run: |
-          scp docker-compose.yml ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/docker-compose.yml
+          scp server/docker-compose.yml ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/docker-compose.yml
 
+      - name: Create .env on server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" > /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_REDIS_HOST=${{ secrets.REDIS_HOST }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_REDIS_PORT=${{ secrets.REDIS_PORT }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI=${{ secrets.GOOGLE_REDIRECT_URI }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> /home/${{ secrets.VM_USER }}/.env
 
       - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.10
@@ -34,5 +50,5 @@ jobs:
             docker pull mandar2n/circulo:latest
             docker tag mandar2n/circulo:latest circulo_spring
             docker stop circulo || true
-            docker rm circulo || true
-            docker-compose -f /docker-compose.yml up -d
+            cd /home/${{ secrets.VM_USER }}
+            docker-compose --env-file .env -f docker-compose.yml up -d
