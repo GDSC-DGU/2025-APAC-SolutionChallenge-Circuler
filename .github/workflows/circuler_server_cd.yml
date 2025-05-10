@@ -20,7 +20,8 @@ jobs:
 
       - name: Copy docker-compose.yml to server
         run: |
-          scp docker-compose.yml ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/home/${{ secrets.VM_USER }}/docker-compose.yml
+          scp docker-compose.yml ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/docker-compose.yml
+
 
       - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.10
@@ -34,4 +35,4 @@ jobs:
             docker tag mandar2n/circulo:latest circulo_spring
             docker stop circulo || true
             docker rm circulo || true
-            docker-compose -f /home/${{ secrets.VM_USER }}/docker-compose.yml up -d
+            docker-compose -f /docker-compose.yml up -d
