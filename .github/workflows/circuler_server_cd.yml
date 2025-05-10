@@ -18,9 +18,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Set up known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
+
       - name: Copy docker-compose.yml to server
         run: |
-          scp server/docker-compose.yml ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/docker-compose.yml
+          scp server/docker-compose.yml ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/home/${{ secrets.VM_USER }}/docker-compose.yml
 
       - name: Create .env on server
         uses: appleboy/ssh-action@v0.1.10

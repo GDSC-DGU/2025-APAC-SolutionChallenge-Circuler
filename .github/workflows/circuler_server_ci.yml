@@ -18,46 +18,20 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
+      - name: Create .env file
+        run: |
+          echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" > src/test/resources/.env
+          echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" >> src/test/resources/.env
+          echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" >> src/test/resources/.env
+          echo "SPRING_REDIS_HOST=${{ secrets.REDIS_HOST }}" >> src/test/resources/.env
+          echo "SPRING_REDIS_PORT=${{ secrets.REDIS_PORT }}" >> src/test/resources/.env
+          echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> src/test/resources/.env
+          echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> src/test/resources/.env
+          echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI=${{ secrets.GOOGLE_REDIRECT_URI }}" >> src/test/resources/.env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> src/test/resources/.env
+
       - name: Run Tests
         run: |
-          mkdir -p src/test/resources
-
-          cat <<EOF > src/test/resources/application.yml
-          spring:
-            datasource:
-              driver-class-name: com.mysql.cj.jdbc.Driver
-              url: ${{ secrets.DB_URL }}
-              username: ${{ secrets.DB_USERNAME }}
-              password: ${{ secrets.DB_PASSWORD }}
-            jpa:
-              hibernate:
-                ddl-auto: update
-              properties:
-                hibernate:
-                  format_sql: true
-                  use_sql_comments: true
-                  dialect: org.hibernate.dialect.MySQL8Dialect
-
-            redis:
-              host: ${{ secrets.REDIS_HOST }}
-              port: ${{ secrets.REDIS_PORT }}
-
-            security:
-              oauth2:
-                client:
-                  registration:
-                    google:
-                      client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
-                      client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-                      redirect-uri: ${{ secrets.GOOGLE_REDIRECT_URI }}
-                      scope:
-                        - email
-                        - profile
-
-          jwt:
-            secret: ${{ secrets.JWT_SECRET }}
-          EOF
-
           chmod +x ./gradlew
           ./gradlew test
         working-directory: ./server
