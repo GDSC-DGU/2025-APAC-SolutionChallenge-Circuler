@@ -4,10 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.circuler.data.datasource.GoogleDataSource
+import com.example.circuler.domain.repository.DeliveryRepository
 import com.example.circuler.domain.repository.TokenRepository
-import com.example.circuler.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,10 +15,11 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+    private val deliveryRepository: DeliveryRepository,
     private val tokenRepository: TokenRepository
 ) : ViewModel() {
     // state 관리
@@ -66,19 +66,16 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
 //            userRepository.getAccessToken()
 //                .onSuccess { response ->
-            // todo: token 저장
+//                   token 저장
 //            tokenRepository.setTokens(response.accessToken, response.refreshToken)
-//                    //todo: loginsuccess sideEffect
+//                   loginsuccess sideEffect
 //                }.onFailure { throwable ->
 //                    val errorMessage = throwable.localizedMessage ?: "Unknown error"
 //                    handleLoginError(errorMessage)
 //                }
 
-            // todo: test 지우기
-            tokenRepository.setTokens(accessToken, accessToken)
             _sideEffect.emit(
                 LoginSideEffect.LoginSuccess(
-                    // todo: server로부터 오는 accessToken으로 바꾸기
                     accessToken
                 )
             )

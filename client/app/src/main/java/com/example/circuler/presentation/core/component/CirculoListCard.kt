@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.circuler.domain.entity.DeliveryEntity
 import com.example.circuler.domain.entity.ListCardWithMethodEntity
 import com.example.circuler.domain.entity.PackageListCardEntity
 import com.example.circuler.presentation.core.extension.customShadow
@@ -27,7 +28,6 @@ import com.example.circuler.ui.theme.CirculerTheme
 
 // todo: 전체적인 icon 변경
 
-// todo: entity 수정가능성
 @Composable
 fun CirculoListCard(
     listCardEntity: PackageListCardEntity,
@@ -71,6 +71,54 @@ fun CirculoListCard(
                 icon = Icons.Outlined.Menu,
                 title = "Shop Location",
                 subTitle = listCardEntity.location
+            )
+        }
+    }
+}
+
+@Composable
+fun CirculoDeliveryListCard(
+    deliveryEntity: DeliveryEntity,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
+    Box(
+        contentAlignment = Alignment.CenterStart,
+        modifier = modifier
+            .fillMaxWidth()
+            .roundedBackgroundWithBorder(
+                cornerRadius = 20.dp,
+                backgroundColor = CirculerTheme.colors.grayScale1
+            )
+            .clip(
+                shape = RoundedCornerShape(20.dp)
+            )
+            .customShadow(
+                spotColor = CirculerTheme.colors.grayScale2,
+                ambientColor = CirculerTheme.colors.grayScale2
+            )
+            .noRippleClickable {
+                onClick()
+            }
+            .padding(start = 15.dp, top = 30.dp, bottom = 30.dp)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(18.dp, alignment = Alignment.CenterVertically)
+        ) {
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Packaging type",
+                subTitle = deliveryEntity.packagingType
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Quantity",
+                subTitle = deliveryEntity.submissionQuantity.toString()
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Shop Location",
+                subTitle = deliveryEntity.requestLocation
             )
         }
     }
