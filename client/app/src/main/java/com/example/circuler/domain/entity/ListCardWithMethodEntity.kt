@@ -7,11 +7,3 @@ data class PackageListCardWithMethodEntity(
     val quantity: Int,
     val status: String
 )
-
-//todo: 삭제
-data class ListCardWithMethodEntity(
-    val id: String,
-    val location: String,
-    val method: String,
-    val quantity: String
-)

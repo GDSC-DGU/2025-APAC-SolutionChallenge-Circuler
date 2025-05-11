@@ -71,7 +71,8 @@ fun SubmitPackagingRoute(
         navigateUp = navigateUp,
         state = state.uiState,
         onButtonClick = {
-            viewModel.postPackagingDelivery(requestId = 1)
+            viewModel.getPackageAccept(requestId = requestId, submissionId = 1) //todo: submissionId 전달방법
+            viewModel.postPackagingDelivery(requestId = requestId)
         }
     )
 }

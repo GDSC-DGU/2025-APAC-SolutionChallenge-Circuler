@@ -2,6 +2,7 @@ package com.example.circuler.data.repositoryimpl
 
 import com.example.circuler.data.datasource.SubmissionDataSource
 import com.example.circuler.data.dto.request.toDto
+import com.example.circuler.domain.entity.AcceptEntity
 import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
 import com.example.circuler.domain.entity.SubmissionPackagingEntity
 import com.example.circuler.domain.repository.SubmissionRepository
@@ -32,5 +33,13 @@ internal class SubmissionRepositoryImpl @Inject constructor(
             ).result.map {
                 it.toEntity()
             }
+        }
+
+    override suspend fun getPackageAccept(requestId: Int, submissionId: Int): Result<AcceptEntity> =
+        runCatching {
+            submissionDataSource.getPackageAccept(
+                requestId = requestId,
+                submissionId = submissionId
+            ).result.toEntity()
         }
 }

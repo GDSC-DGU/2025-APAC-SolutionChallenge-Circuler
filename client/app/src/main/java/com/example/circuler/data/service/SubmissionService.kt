@@ -2,6 +2,7 @@ package com.example.circuler.data.service
 
 import com.example.circuler.data.dto.request.RequestPackageSubmissionDto
 import com.example.circuler.data.dto.response.BaseResponse
+import com.example.circuler.data.dto.response.ResponseAcceptDto
 import com.example.circuler.data.dto.response.ResponseEmptyDto
 import com.example.circuler.data.dto.response.ResponseRequestPackageDto
 import com.example.circuler.data.dto.response.ResponseSubmittedDataDto
@@ -30,4 +31,11 @@ interface SubmissionService {
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
         @Path("packagingRequestId") packagingRequestId: Int,
     ): BaseResponse<List<ResponseSubmittedDataDto>>
+
+    @GET("/api/v0/packageSubmission/{packagingRequestId}/submissions/{packageSubmissionId}/accept")
+    suspend fun getPackageAccept(
+        @Header("Authorization") accessToken: String = "Bearer $TOKEN",
+        @Path("packagingRequestId") packagingRequestId: Int,
+        @Path("packageSubmissionId") packageSubmissionId: Int,
+    ): BaseResponse<ResponseAcceptDto>
 }

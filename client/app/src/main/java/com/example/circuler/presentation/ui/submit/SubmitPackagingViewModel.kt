@@ -62,4 +62,15 @@ class SubmitPackagingViewModel @Inject constructor(
                 Timber.e(error)
             }
     }
+
+    fun getPackageAccept(requestId: Int, submissionId: Int) = viewModelScope.launch {
+        submissionRepository.getPackageAccept(requestId = requestId, submissionId = submissionId)
+            .onSuccess {
+                //todo: 버튼색 바뀌게 처리
+                Timber.tag("getPackageAccept").d("success")
+            }
+            .onFailure { error ->
+                Timber.e(error)
+            }
+    }
 }
