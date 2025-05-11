@@ -25,9 +25,9 @@ internal class SubmissionRepositoryImpl @Inject constructor(
             )
         }
 
-    override suspend fun getHistoryData(requestId: Int): Result<List<PackageListCardWithMethodEntity>> =
+    override suspend fun getSubmittedData(requestId: Int): Result<List<PackageListCardWithMethodEntity>> =
         runCatching {
-            submissionDataSource.getHistoryData(
+            submissionDataSource.getSubmittedData(
                 requestId = requestId
             ).result.map {
                 it.toEntity()

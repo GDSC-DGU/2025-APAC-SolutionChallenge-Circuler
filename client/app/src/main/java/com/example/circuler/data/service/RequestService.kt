@@ -32,7 +32,6 @@ interface RequestService {
         @Path("packagingRequestId") packagingRequestId: Int,
     ): BaseResponse<ResponsePackagingListDto>
 
-    //todo: 어느 화면에서 쓰이는건지
     @GET("/api/v0/packagingRequest/my")
     suspend fun getPackagingRequestMy(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",

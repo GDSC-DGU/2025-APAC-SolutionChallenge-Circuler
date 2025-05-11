@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseHistoryDataDto(
+data class ResponseSubmittedDataDto(
     @SerialName("id")
     val id: Int,
     @SerialName("location")

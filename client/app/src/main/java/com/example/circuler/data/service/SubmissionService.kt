@@ -3,8 +3,8 @@ package com.example.circuler.data.service
 import com.example.circuler.data.dto.request.RequestPackageSubmissionDto
 import com.example.circuler.data.dto.response.BaseResponse
 import com.example.circuler.data.dto.response.ResponseEmptyDto
-import com.example.circuler.data.dto.response.ResponseHistoryDataDto
 import com.example.circuler.data.dto.response.ResponseRequestPackageDto
+import com.example.circuler.data.dto.response.ResponseSubmittedDataDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -25,10 +25,9 @@ interface SubmissionService {
         @Path("packageSubmissionId") packageSubmissionId: Int,
     ): ResponseEmptyDto
 
-    //todo: 어느 화면에서 쓰이는건지
     @GET("/api/v0/packageSubmission/{packagingRequestId}/submissions")
-    suspend fun getHistoryData(
+    suspend fun getSubmittedData(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
         @Path("packagingRequestId") packagingRequestId: Int,
-    ): BaseResponse<List<ResponseHistoryDataDto>>
+    ): BaseResponse<List<ResponseSubmittedDataDto>>
 }

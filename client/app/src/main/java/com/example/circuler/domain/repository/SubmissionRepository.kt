@@ -6,5 +6,5 @@ import com.example.circuler.domain.entity.SubmissionPackagingEntity
 interface SubmissionRepository {
     suspend fun postPackageRequest(requestId: Int, submissionData: SubmissionPackagingEntity): Result<Unit>
     suspend fun postPackagingDelivery(requestId: Int): Result<Unit>
-    suspend fun getHistoryData(requestId: Int): Result<List<PackageListCardWithMethodEntity>>
+    suspend fun getSubmittedData(requestId: Int): Result<List<PackageListCardWithMethodEntity>>
 }

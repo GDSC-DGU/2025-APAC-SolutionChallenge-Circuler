@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.example.circuler.domain.entity.DeliveryEntity
 import com.example.circuler.domain.entity.ListCardWithMethodEntity
 import com.example.circuler.domain.entity.PackageListCardEntity
+import com.example.circuler.domain.entity.PackageMyEntity
 import com.example.circuler.presentation.core.extension.customShadow
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
@@ -124,10 +125,9 @@ fun CirculoDeliveryListCard(
     }
 }
 
-// todo: entity 수정가능성
 @Composable
 fun CirculoListCardWithMethod(
-    listCardWithMethodEntity: ListCardWithMethodEntity,
+    packageMyEntity: PackageMyEntity,
     chipType: ChipType,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
@@ -162,17 +162,17 @@ fun CirculoListCardWithMethod(
                 CirculoTextWithIcon(
                     icon = Icons.Outlined.Menu,
                     title = "Packaging type",
-                    subTitle = listCardWithMethodEntity.id
+                    subTitle = packageMyEntity.packagingType
                 )
                 CirculoTextWithIcon(
                     icon = Icons.Outlined.Menu,
                     title = "Quantity",
-                    subTitle = listCardWithMethodEntity.quantity
+                    subTitle = packageMyEntity.quantity.toString()
                 )
                 CirculoTextWithIcon(
                     icon = Icons.Outlined.Menu,
                     title = "Shop Location",
-                    subTitle = listCardWithMethodEntity.location
+                    subTitle = packageMyEntity.location
                 )
             }
             Spacer(
@@ -264,16 +264,6 @@ private fun CirculoListCardPreview() {
                     location = "15m",
                     quantity = 3
                 )
-            )
-
-            CirculoListCardWithMethod(
-                listCardWithMethodEntity = ListCardWithMethodEntity(
-                    id = "1",
-                    location = "123",
-                    method = "plastic",
-                    quantity = "12"
-                ),
-                chipType = ChipType.IN_PROGRESS
             )
 
             CirculoListCardWithButton(
