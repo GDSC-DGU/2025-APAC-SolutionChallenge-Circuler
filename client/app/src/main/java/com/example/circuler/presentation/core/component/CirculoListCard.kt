@@ -18,8 +18,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.circuler.domain.entity.DeliveryEntity
-import com.example.circuler.domain.entity.ListCardWithMethodEntity
 import com.example.circuler.domain.entity.PackageListCardEntity
+import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
 import com.example.circuler.domain.entity.PackageMyEntity
 import com.example.circuler.presentation.core.extension.customShadow
 import com.example.circuler.presentation.core.extension.noRippleClickable
@@ -187,10 +187,9 @@ fun CirculoListCardWithMethod(
     }
 }
 
-// todo: entity 수정가능성
 @Composable
 fun CirculoListCardWithButton(
-    listCardWithMethodEntity: ListCardWithMethodEntity,
+    packageListCardWithMethodEntity: PackageListCardWithMethodEntity,
     modifier: Modifier = Modifier,
     onButtonClick: () -> Unit = {}
 ) {
@@ -216,25 +215,21 @@ fun CirculoListCardWithButton(
         ) {
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
-                title = "Packaging type",
-                subTitle = listCardWithMethodEntity.id
-            )
-            CirculoTextWithIcon(
-                icon = Icons.Outlined.Menu,
                 title = "Quantity",
-                subTitle = listCardWithMethodEntity.quantity
+                subTitle = packageListCardWithMethodEntity.quantity.toString()
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Shop Location",
-                subTitle = listCardWithMethodEntity.location
+                subTitle = packageListCardWithMethodEntity.location
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Method",
-                subTitle = listCardWithMethodEntity.method
+                subTitle = packageListCardWithMethodEntity.method
             )
 
+            //todo: packageListCardWithMethodEntity.status
             CirculoButton(
                 text = "accept",
                 textStyle = CirculerTheme.typography.body4R12,
@@ -262,15 +257,6 @@ private fun CirculoListCardPreview() {
                     id = 1,
                     location = "15m",
                     quantity = 3
-                )
-            )
-
-            CirculoListCardWithButton(
-                listCardWithMethodEntity = ListCardWithMethodEntity(
-                    id = "1",
-                    location = "123",
-                    method = "self",
-                    quantity = "12"
                 )
             )
         }

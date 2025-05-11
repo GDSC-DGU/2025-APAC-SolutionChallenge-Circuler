@@ -91,8 +91,8 @@ class MainNavigator(
         navController.navigateToConfirmPackaging(requestId = requestId)
     }
 
-    fun navigateToSubmitPackaging() {
-        navController.navigateToSubmitPackaging()
+    fun navigateToSubmitPackaging(requestId: Int) {
+        navController.navigateToSubmitPackaging(requestId = requestId)
     }
 
     fun navigateToUploadPackaging() {

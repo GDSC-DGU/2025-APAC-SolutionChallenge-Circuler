@@ -2,7 +2,9 @@ package com.example.circuler.presentation.ui.submit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
 import com.example.circuler.domain.repository.SubmissionRepository
+import com.example.circuler.presentation.core.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,6 +37,28 @@ class SubmitPackagingViewModel @Inject constructor(
                 //todo: 버튼색 조절
             }
             .onFailure { error ->
+                Timber.e(error)
+            }
+    }
+
+    suspend fun getSubmittedData(requestId: Int) {
+        submissionRepository.getSubmittedData(requestId = requestId)
+            .onSuccess { response ->
+                val listData = response.map { item ->
+                    PackageListCardWithMethodEntity(
+                        id = item.id,
+                        location = item.location,
+                        method = item.method,
+                        quantity = item.quantity,
+                        status = item.status
+                    )
+                }
+
+                Timber.tag("getSubmittedData").d("success")
+                _state.value = _state.value.copy(uiState = UiState.Success(listData))
+            }
+            .onFailure { error ->
+                _state.value = _state.value.copy(uiState = UiState.Failure)
                 Timber.e(error)
             }
     }

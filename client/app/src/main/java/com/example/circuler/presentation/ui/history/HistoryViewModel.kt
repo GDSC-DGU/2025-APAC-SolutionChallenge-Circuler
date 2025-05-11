@@ -30,10 +30,12 @@ class HistoryViewModel @Inject constructor(
     val sideEffect: SharedFlow<HistorySideEffect>
         get() = _sideEffect.asSharedFlow()
 
-    fun navigateToSubmit() =
+    fun navigateToSubmit(requestId: Int) =
         viewModelScope.launch {
             _sideEffect.emit(
-                HistorySideEffect.NavigateToSubmit
+                HistorySideEffect.NavigateToSubmit(
+                    requestId = requestId
+                )
             )
         }
 

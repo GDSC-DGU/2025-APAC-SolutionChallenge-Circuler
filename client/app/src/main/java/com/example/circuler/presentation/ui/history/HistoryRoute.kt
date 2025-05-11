@@ -55,7 +55,7 @@ import com.example.circuler.ui.theme.CirculerTheme
 fun HistoryRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToSubmit: () -> Unit,
+    navigateToSubmit: (Int) -> Unit,
     viewModel: HistoryViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -74,7 +74,7 @@ fun HistoryRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is HistorySideEffect.ShowToast -> context.showToast(message = sideEffect.message)
-                    HistorySideEffect.NavigateToSubmit -> navigateToSubmit()
+                    is HistorySideEffect.NavigateToSubmit -> navigateToSubmit(sideEffect.requestId)
                 }
             }
     }
@@ -93,7 +93,7 @@ fun HistoryScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: UiState<List<PackageMyEntity>>,
-    navigateToSubmit: () -> Unit,
+    navigateToSubmit: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -184,7 +184,7 @@ fun HistoryScreen(
                         chipString = item.status,
                         onClick = {
                             if (item.status == ChipType.IN_PROGRESS.toString()) {
-                                navigateToSubmit()
+                                navigateToSubmit(item.requestId)
                             }
                         }
                     )

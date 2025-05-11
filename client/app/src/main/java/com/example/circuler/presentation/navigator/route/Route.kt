@@ -32,7 +32,9 @@ sealed interface Route {
     data object DeliveryPackage : Route
 
     @Serializable
-    data object SubmittedPackage : Route
+    data class SubmittedPackage(
+        val requestId: Int
+    ) : Route
 
     @Serializable
     data object Map : Route
