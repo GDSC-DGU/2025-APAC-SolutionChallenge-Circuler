@@ -2,7 +2,7 @@ name: Circuler Server CD
 
 on:
   push:
-    branches: [ deploy/#55-serverCICD ] # 테스트 용도, 이후 main으로 수정
+    branches: [ main ]
   workflow_dispatch: # 테스트 용도
 
 jobs:
