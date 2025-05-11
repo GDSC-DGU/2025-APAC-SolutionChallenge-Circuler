@@ -2,6 +2,7 @@ package com.example.circuler.data.datasource
 
 import com.example.circuler.data.dto.request.RequestPackageDto
 import com.example.circuler.data.dto.response.BaseResponse
+import com.example.circuler.data.dto.response.ResponsePackageMyDto
 import com.example.circuler.data.dto.response.ResponsePackagingListDto
 import com.example.circuler.data.dto.response.ResponseRequestPackageDto
 import com.example.circuler.data.service.RequestService
@@ -17,5 +18,8 @@ internal class RequestDataSource @Inject constructor(
         requestService.postPackagingRequest(body = body)
 
     suspend fun getPackagingRequestDetail(requestId: Int): BaseResponse<ResponsePackagingListDto> =
-        requestService.gettPackagingRequestDetail(packagingRequestId = requestId)
+        requestService.getPackagingRequestDetail(packagingRequestId = requestId)
+
+    suspend fun getPackagingRequestMy(): List<ResponsePackageMyDto> =
+        requestService.getPackagingRequestMy()
 }

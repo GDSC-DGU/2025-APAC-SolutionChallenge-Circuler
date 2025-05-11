@@ -10,4 +10,6 @@ internal class SubmissionDataSource @Inject constructor(
     private val submissionService: SubmissionService
 ) {
     suspend fun postPackageRequest(requestId: Int, body: RequestPackageSubmissionDto): BaseResponse<ResponseRequestPackageDto> = submissionService.postPackagingRequest(packagingRequestId = requestId, body = body)
+    suspend fun postPackagingDelivery(requestId: Int) = submissionService.postPackagingDelivery(packageSubmissionId = requestId)
+    suspend fun getHistoryData(requestId: Int) = submissionService.getHistoryData(packagingRequestId = requestId)
 }

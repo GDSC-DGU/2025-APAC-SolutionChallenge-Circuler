@@ -1,8 +1,9 @@
 package com.example.circuler.data.service
 
+import com.example.circuler.BuildConfig
 import com.example.circuler.data.dto.request.RequestPackageDto
-import com.example.circuler.data.dto.request.RequestPackageSubmissionDto
 import com.example.circuler.data.dto.response.BaseResponse
+import com.example.circuler.data.dto.response.ResponsePackageMyDto
 import com.example.circuler.data.dto.response.ResponsePackagingListDto
 import com.example.circuler.data.dto.response.ResponseRequestPackageDto
 import retrofit2.http.Body
@@ -11,7 +12,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNzQ2OTA0MjM3LCJleHAiOjE3NDY5MDYwMzcsImF1dGgiOiJST0xFX1VTRVIifQ.tp98ngUuvVggxvyb1Yy216R9aaS80diN9NYSFIzjNj8"
+const val TOKEN = BuildConfig.TOKEN
 
 interface RequestService {
     @GET("/api/v0/packagingRequest")
@@ -26,8 +27,14 @@ interface RequestService {
     ): BaseResponse<ResponseRequestPackageDto>
 
     @GET("/api/v0/packagingRequest/{packagingRequestId}")
-    suspend fun gettPackagingRequestDetail(
+    suspend fun getPackagingRequestDetail(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
         @Path("packagingRequestId") packagingRequestId: Int,
     ): BaseResponse<ResponsePackagingListDto>
+
+    //todo: 어느 화면에서 쓰이는건지
+    @GET("/api/v0/packagingRequest/my")
+    suspend fun getPackagingRequestMy(
+        @Header("Authorization") accessToken: String = "Bearer $TOKEN",
+    ): List<ResponsePackageMyDto>
 }

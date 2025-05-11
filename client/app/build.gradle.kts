@@ -30,6 +30,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", properties["base.url"].toString())
         buildConfigField("String", "GOOGLE_CLIENT_ID", properties["google.client.id"].toString())
+        buildConfigField("String", "TOKEN", properties["token"].toString())
     }
 
     buildTypes {

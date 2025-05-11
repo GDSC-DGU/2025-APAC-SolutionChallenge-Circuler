@@ -55,7 +55,10 @@ fun SubmitPackagingRoute(
     SubmitPackagingScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
-        state = state.uiState
+        state = state.uiState,
+        onButtonClick = {
+            viewModel.postPackagingDelivery(requestId = 1)
+        }
     )
 }
 
@@ -65,6 +68,7 @@ fun SubmitPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: UiState<String>,
+    onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -139,7 +143,8 @@ fun SubmitPackagingScreen(
                     location = item.location,
                     method = item.method,
                     quantity = item.quantity
-                )
+                ),
+                onButtonClick = onButtonClick
             )
         }
     }
@@ -152,7 +157,8 @@ fun SubmitPackagingScreenPreview() {
         SubmitPackagingScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            state = UiState.Loading
+            state = UiState.Loading,
+            onButtonClick = {}
         )
     }
 }
