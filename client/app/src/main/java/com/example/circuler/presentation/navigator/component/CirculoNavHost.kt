@@ -51,7 +51,8 @@ fun CirculoNavHost(
         homeNavGraph(
             navigateToAddPackaging = navigator::navigateToAddPackaging,
             navigateToRequestedPackages = navigator::navigateToRequestPackage,
-            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages
+            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages,
+            navigateToMap = navigator::navigateToMap
         )
         historyNavGraph(
             navigateToSubmit = navigator::navigateToSubmitPackaging

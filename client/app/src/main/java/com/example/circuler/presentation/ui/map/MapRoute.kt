@@ -63,6 +63,7 @@ fun MapScreen(
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(singapore, 10f)
     }
+
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
@@ -73,6 +74,7 @@ fun MapScreen(
             snippet = "Marker in Singapore",
         )
     }
+
 }
 
 @Preview

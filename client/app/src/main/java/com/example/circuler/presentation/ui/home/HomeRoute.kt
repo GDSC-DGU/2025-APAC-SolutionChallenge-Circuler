@@ -37,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
 import com.example.circuler.presentation.core.component.CirculoTopBar
+import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.UiState
 import com.example.circuler.presentation.type.HomeNavigateButtonType
@@ -51,6 +52,7 @@ fun HomeRoute(
     navigateToAddPackaging: () -> Unit,
     navigateToRequestedPackages: () -> Unit,
     navigateToReadyToGoPackages: () -> Unit,
+    navigateToMap: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -65,6 +67,7 @@ fun HomeRoute(
                     HomeSideEffect.NavigateToAddPackaging -> navigateToAddPackaging()
                     HomeSideEffect.NavigateToReadyToGoPackages -> navigateToReadyToGoPackages()
                     HomeSideEffect.NavigateToRequestedPackages -> navigateToRequestedPackages()
+                    HomeSideEffect.NavigateToMap -> navigateToMap()
                 }
             }
     }
@@ -75,6 +78,7 @@ fun HomeRoute(
         navigateToAddPackaging = viewModel::navigateToAddPackaging,
         navigateToRequestedPackages = viewModel::navigateToRequestedPackages,
         navigateToReadyToGoPackages = viewModel::navigateToReadyToGoPackages,
+        navigateToMap = viewModel::navigateToMap,
         state = state.uiState
     )
 }
@@ -87,6 +91,7 @@ fun HomeScreen(
     navigateToAddPackaging: () -> Unit,
     navigateToRequestedPackages: () -> Unit,
     navigateToReadyToGoPackages: () -> Unit,
+    navigateToMap: () -> Unit,
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
@@ -131,9 +136,12 @@ fun HomeScreen(
                         )
                         Icon(
                             modifier = Modifier
-                                .padding(all = 10.dp),
+                                .padding(all = 10.dp)
+                                .noRippleClickable {
+                                    navigateToMap()
+                                },
                             imageVector = Icons.Outlined.Notifications,
-                            contentDescription = null
+                            contentDescription = null,
                         )
                     }
                 }
@@ -183,7 +191,8 @@ fun HomeScreenPreview() {
             state = UiState.Loading,
             navigateToAddPackaging = { },
             navigateToRequestedPackages = { },
-            navigateToReadyToGoPackages = { }
+            navigateToReadyToGoPackages = { },
+            navigateToMap = { }
         )
     }
 }

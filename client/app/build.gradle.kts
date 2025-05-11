@@ -31,7 +31,7 @@ android {
         buildConfigField("String", "BASE_URL", properties["base.url"].toString())
         buildConfigField("String", "GOOGLE_CLIENT_ID", properties["google.client.id"].toString())
         buildConfigField("String", "TOKEN", properties["token"].toString())
-        buildConfigField("String", "GOOGLE_MAP_KEY", properties["google.map.key"].toString())
+        manifestPlaceholders["googleMapKey"] = properties["google.map.key"].toString()
     }
 
     buildTypes {
