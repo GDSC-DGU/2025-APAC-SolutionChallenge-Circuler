@@ -31,6 +31,7 @@ android {
         buildConfigField("String", "BASE_URL", properties["base.url"].toString())
         buildConfigField("String", "GOOGLE_CLIENT_ID", properties["google.client.id"].toString())
         buildConfigField("String", "TOKEN", properties["token"].toString())
+        buildConfigField("String", "GOOGLE_MAP_KEY", properties["google.map.key"].toString())
     }
 
     buildTypes {
@@ -99,6 +100,8 @@ dependencies {
     implementation(libs.google.credentail.service)
     implementation(libs.google.credential)
     implementation(libs.google.identity)
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
 
     // Lottie
     implementation(libs.bundles.lottie)
