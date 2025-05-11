@@ -6,4 +6,6 @@ import circulo.server.domain.packagingRequest.dto.response.PackagingRequestRespo
 public interface PackagingRequestCommandService {
 
     PackagingRequestResponse.PackageRequestSuccessResponse createPackagingRequest(Long userId, PackagingRequestRequest.CreatePackagingRequest request);
+
+    void completePackagingRequest(Long userId, Long packageRequestId);
 }

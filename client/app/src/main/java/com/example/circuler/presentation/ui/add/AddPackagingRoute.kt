@@ -33,7 +33,6 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
-import com.example.circuler.domain.entity.AddPackagingEntity
 import com.example.circuler.presentation.core.component.CirculoBottomSheet
 import com.example.circuler.presentation.core.component.CirculoButton
 import com.example.circuler.presentation.core.component.CirculoTextField
@@ -72,14 +71,16 @@ fun AddPackagingRoute(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
         navigateToHome = viewModel::navigateToHome,
-        state = state.uiState,
+        state = state,
+        onTypeChanged = viewModel::updatedType,
         onLocationChanged = viewModel::updatedLocation,
         onQuantityChanged = viewModel::updatedQuantity,
         isOpenBottomSheet = state.isOpenBottomSheet,
         selectedIndex = state.selectedIndex,
         updateSelectedIndex = viewModel::updateSelectedIndex,
         openBottomSheet = viewModel::controlBottomSheet,
-        onDismissBottomSheetRequest = viewModel::controlBottomSheet
+        onDismissBottomSheetRequest = viewModel::controlBottomSheet,
+        onButtonClick = viewModel::postPackageRequest
     )
 }
 
@@ -89,7 +90,8 @@ fun AddPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     navigateToHome: () -> Unit,
-    state: AddPackagingEntity,
+    state: AddPackagingState,
+    onTypeChanged: (String) -> Unit,
     onLocationChanged: (String) -> Unit,
     onQuantityChanged: (String) -> Unit,
     isOpenBottomSheet: Boolean,
@@ -97,6 +99,7 @@ fun AddPackagingScreen(
     updateSelectedIndex: (Int) -> Unit,
     openBottomSheet: () -> Unit,
     onDismissBottomSheetRequest: () -> Unit,
+    onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val screenWeigth = LocalConfiguration.current.screenWidthDp
@@ -172,7 +175,7 @@ fun AddPackagingScreen(
             )
             CirculoTextField(
                 paddingValues = PaddingValues(16.dp),
-                textFieldValue = state.quantity,
+                textFieldValue = state.uiState.quantity,
                 onValueChange = onQuantityChanged,
                 keyboardType = KeyboardType.Number,
                 placeHolder = "Please enter a quantity from 1 to 10"
@@ -183,7 +186,7 @@ fun AddPackagingScreen(
             )
             CirculoTextField(
                 paddingValues = PaddingValues(16.dp),
-                textFieldValue = state.location,
+                textFieldValue = state.uiState.location,
                 onValueChange = onLocationChanged
             )
 
@@ -194,10 +197,7 @@ fun AddPackagingScreen(
 
             CirculoButton(
                 text = "submit",
-                onClick = {
-                    // todo: api post
-                    navigateToHome()
-                }
+                onClick = onButtonClick
             )
         }
     }
@@ -214,6 +214,7 @@ fun AddPackagingScreen(
             )
         },
         onDismissRequest = {
+            onTypeChanged(options[selectedIndex].toString())
             onDismissBottomSheetRequest()
         }
     )
@@ -227,18 +228,16 @@ fun AddPackagingScreenPreview() {
             paddingValues = PaddingValues(),
             navigateUp = {},
             navigateToHome = {},
-            state = AddPackagingEntity(
-                location = "",
-                quantity = "",
-                type = ""
-            ),
+            state = AddPackagingState(),
+            onTypeChanged = {},
             onLocationChanged = {},
             onQuantityChanged = {},
             isOpenBottomSheet = false,
             selectedIndex = 0,
             updateSelectedIndex = {},
             openBottomSheet = { },
-            onDismissBottomSheetRequest = { }
+            onDismissBottomSheetRequest = { },
+            onButtonClick = {}
         )
     }
 }
