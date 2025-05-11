@@ -90,9 +90,6 @@ fun HomeScreen(
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
-    val height = (screenWeigth * 0.5).dp
-
     LazyColumn(
         modifier = modifier
             .fillMaxSize()

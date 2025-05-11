@@ -229,7 +229,7 @@ fun CirculoListCardWithButton(
                 subTitle = packageListCardWithMethodEntity.method
             )
 
-            //todo: packageListCardWithMethodEntity.status
+            // todo: packageListCardWithMethodEntity.status
             CirculoButton(
                 text = "accept",
                 textStyle = CirculerTheme.typography.body4R12,

@@ -71,7 +71,7 @@ fun SubmitPackagingRoute(
         navigateUp = navigateUp,
         state = state.uiState,
         onButtonClick = {
-            viewModel.getPackageAccept(requestId = requestId, submissionId = 1) //todo: submissionId 전달방법
+            viewModel.getPackageAccept(requestId = requestId, submissionId = 1) // todo: submissionId 전달방법
             viewModel.postPackagingDelivery(requestId = requestId)
         }
     )
@@ -99,7 +99,7 @@ fun SubmitPackagingScreen(
                 item {
                     Box(
                         modifier = Modifier
-                            .height((LocalConfiguration.current.screenHeightDp).dp),
+                            .height((LocalConfiguration.current.screenHeightDp).dp)
                     ) {
                         CirculoLoadingView()
                     }
@@ -133,7 +133,7 @@ fun SubmitPackagingScreen(
                             location = item.location,
                             method = item.method,
                             quantity = item.quantity,
-                            status = item.status,
+                            status = item.status
                         ),
                         onButtonClick = onButtonClick
                     )

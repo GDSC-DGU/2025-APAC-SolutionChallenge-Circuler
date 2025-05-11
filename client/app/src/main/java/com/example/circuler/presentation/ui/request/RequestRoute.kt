@@ -85,10 +85,6 @@ fun RequestScreen(
     state: EmptyUiState<List<PackageListCardEntity>>,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
-    val height = (screenWeigth * 0.5).dp
-
-
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -101,7 +97,7 @@ fun RequestScreen(
                 item {
                     Box(
                         modifier = Modifier
-                            .height((LocalConfiguration.current.screenHeightDp).dp),
+                            .height((LocalConfiguration.current.screenHeightDp).dp)
                     ) {
                         CirculoLoadingView()
                     }
@@ -149,15 +145,12 @@ fun RequestScreen(
                         }
                     )
                 }
-
             }
 
             is EmptyUiState.Failure -> {
-
             }
 
             is EmptyUiState.Empty -> {
-
             }
         }
     }

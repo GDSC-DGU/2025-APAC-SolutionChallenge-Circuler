@@ -90,14 +90,13 @@ fun DeliveryScreen(
     ) {
         when (state) {
             UiState.Failure -> {
-
             }
 
             UiState.Loading -> {
                 item {
                     Box(
                         modifier = Modifier
-                            .height((LocalConfiguration.current.screenHeightDp).dp),
+                            .height((LocalConfiguration.current.screenHeightDp).dp)
                     ) {
                         CirculoLoadingView()
                     }

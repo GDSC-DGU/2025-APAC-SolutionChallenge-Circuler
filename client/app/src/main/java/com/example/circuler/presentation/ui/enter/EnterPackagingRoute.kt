@@ -110,7 +110,6 @@ fun EnterPackagingScreen(
     onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
     val typeOptions = PackagingType.entries.toTypedArray()
     val methodOptions = DeliveryType.entries.toTypedArray()
 

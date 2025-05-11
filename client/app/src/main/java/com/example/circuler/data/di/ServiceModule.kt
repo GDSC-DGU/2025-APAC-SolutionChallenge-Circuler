@@ -1,15 +1,15 @@
 package com.example.circuler.data.di
 
+import com.example.circuler.data.service.DeliveryService
 import com.example.circuler.data.service.ReqresService
 import com.example.circuler.data.service.RequestService
 import com.example.circuler.data.service.SubmissionService
-import com.example.circuler.data.service.DeliveryService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
 import javax.inject.Singleton
+import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)

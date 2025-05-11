@@ -1,6 +1,5 @@
 package com.example.circuler.data.dto.request
 
-
 import com.example.circuler.domain.entity.SubmissionPackagingEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -21,4 +20,3 @@ fun SubmissionPackagingEntity.toDto() =
         method = method,
         type = type
     )
-

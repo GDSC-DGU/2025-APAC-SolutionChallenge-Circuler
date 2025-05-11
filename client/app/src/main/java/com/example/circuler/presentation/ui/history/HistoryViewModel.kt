@@ -6,6 +6,7 @@ import com.example.circuler.domain.entity.PackageMyEntity
 import com.example.circuler.domain.repository.RequestRepository
 import com.example.circuler.presentation.core.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -14,7 +15,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
@@ -49,7 +49,7 @@ class HistoryViewModel @Inject constructor(
                         requestId = item.requestId,
                         status = item.status,
                         location = item.location,
-                        quantity = item.quantity,
+                        quantity = item.quantity
                     )
                 }
 

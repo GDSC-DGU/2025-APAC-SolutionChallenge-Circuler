@@ -3,14 +3,14 @@ package com.example.circuler.data.di
 import android.content.SharedPreferences
 import com.example.circuler.data.datalocal.datasource.TokenDataSource
 import com.example.circuler.data.datalocal.datasourceimpl.TokenDataSourceImpl
+import com.example.circuler.data.datasource.DeliveryDataSource
 import com.example.circuler.data.datasource.ReqresDataSource
 import com.example.circuler.data.datasource.RequestDataSource
 import com.example.circuler.data.datasource.SubmissionDataSource
-import com.example.circuler.data.datasource.DeliveryDataSource
+import com.example.circuler.data.service.DeliveryService
 import com.example.circuler.data.service.ReqresService
 import com.example.circuler.data.service.RequestService
 import com.example.circuler.data.service.SubmissionService
-import com.example.circuler.data.service.DeliveryService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

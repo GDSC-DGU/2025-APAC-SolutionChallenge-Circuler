@@ -71,9 +71,6 @@ fun LoginScreen(
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
-    val height = (screenWeigth * 0.5).dp
-
     Box(
         modifier = Modifier
             .fillMaxSize()

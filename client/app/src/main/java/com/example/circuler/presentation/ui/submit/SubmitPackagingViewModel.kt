@@ -6,6 +6,7 @@ import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
 import com.example.circuler.domain.repository.SubmissionRepository
 import com.example.circuler.presentation.core.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -14,7 +15,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 @HiltViewModel
 class SubmitPackagingViewModel @Inject constructor(
@@ -34,7 +34,7 @@ class SubmitPackagingViewModel @Inject constructor(
         submissionRepository.postPackagingDelivery(requestId = requestId)
             .onSuccess {
                 Timber.tag("postPackagingDelivery").d("success")
-                //todo: 버튼색 조절
+                // todo: 버튼색 조절
             }
             .onFailure { error ->
                 Timber.e(error)
@@ -66,7 +66,7 @@ class SubmitPackagingViewModel @Inject constructor(
     fun getPackageAccept(requestId: Int, submissionId: Int) = viewModelScope.launch {
         submissionRepository.getPackageAccept(requestId = requestId, submissionId = submissionId)
             .onSuccess {
-                //todo: 버튼색 바뀌게 처리
+                // todo: 버튼색 바뀌게 처리
                 Timber.tag("getPackageAccept").d("success")
             }
             .onFailure { error ->

@@ -1,6 +1,5 @@
 package com.example.circuler.data.dto.response
 
-
 import com.example.circuler.domain.entity.PackageMyEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

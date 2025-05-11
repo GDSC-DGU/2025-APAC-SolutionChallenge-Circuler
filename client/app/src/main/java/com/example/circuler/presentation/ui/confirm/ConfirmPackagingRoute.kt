@@ -87,9 +87,6 @@ fun ConfirmPackagingScreen(
     navigateToUploadPackage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
-    val height = (screenWeigth * 0.5).dp
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -102,13 +99,12 @@ fun ConfirmPackagingScreen(
             UiState.Loading -> {
                 Box(
                     modifier = Modifier
-                        .height((LocalConfiguration.current.screenHeightDp).dp),
+                        .height((LocalConfiguration.current.screenHeightDp).dp)
                 ) {
                     CirculoLoadingView()
                 }
             }
             is UiState.Success -> {
-
                 CirculoTopBar(
                     leadingIcon = {
                         Icon(

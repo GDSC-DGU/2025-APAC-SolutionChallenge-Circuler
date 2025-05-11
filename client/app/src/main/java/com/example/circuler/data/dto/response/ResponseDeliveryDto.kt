@@ -1,6 +1,5 @@
 package com.example.circuler.data.dto.response
 
-
 import com.example.circuler.domain.entity.DeliveryEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -32,5 +31,4 @@ data class ResponseDeliveryDto(
             submissionQuantity = submissionQuantity,
             userName = userName
         )
-
 }

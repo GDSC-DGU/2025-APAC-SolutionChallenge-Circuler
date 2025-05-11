@@ -23,19 +23,19 @@ interface SubmissionService {
     @POST("/api/v0/packageSubmission/{packageSubmissionId}/delivered")
     suspend fun postPackagingDelivery(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
-        @Path("packageSubmissionId") packageSubmissionId: Int,
+        @Path("packageSubmissionId") packageSubmissionId: Int
     ): ResponseEmptyDto
 
     @GET("/api/v0/packageSubmission/{packagingRequestId}/submissions")
     suspend fun getSubmittedData(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
-        @Path("packagingRequestId") packagingRequestId: Int,
+        @Path("packagingRequestId") packagingRequestId: Int
     ): BaseResponse<List<ResponseSubmittedDataDto>>
 
     @GET("/api/v0/packageSubmission/{packagingRequestId}/submissions/{packageSubmissionId}/accept")
     suspend fun getPackageAccept(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
         @Path("packagingRequestId") packagingRequestId: Int,
-        @Path("packageSubmissionId") packageSubmissionId: Int,
+        @Path("packageSubmissionId") packageSubmissionId: Int
     ): BaseResponse<ResponseAcceptDto>
 }

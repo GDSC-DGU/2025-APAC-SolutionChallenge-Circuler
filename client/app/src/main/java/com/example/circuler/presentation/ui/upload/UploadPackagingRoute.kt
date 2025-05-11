@@ -62,8 +62,6 @@ fun UploadPackagingScreen(
     navigateToHome: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
-
     Column(
         modifier = modifier
             .fillMaxSize()

@@ -102,7 +102,6 @@ fun AddPackagingScreen(
     onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
     val options = PackagingType.entries.toTypedArray()
 
     Column(

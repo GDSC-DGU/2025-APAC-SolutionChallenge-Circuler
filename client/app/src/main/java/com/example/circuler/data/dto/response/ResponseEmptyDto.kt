@@ -10,5 +10,5 @@ data class ResponseEmptyDto(
     @SerialName("isSuccess")
     val isSuccess: Boolean,
     @SerialName("message")
-    val message: String,
+    val message: String
 )

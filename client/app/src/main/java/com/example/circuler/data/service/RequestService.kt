@@ -17,7 +17,7 @@ const val TOKEN = BuildConfig.TOKEN
 interface RequestService {
     @GET("/api/v0/packagingRequest")
     suspend fun getPackagingRequest(
-        @Header("Authorization") accessToken: String = "Bearer $TOKEN",
+        @Header("Authorization") accessToken: String = "Bearer $TOKEN"
     ): BaseResponse<List<ResponsePackagingListDto>>
 
     @POST("/api/v0/packagingRequest")
@@ -29,11 +29,11 @@ interface RequestService {
     @GET("/api/v0/packagingRequest/{packagingRequestId}")
     suspend fun getPackagingRequestDetail(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
-        @Path("packagingRequestId") packagingRequestId: Int,
+        @Path("packagingRequestId") packagingRequestId: Int
     ): BaseResponse<ResponsePackagingListDto>
 
     @GET("/api/v0/packagingRequest/my")
     suspend fun getPackagingRequestMy(
-        @Header("Authorization") accessToken: String = "Bearer $TOKEN",
+        @Header("Authorization") accessToken: String = "Bearer $TOKEN"
     ): List<ResponsePackageMyDto>
 }
