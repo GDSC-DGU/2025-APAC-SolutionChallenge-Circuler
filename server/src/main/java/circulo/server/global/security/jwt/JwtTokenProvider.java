@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class JwtTokenProvider {
 
-    private static final long ACCESS_TOKEN_DURATION = 1000 * 60 * 30L; // 30분
+    private static final long ACCESS_TOKEN_DURATION = 1000 * 60 * 60L * 24 * 7; // 7일
     private static final long REFRESH_TOKEN_DURATION = 1000 * 60 * 60L * 24 * 7; // 7일
 
     private final SecretKey secretKey;
