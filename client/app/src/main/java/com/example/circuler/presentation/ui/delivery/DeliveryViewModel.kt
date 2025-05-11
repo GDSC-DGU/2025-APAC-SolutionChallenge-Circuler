@@ -1,18 +1,20 @@
 package com.example.circuler.presentation.ui.delivery
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.circuler.domain.entity.DeliveryEntity
 import com.example.circuler.domain.repository.DeliveryRepository
 import com.example.circuler.presentation.core.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
 class DeliveryViewModel @Inject constructor(
@@ -27,6 +29,13 @@ class DeliveryViewModel @Inject constructor(
     private val _sideEffect: MutableSharedFlow<DeliverySideEffect> = MutableSharedFlow()
     val sideEffect: SharedFlow<DeliverySideEffect>
         get() = _sideEffect.asSharedFlow()
+
+    fun navigateToMap() =
+        viewModelScope.launch {
+            _sideEffect.emit(
+                DeliverySideEffect.NavigateToMap
+            )
+        }
 
     suspend fun getDeliveryPending() {
         deliveryRepository.getDeliveryPending()

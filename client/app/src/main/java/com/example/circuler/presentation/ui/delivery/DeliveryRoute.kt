@@ -43,6 +43,7 @@ import com.example.circuler.ui.theme.CirculerTheme
 fun DeliveryRoute(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToMap: () -> Unit,
     viewModel: DeliveryViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -62,6 +63,7 @@ fun DeliveryRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is DeliverySideEffect.ShowToast -> context.showToast(message = sideEffect.message)
+                    is DeliverySideEffect.NavigateToMap -> navigateToMap()
                 }
             }
     }
@@ -69,6 +71,7 @@ fun DeliveryRoute(
     DeliveryScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
+        navigateToMap = viewModel::navigateToMap,
         state = state.uiState
     )
 }
@@ -78,6 +81,7 @@ fun DeliveryRoute(
 fun DeliveryScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
+    navigateToMap: () -> Unit,
     state: UiState<List<DeliveryEntity>>,
     modifier: Modifier = Modifier
 ) {
@@ -148,6 +152,7 @@ fun DeliveryPreview() {
         DeliveryScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
+            navigateToMap = {},
             state = UiState.Loading
         )
     }
