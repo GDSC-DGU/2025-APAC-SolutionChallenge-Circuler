@@ -2,7 +2,7 @@ name: Circuler Server CI
 
 on:
   pull_request:
-    branches: [ main ]  # 또는 dev
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -18,22 +18,19 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Create .env file
-        run: |
-          mkdir -p src/test/resources
-          echo "SPRING_DATASOURCE_URL=${{ secrets.DB_URL }}" > src/test/resources/.env
-          echo "SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }}" >> src/test/resources/.env
-          echo "SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}" >> src/test/resources/.env
-          echo "SPRING_REDIS_HOST=${{ secrets.REDIS_HOST }}" >> src/test/resources/.env
-          echo "SPRING_REDIS_PORT=${{ secrets.REDIS_PORT }}" >> src/test/resources/.env
-          echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> src/test/resources/.env
-          echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> src/test/resources/.env
-          echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI=${{ secrets.GOOGLE_REDIRECT_URI }}" >> src/test/resources/.env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> src/test/resources/.env
-
-
       - name: Run Tests
         run: |
           chmod +x ./gradlew
           ./gradlew test
         working-directory: ./server
+        env:
+          SPRING_DATASOURCE_URL: ${{ secrets.DB_URL }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          SPRING_REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          SPRING_REDIS_PORT: ${{ secrets.REDIS_PORT }}
+          SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: ${{ secrets.GOOGLE_REDIRECT_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          CIRCULO_DOMAIN: ${{ secrets.CIRCULO_DOMAIN }}

@@ -39,3 +39,5 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
+circulo:
+  domain: ${CIRCULO_DOMAIN}
