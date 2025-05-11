@@ -128,7 +128,7 @@ fun CirculoDeliveryListCard(
 @Composable
 fun CirculoListCardWithMethod(
     packageMyEntity: PackageMyEntity,
-    chipType: ChipType,
+    chipString: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -180,9 +180,8 @@ fun CirculoListCardWithMethod(
                     .weight(1f)
             )
 
-            // todo: method 처리
             CirculoChip(
-                chipType = chipType
+                chipType = if (chipString == ChipType.IN_PROGRESS.toString()) ChipType.IN_PROGRESS else ChipType.COMPLETED
             )
         }
     }

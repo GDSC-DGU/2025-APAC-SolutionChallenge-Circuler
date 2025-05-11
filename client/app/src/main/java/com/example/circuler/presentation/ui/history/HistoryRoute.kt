@@ -181,7 +181,7 @@ fun HistoryScreen(
                             location = item.location,
                             quantity = item.quantity
                         ),
-                        chipType = ChipType.IN_PROGRESS,
+                        chipString = item.status,
                         onClick = {
                             if (item.status == ChipType.IN_PROGRESS.toString()) {
                                 navigateToSubmit()
