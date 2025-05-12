@@ -17,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +26,6 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
-import com.example.circuler.domain.entity.AddPackagingEntity
 import com.example.circuler.presentation.core.component.CirculoBottomSheet
 import com.example.circuler.presentation.core.component.CirculoBottomSheetButton
 import com.example.circuler.presentation.core.component.CirculoButton
@@ -42,12 +40,14 @@ import com.example.circuler.presentation.type.PackagingType
 import com.example.circuler.presentation.ui.add.component.AddSubTitle
 import com.example.circuler.presentation.ui.add.component.AddTitle
 import com.example.circuler.ui.theme.CirculerTheme
+import timber.log.Timber
 
 @Composable
 fun EnterPackagingRoute(
     paddingValues: PaddingValues,
+    requestId: Int,
     navigateUp: () -> Unit,
-    navigateToConfirmPackage: () -> Unit,
+    navigateToConfirmPackage: (Int) -> Unit,
     viewModel: EnterPackagingViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -59,7 +59,7 @@ fun EnterPackagingRoute(
             .collect { sideEffect ->
                 when (sideEffect) {
                     is EnterPackagingSideEffect.ShowToast -> context.showToast(message = sideEffect.message)
-                    EnterPackagingSideEffect.NavigateToConfirmPackage -> navigateToConfirmPackage()
+                    is EnterPackagingSideEffect.NavigateToConfirmPackage -> navigateToConfirmPackage(sideEffect.requestId)
                 }
             }
     }
@@ -67,8 +67,9 @@ fun EnterPackagingRoute(
     EnterPackagingScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
-        navigateToConfirmPackage = viewModel::navigateToConfirmPackage,
-        state = state.uiState,
+        state = state,
+        onTypeChanged = viewModel::updatedType,
+        onMethodChanged = viewModel::updatedMethod,
         onLocationChanged = viewModel::updatedLocation,
         isOpenPackageBottomSheet = state.isOpenPackageBottomSheet,
         selectedPackageIndex = state.selectedPackageIndex,
@@ -79,7 +80,10 @@ fun EnterPackagingRoute(
         selectedDeliveryIndex = state.selectedDeliveryIndex,
         updateSelectedDeliveryIndex = viewModel::updateDeliverySelectedIndex,
         openDeliveryBottomSheet = viewModel::controlDeliveryBottomSheet,
-        onDismissDeliveryBottomSheetRequest = viewModel::controlDeliveryBottomSheet
+        onDismissDeliveryBottomSheetRequest = viewModel::controlDeliveryBottomSheet,
+        onButtonClick = {
+            viewModel.postPackagingRequest(requestId = requestId)
+        }
     )
 }
 
@@ -88,8 +92,9 @@ fun EnterPackagingRoute(
 fun EnterPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToConfirmPackage: () -> Unit,
-    state: AddPackagingEntity,
+    state: EnterPackagingState,
+    onTypeChanged: (String) -> Unit,
+    onMethodChanged: (String) -> Unit,
     onLocationChanged: (String) -> Unit,
     isOpenPackageBottomSheet: Boolean,
     selectedPackageIndex: Int,
@@ -101,12 +106,11 @@ fun EnterPackagingScreen(
     updateSelectedDeliveryIndex: (Int) -> Unit,
     openDeliveryBottomSheet: () -> Unit,
     onDismissDeliveryBottomSheetRequest: () -> Unit,
+    onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val screenWeigth = LocalConfiguration.current.screenWidthDp
-    // todo:
-    val packageOptions = PackagingType.entries.toTypedArray()
-    val deliveryOptions = DeliveryType.entries.toTypedArray()
+    val typeOptions = PackagingType.entries.toTypedArray()
+    val methodOptions = DeliveryType.entries.toTypedArray()
 
     Column(
         modifier = modifier
@@ -139,7 +143,7 @@ fun EnterPackagingScreen(
                 text = "Packaging type"
             )
             CirculoBottomSheetButton(
-                label = packageOptions[selectedPackageIndex].text,
+                label = typeOptions[selectedPackageIndex].text,
                 onClick = {
                     openPackageBottomSheet()
                 }
@@ -149,7 +153,7 @@ fun EnterPackagingScreen(
                 text = "Delivery Method"
             )
             CirculoBottomSheetButton(
-                label = deliveryOptions[selectedDeliveryIndex].text,
+                label = methodOptions[selectedDeliveryIndex].text,
                 onClick = {
                     openDeliveryBottomSheet()
                 }
@@ -160,7 +164,7 @@ fun EnterPackagingScreen(
             )
             CirculoTextField(
                 paddingValues = PaddingValues(16.dp),
-                textFieldValue = state.location,
+                textFieldValue = state.uiState.location,
                 onValueChange = onLocationChanged
             )
 
@@ -171,9 +175,7 @@ fun EnterPackagingScreen(
 
             CirculoButton(
                 text = "submit",
-                onClick = {
-                    navigateToConfirmPackage()
-                }
+                onClick = onButtonClick
             )
         }
     }
@@ -190,6 +192,8 @@ fun EnterPackagingScreen(
             )
         },
         onDismissRequest = {
+            Timber.d(typeOptions[selectedPackageIndex].toString())
+            onTypeChanged(typeOptions[selectedPackageIndex].toString())
             onDismissPackageBottomSheetRequest()
         }
     )
@@ -206,6 +210,8 @@ fun EnterPackagingScreen(
             )
         },
         onDismissRequest = {
+            Timber.d(methodOptions[selectedDeliveryIndex].toString())
+            onMethodChanged(methodOptions[selectedDeliveryIndex].toString())
             onDismissDeliveryBottomSheetRequest()
         }
     )
@@ -218,12 +224,9 @@ fun EnterPackagingScreenPreview() {
         EnterPackagingScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            navigateToConfirmPackage = {},
-            state = AddPackagingEntity(
-                location = "",
-                quantity = "",
-                type = ""
-            ),
+            state = EnterPackagingState(),
+            onTypeChanged = {},
+            onMethodChanged = {},
             onLocationChanged = {},
             isOpenPackageBottomSheet = false,
             selectedPackageIndex = 0,
@@ -234,7 +237,8 @@ fun EnterPackagingScreenPreview() {
             selectedDeliveryIndex = 0,
             updateSelectedDeliveryIndex = { },
             openDeliveryBottomSheet = { },
-            onDismissDeliveryBottomSheetRequest = { }
+            onDismissDeliveryBottomSheetRequest = { },
+            onButtonClick = {}
         )
     }
 }

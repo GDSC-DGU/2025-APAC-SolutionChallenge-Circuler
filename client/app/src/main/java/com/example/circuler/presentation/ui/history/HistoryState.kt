@@ -1,19 +1,8 @@
 package com.example.circuler.presentation.ui.history
 
-import com.example.circuler.domain.entity.HistoryDataEntity
-import com.example.circuler.domain.entity.ListCardWithMethodEntity
+import com.example.circuler.domain.entity.PackageMyEntity
+import com.example.circuler.presentation.core.util.UiState
 
 data class HistoryState(
-    val uiState: HistoryDataEntity = HistoryDataEntity(
-        code = "",
-        isSuccess = "",
-        results = listOf(
-            ListCardWithMethodEntity(
-                id = "1",
-                location = "123-456",
-                method = "plastic",
-                quantity = "6"
-            )
-        )
-    )
+    val uiState: UiState<List<PackageMyEntity>> = UiState.Loading
 )

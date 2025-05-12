@@ -44,4 +44,11 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 HomeSideEffect.NavigateToReadyToGoPackages
             )
         }
+
+    fun navigateToMap() =
+        viewModelScope.launch {
+            _sideEffect.emit(
+                HomeSideEffect.NavigateToMap
+            )
+        }
 }

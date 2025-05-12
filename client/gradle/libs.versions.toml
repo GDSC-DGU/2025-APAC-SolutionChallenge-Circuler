@@ -60,6 +60,8 @@ googlePlayService = "21.3.0"
 credentials = "1.5.0"
 credentials-play-service = "1.5.0"
 google-identity = "1.1.1"
+maps-compose = "2.11.4"
+play-services-maps = "19.2.0"
 
 # Lottie
 lottie = "6.0.0"
@@ -127,6 +129,8 @@ google-play-services-auth = { group = "com.google.android.gms", name = "play-ser
 google-credential = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 google-credentail-service = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials-play-service"}
 google-identity = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "google-identity"}
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps-compose" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-services-maps" }
 
 # Lottie
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref= "lottie" }

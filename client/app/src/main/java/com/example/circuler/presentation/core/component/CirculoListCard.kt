@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.circuler.domain.entity.ListCardEntity
-import com.example.circuler.domain.entity.ListCardWithMethodEntity
+import com.example.circuler.domain.entity.DeliveryEntity
+import com.example.circuler.domain.entity.PackageListCardEntity
+import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
+import com.example.circuler.domain.entity.PackageMyEntity
 import com.example.circuler.presentation.core.extension.customShadow
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
@@ -27,10 +29,9 @@ import com.example.circuler.ui.theme.CirculerTheme
 
 // todo: 전체적인 icon 변경
 
-// todo: entity 수정가능성
 @Composable
 fun CirculoListCard(
-    listCardEntity: ListCardEntity,
+    listCardEntity: PackageListCardEntity,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -65,7 +66,7 @@ fun CirculoListCard(
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Quantity",
-                subTitle = listCardEntity.quantity
+                subTitle = listCardEntity.quantity.toString()
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
@@ -76,11 +77,58 @@ fun CirculoListCard(
     }
 }
 
-// todo: entity 수정가능성
+@Composable
+fun CirculoDeliveryListCard(
+    deliveryEntity: DeliveryEntity,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
+    Box(
+        contentAlignment = Alignment.CenterStart,
+        modifier = modifier
+            .fillMaxWidth()
+            .roundedBackgroundWithBorder(
+                cornerRadius = 20.dp,
+                backgroundColor = CirculerTheme.colors.grayScale1
+            )
+            .clip(
+                shape = RoundedCornerShape(20.dp)
+            )
+            .customShadow(
+                spotColor = CirculerTheme.colors.grayScale2,
+                ambientColor = CirculerTheme.colors.grayScale2
+            )
+            .noRippleClickable {
+                onClick()
+            }
+            .padding(start = 15.dp, top = 30.dp, bottom = 30.dp)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(18.dp, alignment = Alignment.CenterVertically)
+        ) {
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Packaging type",
+                subTitle = deliveryEntity.packagingType
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Quantity",
+                subTitle = deliveryEntity.submissionQuantity.toString()
+            )
+            CirculoTextWithIcon(
+                icon = Icons.Outlined.Menu,
+                title = "Shop Location",
+                subTitle = deliveryEntity.requestLocation
+            )
+        }
+    }
+}
+
 @Composable
 fun CirculoListCardWithMethod(
-    listCardWithMethodEntity: ListCardWithMethodEntity,
-    chipType: ChipType,
+    packageMyEntity: PackageMyEntity,
+    chipString: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -114,17 +162,17 @@ fun CirculoListCardWithMethod(
                 CirculoTextWithIcon(
                     icon = Icons.Outlined.Menu,
                     title = "Packaging type",
-                    subTitle = listCardWithMethodEntity.id
+                    subTitle = packageMyEntity.packagingType
                 )
                 CirculoTextWithIcon(
                     icon = Icons.Outlined.Menu,
                     title = "Quantity",
-                    subTitle = listCardWithMethodEntity.quantity
+                    subTitle = packageMyEntity.quantity.toString()
                 )
                 CirculoTextWithIcon(
                     icon = Icons.Outlined.Menu,
                     title = "Shop Location",
-                    subTitle = listCardWithMethodEntity.location
+                    subTitle = packageMyEntity.location
                 )
             }
             Spacer(
@@ -132,18 +180,16 @@ fun CirculoListCardWithMethod(
                     .weight(1f)
             )
 
-            // todo: method 처리
             CirculoChip(
-                chipType = chipType
+                chipType = if (chipString == ChipType.IN_PROGRESS.toString()) ChipType.IN_PROGRESS else ChipType.COMPLETED
             )
         }
     }
 }
 
-// todo: entity 수정가능성
 @Composable
 fun CirculoListCardWithButton(
-    listCardWithMethodEntity: ListCardWithMethodEntity,
+    packageListCardWithMethodEntity: PackageListCardWithMethodEntity,
     modifier: Modifier = Modifier,
     onButtonClick: () -> Unit = {}
 ) {
@@ -169,25 +215,21 @@ fun CirculoListCardWithButton(
         ) {
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
-                title = "Packaging type",
-                subTitle = listCardWithMethodEntity.id
-            )
-            CirculoTextWithIcon(
-                icon = Icons.Outlined.Menu,
                 title = "Quantity",
-                subTitle = listCardWithMethodEntity.quantity
+                subTitle = packageListCardWithMethodEntity.quantity.toString()
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Shop Location",
-                subTitle = listCardWithMethodEntity.location
+                subTitle = packageListCardWithMethodEntity.location
             )
             CirculoTextWithIcon(
                 icon = Icons.Outlined.Menu,
                 title = "Method",
-                subTitle = listCardWithMethodEntity.method
+                subTitle = packageListCardWithMethodEntity.method
             )
 
+            // todo: packageListCardWithMethodEntity.status
             CirculoButton(
                 text = "accept",
                 textStyle = CirculerTheme.typography.body4R12,
@@ -209,31 +251,12 @@ private fun CirculoListCardPreview() {
 
         ) {
             CirculoListCard(
-                listCardEntity = ListCardEntity(
+                listCardEntity = PackageListCardEntity(
                     distance = "16m",
                     type = "plastic",
-                    id = "1",
+                    id = 1,
                     location = "15m",
-                    quantity = "3"
-                )
-            )
-
-            CirculoListCardWithMethod(
-                listCardWithMethodEntity = ListCardWithMethodEntity(
-                    id = "1",
-                    location = "123",
-                    method = "plastic",
-                    quantity = "12"
-                ),
-                chipType = ChipType.IN_PROGRESS
-            )
-
-            CirculoListCardWithButton(
-                listCardWithMethodEntity = ListCardWithMethodEntity(
-                    id = "1",
-                    location = "123",
-                    method = "self",
-                    quantity = "12"
+                    quantity = 3
                 )
             )
         }

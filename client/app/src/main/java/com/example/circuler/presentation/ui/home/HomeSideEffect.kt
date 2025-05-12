@@ -5,4 +5,5 @@ sealed class HomeSideEffect {
     data object NavigateToAddPackaging : HomeSideEffect()
     data object NavigateToRequestedPackages : HomeSideEffect()
     data object NavigateToReadyToGoPackages : HomeSideEffect()
+    data object NavigateToMap : HomeSideEffect()
 }

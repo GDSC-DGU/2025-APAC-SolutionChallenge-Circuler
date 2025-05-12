@@ -16,10 +16,14 @@ sealed interface Route {
     data object EntirePackageRequest : Route
 
     @Serializable
-    data object EnterPackage : Route
+    data class EnterPackage(
+        val requestId: Int
+    ) : Route
 
     @Serializable
-    data object ConfirmPackage : Route
+    data class ConfirmPackage(
+        val requestId: Int
+    ) : Route
 
     @Serializable
     data object UploadPhoto : Route
@@ -28,7 +32,9 @@ sealed interface Route {
     data object DeliveryPackage : Route
 
     @Serializable
-    data object SubmittedPackage : Route
+    data class SubmittedPackage(
+        val requestId: Int
+    ) : Route
 
     @Serializable
     data object Map : Route

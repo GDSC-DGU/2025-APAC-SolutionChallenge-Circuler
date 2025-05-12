@@ -18,7 +18,8 @@ fun NavController.navigateToHome(navOptions: NavOptions) {
 fun NavGraphBuilder.homeNavGraph(
     navigateToAddPackaging: () -> Unit,
     navigateToRequestedPackages: () -> Unit,
-    navigateToReadyToGoPackages: () -> Unit
+    navigateToReadyToGoPackages: () -> Unit,
+    navigateToMap: () -> Unit
 ) {
     composable<MainTabRoute.Home> {
         HomeRoute(
@@ -26,7 +27,8 @@ fun NavGraphBuilder.homeNavGraph(
             navigateUp = {},
             navigateToAddPackaging = navigateToAddPackaging,
             navigateToRequestedPackages = navigateToRequestedPackages,
-            navigateToReadyToGoPackages = navigateToReadyToGoPackages
+            navigateToReadyToGoPackages = navigateToReadyToGoPackages,
+            navigateToMap = navigateToMap
         )
     }
 }

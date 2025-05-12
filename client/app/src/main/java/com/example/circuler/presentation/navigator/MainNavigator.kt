@@ -17,6 +17,7 @@ import com.example.circuler.presentation.ui.delivery.navigation.navigateToDelive
 import com.example.circuler.presentation.ui.enter.navigation.navigateToEnterPackaging
 import com.example.circuler.presentation.ui.history.navigation.navigateToHistory
 import com.example.circuler.presentation.ui.home.navigation.navigateToHome
+import com.example.circuler.presentation.ui.map.navigation.navigateToMap
 import com.example.circuler.presentation.ui.request.navigation.navigateToRequestPackage
 import com.example.circuler.presentation.ui.submit.navigation.navigateToSubmitPackaging
 import com.example.circuler.presentation.ui.upload.navigation.navigateToUploadPackaging
@@ -79,20 +80,24 @@ class MainNavigator(
         navController.navigateToDeliveryPackage()
     }
 
+    fun navigateToMap() {
+        navController.navigateToMap()
+    }
+
     fun navigateToRequestPackage() {
         navController.navigateToRequestPackage()
     }
 
-    fun navigateToEnterPackaging() {
-        navController.navigateToEnterPackaging()
+    fun navigateToEnterPackaging(requestId: Int) {
+        navController.navigateToEnterPackaging(requestId = requestId)
     }
 
-    fun navigateToConfirmPackaging() {
-        navController.navigateToConfirmPackaging()
+    fun navigateToConfirmPackaging(requestId: Int) {
+        navController.navigateToConfirmPackaging(requestId = requestId)
     }
 
-    fun navigateToSubmitPackaging() {
-        navController.navigateToSubmitPackaging()
+    fun navigateToSubmitPackaging(requestId: Int) {
+        navController.navigateToSubmitPackaging(requestId = requestId)
     }
 
     fun navigateToUploadPackaging() {

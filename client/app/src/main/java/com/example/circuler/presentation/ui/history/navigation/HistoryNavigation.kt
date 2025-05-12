@@ -16,7 +16,7 @@ fun NavController.navigateToHistory(navOptions: NavOptions) {
 }
 
 fun NavGraphBuilder.historyNavGraph(
-    navigateToSubmit: () -> Unit
+    navigateToSubmit: (Int) -> Unit
 ) {
     composable<MainTabRoute.RequestPackage> {
         HistoryRoute(

@@ -16,6 +16,7 @@ import com.example.circuler.presentation.ui.enter.navigation.enterNavGraph
 import com.example.circuler.presentation.ui.history.navigation.historyNavGraph
 import com.example.circuler.presentation.ui.home.navigation.homeNavGraph
 import com.example.circuler.presentation.ui.login.navigation.loginNavGraph
+import com.example.circuler.presentation.ui.map.navigation.mapNavGraph
 import com.example.circuler.presentation.ui.request.navigation.requestGraph
 import com.example.circuler.presentation.ui.splash.navigation.splashNavGraph
 import com.example.circuler.presentation.ui.submit.navigation.submitNavGraph
@@ -50,7 +51,8 @@ fun CirculoNavHost(
         homeNavGraph(
             navigateToAddPackaging = navigator::navigateToAddPackaging,
             navigateToRequestedPackages = navigator::navigateToRequestPackage,
-            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages
+            navigateToReadyToGoPackages = navigator::navigateToReadyToGoPackages,
+            navigateToMap = navigator::navigateToMap
         )
         historyNavGraph(
             navigateToSubmit = navigator::navigateToSubmitPackaging
@@ -68,7 +70,19 @@ fun CirculoNavHost(
             }
         )
         deliveryNavGraph(
-            navigateUp = navigator::popBackStackIfNotHome
+            navigateUp = navigator::popBackStackIfNotHome,
+            navigateToMap = navigator::navigateToMap
+        )
+        mapNavGraph(
+            navigateToHome = {
+                val navOptions = navOptions {
+                    popUpTo(navigator.navController.graph.findStartDestination().id) {
+                        inclusive = true
+                    }
+                    launchSingleTop = true
+                }
+                navigator.navigateToHome(navOptions = navOptions)
+            }
         )
         requestGraph(
             navigateUp = navigator::popBackStackIfNotHome,
