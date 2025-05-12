@@ -52,7 +52,7 @@ fun MapRoute(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
         onButtonClick = {
-            viewModel.postDeliveryRequest(deliveryId = 3) //todo: navigation 값 전달?
+            viewModel.postDeliveryRequest(deliveryId = 3)
         },
         state = state.uiState
     )

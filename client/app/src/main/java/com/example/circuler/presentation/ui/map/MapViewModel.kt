@@ -40,7 +40,7 @@ class MapViewModel @Inject constructor(
             .onSuccess {
                 Timber.tag("postDeliveryRequest").d("success")
                 _sideEffect.emit(MapSideEffect.NavigateToHome)
-                _sideEffect.emit(MapSideEffect.ShowToast("Your request has been received"))
+                _sideEffect.emit(MapSideEffect.ShowToast("Your request has been received!"))
             }
             .onFailure { error ->
                 Timber.e(error)

@@ -34,7 +34,7 @@ class SubmitPackagingViewModel @Inject constructor(
         submissionRepository.postPackagingDelivery(requestId = requestId)
             .onSuccess {
                 Timber.tag("postPackagingDelivery").d("success")
-                _sideEffect.emit(SubmitPackagingSideEffect.ShowToast("Your request has been received"))
+                _sideEffect.emit(SubmitPackagingSideEffect.ShowToast("Your request has been received!"))
             }
             .onFailure { error ->
                 Timber.e(error)
