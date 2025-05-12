@@ -72,7 +72,6 @@ fun MapScreen(
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(dgu, 15f)
     }
-
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -81,14 +80,14 @@ fun MapScreen(
         ) {
             Marker(
                 state = MarkerState(position = dgu),
-                title = "동국대학교 서울캠퍼스",
-                snippet = "Marker in DGU",
+                title = "Dongguk University",
+                snippet = "You are here",
             )
 
             Marker(
                 state = MarkerState(position = shop),
-                title = "하우스 커피 앤 디저트",
-                snippet = "Marker in Cafe",
+                title = "HAUS coffee & dessert",
+                snippet = "Marker in Shop",
             )
         }
 
