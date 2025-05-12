@@ -33,4 +33,9 @@ class MapViewModel @Inject constructor(
                 MapSideEffect.NavigateToHome
             )
         }
+
+    fun postDeliveryRequest() = viewModelScope.launch {
+        _sideEffect.emit(MapSideEffect.ShowToast("Your request has been received"))
+        _sideEffect.emit(MapSideEffect.ShowToast("Your request has been failed"))
+    }
 }

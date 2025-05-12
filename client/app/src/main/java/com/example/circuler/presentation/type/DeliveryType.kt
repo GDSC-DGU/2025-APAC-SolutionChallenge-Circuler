@@ -6,7 +6,7 @@ enum class DeliveryType(
     DIRECT(
         text = "direct"
     ),
-    DELIVERY(
-        text = "delivery"
+    VIA_COURIER(
+        text = "via courier"
     )
 }

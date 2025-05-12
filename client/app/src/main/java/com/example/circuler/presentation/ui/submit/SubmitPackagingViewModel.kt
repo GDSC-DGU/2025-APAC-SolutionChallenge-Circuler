@@ -34,10 +34,11 @@ class SubmitPackagingViewModel @Inject constructor(
         submissionRepository.postPackagingDelivery(requestId = requestId)
             .onSuccess {
                 Timber.tag("postPackagingDelivery").d("success")
-                // todo: 버튼색 조절
+                _sideEffect.emit(SubmitPackagingSideEffect.ShowToast("Your request has been received"))
             }
             .onFailure { error ->
                 Timber.e(error)
+                _sideEffect.emit(SubmitPackagingSideEffect.ShowToast("Your request has been failed"))
             }
     }
 
@@ -66,7 +67,6 @@ class SubmitPackagingViewModel @Inject constructor(
     fun getPackageAccept(requestId: Int, submissionId: Int) = viewModelScope.launch {
         submissionRepository.getPackageAccept(requestId = requestId, submissionId = submissionId)
             .onSuccess {
-                // todo: 버튼색 바뀌게 처리
                 Timber.tag("getPackageAccept").d("success")
             }
             .onFailure { error ->

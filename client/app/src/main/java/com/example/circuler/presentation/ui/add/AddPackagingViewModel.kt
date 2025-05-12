@@ -74,9 +74,11 @@ class AddPackagingViewModel @Inject constructor(
             .onSuccess {
                 Timber.tag("postpackage").d("success")
                 _sideEffect.emit(AddPackagingSideEffect.NavigateToHome)
+                _sideEffect.emit(AddPackagingSideEffect.ShowToast("Your request has been received"))
             }
             .onFailure { error ->
                 Timber.e(error)
+                _sideEffect.emit(AddPackagingSideEffect.ShowToast("Your request has been failed"))
             }
     }
 }
