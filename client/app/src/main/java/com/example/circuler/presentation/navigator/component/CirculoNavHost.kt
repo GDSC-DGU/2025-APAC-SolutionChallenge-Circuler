@@ -82,7 +82,7 @@ fun CirculoNavHost(
                     launchSingleTop = true
                 }
                 navigator.navigateToHome(navOptions = navOptions)
-            },
+            }
         )
         requestGraph(
             navigateUp = navigator::popBackStackIfNotHome,

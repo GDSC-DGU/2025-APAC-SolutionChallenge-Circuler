@@ -73,7 +73,7 @@ fun MapScreen(
         position = CameraPosition.fromLatLngZoom(dgu, 15f)
     }
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
     ) {
         GoogleMap(
             cameraPositionState = cameraPositionState
@@ -81,13 +81,13 @@ fun MapScreen(
             Marker(
                 state = MarkerState(position = dgu),
                 title = "Dongguk University",
-                snippet = "You are here",
+                snippet = "You are here"
             )
 
             Marker(
                 state = MarkerState(position = shop),
                 title = "HAUS coffee & dessert",
-                snippet = "Marker in Shop",
+                snippet = "Marker in Shop"
             )
         }
 

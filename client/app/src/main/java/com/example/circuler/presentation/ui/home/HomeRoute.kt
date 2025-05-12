@@ -141,7 +141,7 @@ fun HomeScreen(
                                     navigateToMap()
                                 },
                             imageVector = Icons.Outlined.Notifications,
-                            contentDescription = null,
+                            contentDescription = null
                         )
                     }
                 }

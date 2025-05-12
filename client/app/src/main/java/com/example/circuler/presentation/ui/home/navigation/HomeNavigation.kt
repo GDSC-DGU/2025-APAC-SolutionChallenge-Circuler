@@ -19,7 +19,7 @@ fun NavGraphBuilder.homeNavGraph(
     navigateToAddPackaging: () -> Unit,
     navigateToRequestedPackages: () -> Unit,
     navigateToReadyToGoPackages: () -> Unit,
-    navigateToMap: () -> Unit,
+    navigateToMap: () -> Unit
 ) {
     composable<MainTabRoute.Home> {
         HomeRoute(
