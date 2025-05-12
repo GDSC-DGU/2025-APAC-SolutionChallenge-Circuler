@@ -51,7 +51,9 @@ fun MapRoute(
     MapScreen(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
-        navigateToHome = viewModel::navigateToHome,
+        onButtonClick = {
+            viewModel.postDeliveryRequest(deliveryId = 3) //todo: navigation 값 전달?
+        },
         state = state.uiState
     )
 }
@@ -60,7 +62,7 @@ fun MapRoute(
 fun MapScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    navigateToHome: () -> Unit,
+    onButtonClick: () -> Unit,
     state: UiState<String>,
     modifier: Modifier = Modifier
 ) {
@@ -99,7 +101,7 @@ fun MapScreen(
                 modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 40.dp),
                 text = "delivery request",
                 textStyle = CirculerTheme.typography.heading4B18,
-                onClick = navigateToHome
+                onClick = onButtonClick
             )
         }
     }
@@ -112,7 +114,7 @@ fun MapScreenPreview() {
         MapScreen(
             paddingValues = PaddingValues(),
             navigateUp = {},
-            navigateToHome = {},
+            onButtonClick = {},
             state = UiState.Loading
         )
     }

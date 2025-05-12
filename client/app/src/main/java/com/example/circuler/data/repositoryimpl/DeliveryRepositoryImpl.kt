@@ -8,6 +8,11 @@ import javax.inject.Inject
 internal class DeliveryRepositoryImpl @Inject constructor(
     private val deliveryDataSource: DeliveryDataSource
 ) : DeliveryRepository {
+    override suspend fun postDeliveryRequest(deliveryId: Int): Result<Unit> =
+        runCatching {
+            deliveryDataSource.postDeliveryRequest(deliveryId = deliveryId)
+        }
+
     override suspend fun getDeliveryPending(): Result<List<DeliveryEntity>> =
         runCatching {
             deliveryDataSource.getDeliveryPending().result.map { it.toEntity() }
