@@ -2,6 +2,7 @@ package com.example.circuler.presentation.ui.upload
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.view.PreviewView
@@ -46,8 +47,10 @@ import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.ImageUiState
 import com.example.circuler.presentation.ui.upload.camerax.CameraXFactory
 import com.example.circuler.ui.theme.CirculerTheme
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @Composable
 fun UploadPackagingRoute(
@@ -74,9 +77,7 @@ fun UploadPackagingRoute(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
         navigateToHome = viewModel::navigateToHome,
-        submitImage = {
-            viewModel.postPackageImage(submissionId = 1)
-        },
+        submitImage = viewModel::postPackageImage,
         updatePermissionGranted = viewModel::updatePermissionGranted,
         updatePermissionNotGranted = viewModel::updatePermissionNotGranted,
         state = state.uiState
@@ -88,7 +89,7 @@ fun UploadPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: ImageUiState<PackageImageEntity>,
-    submitImage: () -> Unit,
+    submitImage: (Int, Uri) -> Unit,
     updatePermissionGranted: () -> Unit,
     updatePermissionNotGranted: () -> Unit,
     navigateToHome: () -> Unit,
@@ -131,7 +132,9 @@ fun UploadPackagingScreen(
             }
 
             ImageUiState.Idle -> {
-                CameraScreen()
+                CameraScreen(
+                    submitImage = submitImage
+                )
             }
 
             ImageUiState.Loading -> {
@@ -185,7 +188,9 @@ fun UploadPackagingScreen(
 }
 
 @Composable
-private fun CameraScreen() {
+private fun CameraScreen(
+    submitImage: (Int, Uri) -> Unit,
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraScope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -218,7 +223,14 @@ private fun CameraScreen() {
                 .padding(20.dp),
             text = "take a picture",
             onClick = {
-                cameraX.takePicture()
+                CoroutineScope(Dispatchers.IO).launch {
+                    val uri = cameraX.takePicture()
+                    uri?.let {
+                        Timber.d("CameraX Photo Save: $uri")
+
+                        submitImage(1, uri)
+                    }
+                }
             }
         )
     }
@@ -254,14 +266,14 @@ private fun RequestPermission(
 @Composable
 fun UploadPackagingScreenPreview() {
     CirculerTheme {
-        UploadPackagingScreen(
-            paddingValues = PaddingValues(),
-            navigateUp = {},
-            navigateToHome = {},
-            submitImage = {},
-            updatePermissionGranted = {},
-            updatePermissionNotGranted = {},
-            state = ImageUiState.Failure
-        )
+//        UploadPackagingScreen(
+//            paddingValues = PaddingValues(),
+//            navigateUp = {},
+//            navigateToHome = {},
+//            submitImage = ,
+//            updatePermissionGranted = {},
+//            updatePermissionNotGranted = {},
+//            state = ImageUiState.Failure
+//        )
     }
 }

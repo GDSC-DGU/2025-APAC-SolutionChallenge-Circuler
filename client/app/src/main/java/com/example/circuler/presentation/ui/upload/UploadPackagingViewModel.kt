@@ -1,5 +1,6 @@
 package com.example.circuler.presentation.ui.upload
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.circuler.domain.entity.PackageImageEntity
@@ -45,10 +46,12 @@ class UploadPackagingViewModel @Inject constructor(
         _state.value = _state.value.copy(uiState = ImageUiState.PermissionNotGranted)
     }
 
-    fun postPackageImage(submissionId: Int) = viewModelScope.launch {
+    fun postPackageImage(submissionId: Int, imageUri: Uri) = viewModelScope.launch {
+        _state.value = _state.value.copy(uiState = ImageUiState.Loading)
+
         submissionRepository.postPackageImage(
             submissionId = submissionId,
-            image = _state.value.selectedImageUri?.toString()
+            image = imageUri.toString()
         )
             .onSuccess { response ->
                 val data = PackageImageEntity(
