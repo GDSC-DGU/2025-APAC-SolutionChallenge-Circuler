@@ -11,7 +11,7 @@ import circulo.server.domain.packageSubmission.entity.enums.DeliveryMethod;
 import circulo.server.domain.packageSubmission.entity.enums.PackageSubmissionStatus;
 import circulo.server.domain.packageSubmission.repository.PackageSubmissionRepository;
 import circulo.server.domain.packagingRequest.entity.PackagingRequest;
-import circulo.server.domain.packagingRequest.entity.enums.PackagingRequestStatus;
+import circulo.server.domain.packagingRequest.entity.enums.PackagingType;
 import circulo.server.domain.packagingRequest.repository.PackagingRequestRepository;
 import circulo.server.domain.user.entity.User;
 import circulo.server.domain.user.repository.UserRepository;
@@ -22,7 +22,9 @@ import circulo.server.global.apiPayload.code.status.ErrorStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -35,6 +37,7 @@ public class PackageSubmissionCommandServiceImpl implements PackageSubmissionCom
     private final UserRepository userRepository;
     private final DeliveryRepository deliveryRepository;
     private final PackageSubmissionConverter packageSubmissionConverter;
+    private final VertexAIService vertexAIService;
 
     @Override
     public PackageSubmissionResponse.PackageSubmissionSuccessResponse createPackageSubmission(Long userId,
@@ -57,12 +60,28 @@ public class PackageSubmissionCommandServiceImpl implements PackageSubmissionCom
 
         packageSubmissionRepository.save(packageSubmission);
 
-        // 사진 등록까지 완료한 후 사진과 request.getType()을 AI 서버로 전달
-        // type과 분석 결과 일치 여부에 따라 aiVerified true/false 변경 예정
-
         return packageSubmissionConverter.toPackageSubmissionSuccessResponse(packageSubmission);
     }
 
+    @Override
+    public PackageSubmissionResponse.VerifyResponse verifyPackageType(Long userId, Long packageSubmissionId, MultipartFile file) {
+        PackageSubmission packageSubmission = packageSubmissionRepository.findById(packageSubmissionId)
+                .orElseThrow(() -> new PackageSubmissionException(ErrorStatus.PACKAGE_SUBMISSION_NOT_FOUND));
+
+        PackagingType userSelectedType = packageSubmission.getPackagingRequest().getPackagingType();
+
+        try {
+            String predictedType = vertexAIService.classifyPackaging(file);
+            boolean isMatch = predictedType.equalsIgnoreCase(userSelectedType.name());
+
+            packageSubmission.changeAIVerified(isMatch);
+            packageSubmissionRepository.save(packageSubmission);
+
+            return packageSubmissionConverter.toVerifyResponse(isMatch);
+        } catch (IOException e) {
+            throw new PackageSubmissionException(ErrorStatus.VERTEX_AI_CALL_FAILED);
+        }
+    }
 
     @Override
     public PackageSubmissionResponse.PackageSubmissionAcceptedResponse acceptPackageSubmission(Long userId, Long packageSubmissionId, Long packagingRequestId) {
