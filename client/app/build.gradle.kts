@@ -71,6 +71,7 @@ dependencies {
     // AndroidX
     implementation(libs.bundles.androidx)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.exifinterface)
 
     // kotlinx
     implementation(libs.kotlinx.immutable)

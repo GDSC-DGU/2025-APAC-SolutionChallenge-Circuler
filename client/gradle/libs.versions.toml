@@ -28,6 +28,7 @@ navigation = "2.8.9"
 security = "1.1.0-alpha07"
 androidxCoreSplash = "1.0.1"
 lifecycleRuntimeComposeAndroid = "2.8.7"
+exifinterface = "1.4.1"
 
 # Third Party
 # Network
@@ -94,6 +95,7 @@ androidx-navigation = { group = "androidx.navigation", name = "navigation-compos
 androidx-security = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "security" }
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplash" }
+androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
 
 # Third Party
 # Network
