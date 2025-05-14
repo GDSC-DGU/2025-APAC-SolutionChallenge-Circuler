@@ -34,3 +34,5 @@ jobs:
           SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: ${{ secrets.GOOGLE_REDIRECT_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           CIRCULO_DOMAIN: ${{ secrets.CIRCULO_DOMAIN }}
+          VERTEX_PROJECT_ID: ${{ secrets.VERTEX_PROJECT_ID }}
+          VERTEX_ENDPOINT_ID: ${{ secrets.VERTEX_ENDPOINT_ID }}
