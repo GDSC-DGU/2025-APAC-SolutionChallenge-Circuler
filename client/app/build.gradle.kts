@@ -106,6 +106,9 @@ dependencies {
 
     // Lottie
     implementation(libs.bundles.lottie)
+
+    // CameraX
+    implementation(libs.bundles.camerax)
 }
 
 ktlint {

@@ -70,6 +70,9 @@ toolsCore = "1.0.0-alpha13"
 accompanist = "0.24.2-alpha"
 monitorVersion = "1.7.2"
 
+# CameraX
+camerax = "1.4.2"
+
 [libraries]
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -140,6 +143,13 @@ androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-c
 accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "accompanist"}
 monitor = { group = "androidx.test", name = "monitor", version.ref = "monitorVersion" }
 
+# CameraX
+camerax-core = { module = "androidx.camera:camera-core", version.ref = "camerax" }
+camerax-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camerax" }
+camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax" }
+camerax-view = { module = "androidx.camera:camera-view", version.ref = "camerax" }
+camerax-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camerax" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -198,4 +208,12 @@ lottie = [
     "androidx-tools-core",
     "accompanist-navigation-animation",
     "monitor"
+]
+
+camerax = [
+    "camerax-core",
+    "camerax-camera2",
+    "camerax-lifecycle",
+    "camerax-view",
+    "camerax-extensions"
 ]
