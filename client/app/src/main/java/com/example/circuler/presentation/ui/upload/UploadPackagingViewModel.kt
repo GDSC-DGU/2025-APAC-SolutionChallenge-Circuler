@@ -37,6 +37,14 @@ class UploadPackagingViewModel @Inject constructor(
             )
         }
 
+    fun updatePermissionGranted() = viewModelScope.launch {
+        _state.value = _state.value.copy(uiState = ImageUiState.Idle)
+    }
+
+    fun updatePermissionNotGranted() = viewModelScope.launch {
+        _state.value = _state.value.copy(uiState = ImageUiState.PermissionNotGranted)
+    }
+
     fun postPackageImage(submissionId: Int) = viewModelScope.launch {
         submissionRepository.postPackageImage(
             submissionId = submissionId,

@@ -1,5 +1,10 @@
 package com.example.circuler.presentation.ui.upload
 
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.view.PreviewView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,8 +18,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -23,6 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -33,7 +44,10 @@ import com.example.circuler.presentation.core.component.CirculoButton
 import com.example.circuler.presentation.core.component.CirculoLoadingView
 import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.ImageUiState
+import com.example.circuler.presentation.ui.upload.camerax.CameraXFactory
 import com.example.circuler.ui.theme.CirculerTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun UploadPackagingRoute(
@@ -63,6 +77,8 @@ fun UploadPackagingRoute(
         submitImage = {
             viewModel.postPackageImage(submissionId = 1)
         },
+        updatePermissionGranted = viewModel::updatePermissionGranted,
+        updatePermissionNotGranted = viewModel::updatePermissionNotGranted,
         state = state.uiState
     )
 }
@@ -73,6 +89,8 @@ fun UploadPackagingScreen(
     navigateUp: () -> Unit,
     state: ImageUiState<PackageImageEntity>,
     submitImage: () -> Unit,
+    updatePermissionGranted: () -> Unit,
+    updatePermissionNotGranted: () -> Unit,
     navigateToHome: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -113,7 +131,7 @@ fun UploadPackagingScreen(
             }
 
             ImageUiState.Idle -> {
-                //TODO: 이미지 사진
+                CameraScreen()
             }
 
             ImageUiState.Loading -> {
@@ -155,7 +173,80 @@ fun UploadPackagingScreen(
                     )
                 }
             }
+
+            ImageUiState.PermissionNotGranted -> {
+                RequestPermission(
+                    updatePermissionGranted = updatePermissionGranted,
+                    updatePermissionNotGranted = updatePermissionNotGranted
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun CameraScreen() {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val cameraScope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val cameraX = remember { CameraXFactory.create() }
+    val previewView = remember { mutableStateOf<PreviewView?>(null) }
+    val facing = cameraX.getFacingState().collectAsState()
+
+    LaunchedEffect(Unit) {
+        cameraX.initialize(context = context)
+        previewView.value = cameraX.getPreviewView()
+    }
+
+    DisposableEffect(facing.value) {
+        cameraScope.launch(Dispatchers.Main) {
+            cameraX.startCamera(lifecycleOwner = lifecycleOwner)
+        }
+        onDispose {
+            cameraX.unBindCamera()
+        }
+    }
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        previewView.value?.let { preview -> AndroidView(modifier = Modifier.fillMaxSize(), factory = { preview }) {} }
+
+        CirculoButton(
+            modifier = Modifier
+                .padding(20.dp),
+            text = "take a picture",
+            onClick = {
+                cameraX.takePicture()
+            }
+        )
+    }
+}
+
+@Composable
+private fun RequestPermission(
+    updatePermissionGranted: () -> Unit,
+    updatePermissionNotGranted: () -> Unit,
+
+    ) {
+    val context = LocalContext.current
+
+    val cameraLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) {
+                updatePermissionGranted()
+            } else {
+                updatePermissionNotGranted()
+            }
+        }
+
+    if (context.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        LaunchedEffect(Unit) {
+            cameraLauncher.launch(Manifest.permission.CAMERA)
+        }
+    } else {
+        updatePermissionGranted()
     }
 }
 
@@ -168,6 +259,8 @@ fun UploadPackagingScreenPreview() {
             navigateUp = {},
             navigateToHome = {},
             submitImage = {},
+            updatePermissionGranted = {},
+            updatePermissionNotGranted = {},
             state = ImageUiState.Failure
         )
     }

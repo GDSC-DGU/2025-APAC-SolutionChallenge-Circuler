@@ -18,4 +18,5 @@ sealed class ImageUiState<out T> {
     data object Loading : ImageUiState<Nothing>()
     data class Success<T>(val data: T) : ImageUiState<T>()
     data object Failure : ImageUiState<Nothing>()
+    data object PermissionNotGranted : ImageUiState<Nothing>()
 }
