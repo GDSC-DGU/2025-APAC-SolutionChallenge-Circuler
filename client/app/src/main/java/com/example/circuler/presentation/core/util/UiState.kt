@@ -12,3 +12,10 @@ sealed class EmptyUiState<out T> {
     data class Success<T>(val data: T) : EmptyUiState<T>()
     data object Failure : EmptyUiState<Nothing>()
 }
+
+sealed class ImageUiState<out T> {
+    data object Idle : ImageUiState<Nothing>()
+    data object Loading : ImageUiState<Nothing>()
+    data class Success<T>(val data: T) : ImageUiState<T>()
+    data object Failure : ImageUiState<Nothing>()
+}
