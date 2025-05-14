@@ -47,6 +47,6 @@ interface SubmissionService {
     suspend fun postPackageImage(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN",
         @Path("packageSubmissionId") packageSubmissionId: Int,
-        @Part image: MultipartBody.Part?,
+        @Part image: MultipartBody.Part?
     ): BaseResponse<ResponsePackageImageDto>
 }

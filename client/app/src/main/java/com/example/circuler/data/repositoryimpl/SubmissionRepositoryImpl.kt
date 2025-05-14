@@ -13,7 +13,6 @@ import com.example.circuler.presentation.core.network.ContentUriRequestBody
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-
 internal class SubmissionRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
     private val submissionDataSource: SubmissionDataSource
@@ -54,10 +53,14 @@ internal class SubmissionRepositoryImpl @Inject constructor(
         return runCatching {
             submissionDataSource.postPackageImage(
                 submissionId = submissionId,
-                image = if (image == null) image else ContentUriRequestBody(
-                    context,
-                    Uri.parse(image)
-                ).toFormData("image"),
+                image = if (image == null) {
+                    image
+                } else {
+                    ContentUriRequestBody(
+                        context,
+                        Uri.parse(image)
+                    ).toFormData("image")
+                }
             ).result.toEntity()
         }
     }

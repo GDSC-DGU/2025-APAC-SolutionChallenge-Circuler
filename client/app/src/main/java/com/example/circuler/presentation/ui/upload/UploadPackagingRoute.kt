@@ -189,7 +189,7 @@ fun UploadPackagingScreen(
 
 @Composable
 private fun CameraScreen(
-    submitImage: (Int, Uri) -> Unit,
+    submitImage: (Int, Uri) -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraScope = rememberCoroutineScope()
@@ -239,9 +239,9 @@ private fun CameraScreen(
 @Composable
 private fun RequestPermission(
     updatePermissionGranted: () -> Unit,
-    updatePermissionNotGranted: () -> Unit,
+    updatePermissionNotGranted: () -> Unit
 
-    ) {
+) {
     val context = LocalContext.current
 
     val cameraLauncher =

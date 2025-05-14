@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 interface CameraX {
     fun initialize(context: Context) // cameraX 초기화
     fun startCamera(lifecycleOwner: LifecycleOwner) // cameraX 시작
-    suspend fun takePicture() : Uri? // 사진 촬영
+    suspend fun takePicture(): Uri? // 사진 촬영
     fun flipCameraFacing() // 카메라 방향 전환
     fun unBindCamera() // 카메라 닫기
     fun getPreviewView(): PreviewView // 카메라 화면

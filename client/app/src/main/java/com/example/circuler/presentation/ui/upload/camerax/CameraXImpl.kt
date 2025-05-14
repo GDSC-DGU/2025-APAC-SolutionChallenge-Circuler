@@ -24,6 +24,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.LifecycleOwner
 import com.google.common.util.concurrent.ListenableFuture
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,11 +37,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 internal class CameraXImpl : CameraX {
 
@@ -84,24 +84,27 @@ internal class CameraXImpl : CameraX {
 
         val path =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/cameraX")
-        if (!path.exists()) path.mkdirs();
+        if (!path.exists()) path.mkdirs()
         val name = "" + SimpleDateFormat(
-            "yyyy-MM-dd-HH-mm-ss-SSS", Locale.KOREA
+            "yyyy-MM-dd-HH-mm-ss-SSS",
+            Locale.KOREA
         ).format(System.currentTimeMillis()) + ".mp4"
 
         mediaStoreOutput = MediaStoreOutputOptions.Builder(
             context.contentResolver,
             MediaStore.Video.Media.EXTERNAL_CONTENT_URI
         )
-            .setContentValues(ContentValues().apply {
-                put(MediaStore.Video.Media.DISPLAY_NAME, name)
-            })
+            .setContentValues(
+                ContentValues().apply {
+                    put(MediaStore.Video.Media.DISPLAY_NAME, name)
+                }
+            )
             .build()
     }
 
     // cameraX 시작
     override fun startCamera(
-        lifecycleOwner: LifecycleOwner,
+        lifecycleOwner: LifecycleOwner
     ) {
         unBindCamera()
 
@@ -129,8 +132,10 @@ internal class CameraXImpl : CameraX {
         if (!path.exists()) path.mkdirs()
 
         val photoFile = File(
-            path, SimpleDateFormat(
-                "yyyy-MM-dd-HH-mm-ss-SSS", Locale.KOREA
+            path,
+            SimpleDateFormat(
+                "yyyy-MM-dd-HH-mm-ss-SSS",
+                Locale.KOREA
             ).format(System.currentTimeMillis()) + ".jpg"
         )
 
@@ -179,5 +184,4 @@ internal class CameraXImpl : CameraX {
 
     // 카메라 방향 가져오기
     override fun getFacingState(): StateFlow<Int> = _facing.asStateFlow()
-
 }

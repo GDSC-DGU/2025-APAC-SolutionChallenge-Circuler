@@ -7,16 +7,16 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.provider.MediaStore
 import androidx.exifinterface.media.ExifInterface
+import java.io.ByteArrayOutputStream
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
-import java.io.ByteArrayOutputStream
 
 class ContentUriRequestBody(
     context: Context,
-    private val uri: Uri?,
+    private val uri: Uri?
 ) : RequestBody() {
     private val contentResolver = context.contentResolver
 
@@ -31,7 +31,7 @@ class ContentUriRequestBody(
                 arrayOf(MediaStore.Images.Media.SIZE, MediaStore.Images.Media.DISPLAY_NAME),
                 null,
                 null,
-                null,
+                null
             )?.use { cursor ->
                 if (cursor.moveToFirst()) {
                     size =
@@ -94,7 +94,7 @@ class ContentUriRequestBody(
                 originalBitmap.compress(
                     Bitmap.CompressFormat.JPEG,
                     if (imageSizeMb >= IMAGE_SIZE_MB) compressRate else 100,
-                    it,
+                    it
                 )
             }
             compressedImage = outputStream.toByteArray()
@@ -105,7 +105,7 @@ class ContentUriRequestBody(
     private fun calculateInSampleSize(
         options: BitmapFactory.Options,
         reqWidth: Int,
-        reqHeight: Int,
+        reqHeight: Int
     ): Int {
         val (height: Int, width: Int) = options.run { outHeight to outWidth }
         var inSampleSize = 1
