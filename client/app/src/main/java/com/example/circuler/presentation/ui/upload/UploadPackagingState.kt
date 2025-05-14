@@ -1,7 +1,10 @@
 package com.example.circuler.presentation.ui.upload
 
+import android.net.Uri
+import com.example.circuler.domain.entity.PackageImageEntity
 import com.example.circuler.presentation.core.util.ImageUiState
 
 data class UploadPackagingState(
-    val uiState: ImageUiState<String> = ImageUiState.Idle
+    val uiState: ImageUiState<PackageImageEntity> = ImageUiState.Idle,
+    val selectedImageUri: Uri? = null,
 )

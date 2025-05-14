@@ -28,6 +28,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import com.example.circuler.R
+import com.example.circuler.domain.entity.PackageImageEntity
 import com.example.circuler.presentation.core.component.CirculoButton
 import com.example.circuler.presentation.core.component.CirculoLoadingView
 import com.example.circuler.presentation.core.extension.showToast
@@ -59,6 +60,9 @@ fun UploadPackagingRoute(
         paddingValues = paddingValues,
         navigateUp = navigateUp,
         navigateToHome = viewModel::navigateToHome,
+        submitImage = {
+            viewModel.postPackageImage(submissionId = 1)
+        },
         state = state.uiState
     )
 }
@@ -67,7 +71,8 @@ fun UploadPackagingRoute(
 fun UploadPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
-    state: ImageUiState<String>,
+    state: ImageUiState<PackageImageEntity>,
+    submitImage: () -> Unit,
     navigateToHome: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -162,6 +167,7 @@ fun UploadPackagingScreenPreview() {
             paddingValues = PaddingValues(),
             navigateUp = {},
             navigateToHome = {},
+            submitImage = {},
             state = ImageUiState.Failure
         )
     }

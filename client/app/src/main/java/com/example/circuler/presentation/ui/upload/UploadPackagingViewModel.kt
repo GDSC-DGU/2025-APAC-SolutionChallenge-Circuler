@@ -2,8 +2,10 @@ package com.example.circuler.presentation.ui.upload
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.circuler.domain.entity.PackageImageEntity
+import com.example.circuler.domain.repository.SubmissionRepository
+import com.example.circuler.presentation.core.util.ImageUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -11,9 +13,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
-class UploadPackagingViewModel @Inject constructor() : ViewModel() {
+class UploadPackagingViewModel @Inject constructor(
+    private val submissionRepository: SubmissionRepository
+) : ViewModel() {
     // state 관리
     private val _state = MutableStateFlow(UploadPackagingState())
     val state: StateFlow<UploadPackagingState>
@@ -30,4 +36,22 @@ class UploadPackagingViewModel @Inject constructor() : ViewModel() {
                 UploadPackagingSideEffect.NavigateToHome
             )
         }
+
+    fun postPackageImage(submissionId: Int) = viewModelScope.launch {
+        submissionRepository.postPackageImage(
+            submissionId = submissionId,
+            image = _state.value.selectedImageUri?.toString()
+        )
+            .onSuccess { response ->
+                val data = PackageImageEntity(
+                    match = response.match
+                )
+                Timber.tag("postPackageImage").d("image success")
+                _state.value = _state.value.copy(uiState = ImageUiState.Success(data = data))
+            }
+            .onFailure { error ->
+                Timber.e(error)
+                _state.value = _state.value.copy(uiState = ImageUiState.Failure)
+            }
+    }
 }
