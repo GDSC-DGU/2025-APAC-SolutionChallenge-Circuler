@@ -28,7 +28,7 @@ public enum ErrorStatus implements BaseErrorCode {
     TOKEN_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "TOKEN500", "토큰 처리 중 에러가 발생했습니다."),
 
     // User 관련 에러
-    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "AUTH404", "사용자를 찾을 수 없습니다."),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER404", "사용자를 찾을 수 없습니다."),
 
     // PackagingRequest 관련 에러
     PACKAGING_REQUEST_NOT_FOUND(HttpStatus.NOT_FOUND, "PR404", "포장재 요청을 찾을 수 없습니다."),
@@ -38,7 +38,10 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Delivery 관련 에러
     DELIVERY_NOT_FOUND(HttpStatus.NOT_FOUND, "D404", "배달 객체를 찾을 수 없습니다."),
-    NO_PENDING_DELIVERIES_FOUND(HttpStatus.NOT_FOUND, "D404", "PENDING 상태의 배달 객체를 찾을 수 없습니다.");
+    NO_PENDING_DELIVERIES_FOUND(HttpStatus.NOT_FOUND, "D404", "PENDING 상태의 배달 객체를 찾을 수 없습니다."),
+
+    // Vertex AI 관련 에러
+    VERTEX_AI_CALL_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "AI500", "Vertex AI 호출을 실패했습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

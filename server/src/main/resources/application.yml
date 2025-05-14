@@ -1,4 +1,7 @@
 spring:
+  servlet:
+    multipart:
+      resolve-lazily: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${SPRING_DATASOURCE_URL}
@@ -41,3 +44,6 @@ jwt:
   secret: ${JWT_SECRET}
 circulo:
   domain: ${CIRCULO_DOMAIN}
+vertex:
+  project-id: ${VERTEX_PROJECT_ID}
+  endpoint-id: ${VERTEX_ENDPOINT_ID}

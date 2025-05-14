@@ -7,9 +7,14 @@ import circulo.server.domain.packageSubmission.service.PackageSubmissionQuerySer
 import circulo.server.global.apiPayload.ApiResponse;
 import circulo.server.global.handler.annotation.Auth;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -30,6 +35,24 @@ public class PackageSubmissionController {
             @PathVariable Long packagingRequestId, @Valid @RequestBody PackageSubmissionRequest.CreatePackageSubmissionRequest request) {
 
         PackageSubmissionResponse.PackageSubmissionSuccessResponse response = packageSubmissionCommandService.createPackageSubmission(userId, packagingRequestId, request);
+        return ApiResponse.onSuccess(response);
+    }
+
+    @Operation(
+            summary = "포장재 사진 등록 API | by 지희",
+            description = "일반 사용자가 포장재 사진을 등록하고, 본인이 등록한 포장재 타입과 사진의 포장재 사진이 일치한 지 확인합니다."
+    )
+    @PostMapping(value = "/verify/{packageSubmissionId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ApiResponse<PackageSubmissionResponse.VerifyResponse> verifyPackageSubmission(
+            @Auth Long userId,
+            @PathVariable Long packageSubmissionId,
+            @Parameter(description = "업로드할 포장재 이미지", required = true,
+                    content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
+                            schema = @Schema(type = "string", format = "binary")))
+            @RequestPart("file") MultipartFile file
+    ) {
+        PackageSubmissionResponse.VerifyResponse response =
+                packageSubmissionCommandService.verifyPackageType(userId, packageSubmissionId, file);
         return ApiResponse.onSuccess(response);
     }
 

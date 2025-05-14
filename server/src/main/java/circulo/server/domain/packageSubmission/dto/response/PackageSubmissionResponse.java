@@ -15,6 +15,12 @@ public class PackageSubmissionResponse {
 
     @Getter
     @AllArgsConstructor
+    public static class VerifyResponse {
+        private boolean isMatch;
+    }
+
+    @Getter
+    @AllArgsConstructor
     public static class PackageSubmissionListItem {
         private Long id;
         private Integer quantity;

@@ -54,4 +54,8 @@ public class PackageSubmission extends BaseEntity {
     public void changeStatus(PackageSubmissionStatus status) {
         this.status = status;
     }
+
+    public void changeAIVerified(Boolean aiVerified) {
+        this.aiVerified = aiVerified;
+    }
 }

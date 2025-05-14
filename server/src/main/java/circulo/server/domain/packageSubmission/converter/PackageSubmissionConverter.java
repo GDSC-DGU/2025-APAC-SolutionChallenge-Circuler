@@ -17,6 +17,11 @@ public class PackageSubmissionConverter {
         );
     }
 
+    public PackageSubmissionResponse.VerifyResponse toVerifyResponse(boolean isMatch) {
+        return new PackageSubmissionResponse.VerifyResponse(isMatch);
+    }
+
+
     public List<PackageSubmissionResponse.PackageSubmissionListItem> toPackageRequestList(List<PackageSubmission> packageSubmissionList) {
 
         return packageSubmissionList.stream()
