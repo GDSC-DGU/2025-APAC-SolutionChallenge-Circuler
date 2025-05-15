@@ -28,6 +28,7 @@ navigation = "2.8.9"
 security = "1.1.0-alpha07"
 androidxCoreSplash = "1.0.1"
 lifecycleRuntimeComposeAndroid = "2.8.7"
+exifinterface = "1.4.1"
 
 # Third Party
 # Network
@@ -69,6 +70,9 @@ toolsCore = "1.0.0-alpha13"
 accompanist = "0.24.2-alpha"
 monitorVersion = "1.7.2"
 
+# CameraX
+camerax = "1.4.2"
+
 [libraries]
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -94,6 +98,7 @@ androidx-navigation = { group = "androidx.navigation", name = "navigation-compos
 androidx-security = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "security" }
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplash" }
+androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
 
 # Third Party
 # Network
@@ -137,6 +142,13 @@ lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", versio
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
 accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "accompanist"}
 monitor = { group = "androidx.test", name = "monitor", version.ref = "monitorVersion" }
+
+# CameraX
+camerax-core = { module = "androidx.camera:camera-core", version.ref = "camerax" }
+camerax-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camerax" }
+camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax" }
+camerax-view = { module = "androidx.camera:camera-view", version.ref = "camerax" }
+camerax-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camerax" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -196,4 +208,12 @@ lottie = [
     "androidx-tools-core",
     "accompanist-navigation-animation",
     "monitor"
+]
+
+camerax = [
+    "camerax-core",
+    "camerax-camera2",
+    "camerax-lifecycle",
+    "camerax-view",
+    "camerax-extensions"
 ]

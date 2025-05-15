@@ -71,6 +71,7 @@ dependencies {
     // AndroidX
     implementation(libs.bundles.androidx)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.exifinterface)
 
     // kotlinx
     implementation(libs.kotlinx.immutable)
@@ -105,6 +106,9 @@ dependencies {
 
     // Lottie
     implementation(libs.bundles.lottie)
+
+    // CameraX
+    implementation(libs.bundles.camerax)
 }
 
 ktlint {
