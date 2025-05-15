@@ -33,5 +33,5 @@ interface RequestService {
     @GET("/api/v0/packagingRequest/my")
     suspend fun getPackagingRequestMy(
         @Header("Authorization") accessToken: String = "Bearer $TOKEN"
-    ): List<ResponsePackageMyDto> //todo baseresponse 적용
+    ): List<ResponsePackageMyDto> // todo baseresponse 적용
 }

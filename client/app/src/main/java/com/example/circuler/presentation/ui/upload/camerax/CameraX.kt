@@ -3,8 +3,8 @@ package com.example.circuler.presentation.ui.upload.camerax
 import android.content.Context
 import androidx.camera.view.PreviewView
 import androidx.lifecycle.LifecycleOwner
-import kotlinx.coroutines.flow.StateFlow
 import java.io.File
+import kotlinx.coroutines.flow.StateFlow
 
 interface CameraX {
     fun initialize(context: Context) // cameraX 초기화

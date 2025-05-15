@@ -2,7 +2,6 @@ package com.example.circuler.presentation.ui.upload
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.view.PreviewView
@@ -47,11 +46,11 @@ import com.example.circuler.presentation.core.extension.showToast
 import com.example.circuler.presentation.core.util.ImageUiState
 import com.example.circuler.presentation.ui.upload.camerax.CameraXFactory
 import com.example.circuler.ui.theme.CirculerTheme
+import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.io.File
 
 @Composable
 fun UploadPackagingRoute(

@@ -9,12 +9,12 @@ import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
 import com.example.circuler.domain.entity.SubmissionPackagingEntity
 import com.example.circuler.domain.repository.SubmissionRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
+import java.io.File
+import javax.inject.Inject
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import timber.log.Timber
-import java.io.File
-import javax.inject.Inject
 
 internal class SubmissionRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -66,7 +66,7 @@ internal class SubmissionRepositoryImpl @Inject constructor(
     }
 }
 
-fun contentFileRequestBody(file: File) : MultipartBody.Part {
+fun contentFileRequestBody(file: File): MultipartBody.Part {
     val contentType = "image/png".toMediaTypeOrNull()
     val requestBody = file.asRequestBody(contentType)
     val multipart = MultipartBody.Part.createFormData("file", file.name, requestBody)
