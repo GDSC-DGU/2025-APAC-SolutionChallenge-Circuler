@@ -2,7 +2,7 @@ version: "3"
 
 services:
   application:
-    image: circulo_spring
+    image: mandar2n/circulo_spring:latest
     ports:
       - "8080:8080"
     env_file:
