@@ -32,6 +32,8 @@ public class VertexAIService {
 
     public String classifyPackaging(MultipartFile file) throws IOException {
         try {
+            System.out.println("🔍 GOOGLE_APPLICATION_CREDENTIALS = " + System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
+
             String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
             String apiUrl = String.format(API_URL_TEMPLATE, projectId, endpointId);
 
