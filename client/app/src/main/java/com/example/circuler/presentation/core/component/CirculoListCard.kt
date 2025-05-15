@@ -27,8 +27,6 @@ import com.example.circuler.presentation.core.extension.roundedBackgroundWithBor
 import com.example.circuler.presentation.type.ChipType
 import com.example.circuler.ui.theme.CirculerTheme
 
-// todo: 전체적인 icon 변경
-
 @Composable
 fun CirculoListCard(
     listCardEntity: PackageListCardEntity,

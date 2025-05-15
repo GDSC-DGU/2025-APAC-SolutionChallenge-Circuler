@@ -31,6 +31,6 @@ internal class RequestRepositoryImpl @Inject constructor(
 
     override suspend fun getPackagingRequestMy(): Result<List<PackageMyEntity>> =
         runCatching {
-            requestDataSource.getPackagingRequestMy().map { it.toEntity() }
+            requestDataSource.getPackagingRequestMy().result.map { it.toEntity() }
         }
 }

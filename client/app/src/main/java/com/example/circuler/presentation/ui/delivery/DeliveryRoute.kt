@@ -137,7 +137,10 @@ fun DeliveryScreen(
                             submissionLocation = item.submissionLocation,
                             submissionQuantity = item.submissionQuantity,
                             userName = item.userName
-                        )
+                        ),
+                        onClick = {
+                            navigateToMap()
+                        }
                     )
                 }
             }

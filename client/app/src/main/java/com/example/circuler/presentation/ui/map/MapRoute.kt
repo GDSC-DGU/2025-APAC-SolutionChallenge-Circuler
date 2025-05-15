@@ -86,7 +86,7 @@ fun MapScreen(
 
             Marker(
                 state = MarkerState(position = shop),
-                title = "HAUS coffee & dessert",
+                title = "Bloom & Bean",
                 snippet = "Marker in Shop"
             )
         }
