@@ -100,6 +100,16 @@ public class PackageSubmissionCommandServiceImpl implements PackageSubmissionCom
             packageSubmission.changeStatus(PackageSubmissionStatus.PENDING);
         }
 
+        Delivery delivery = Delivery.builder()
+                .packageSubmission(packageSubmission)
+                .packagingRequest(packagingRequest)
+                .user(packageSubmission.getUser())
+                .storeMan(packagingRequest.getUser())
+                .status(DeliveryStatus.PENDING)
+                .build();
+
+        deliveryRepository.save(delivery);
+
         return packageSubmissionConverter.toPackageSubmissionAcceptedResponse(packageSubmission);
     }
 
