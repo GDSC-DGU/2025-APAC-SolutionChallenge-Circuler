@@ -43,6 +43,8 @@ jobs:
             echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> /home/${{ secrets.VM_USER }}/.env
             echo "SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI=${{ secrets.GOOGLE_REDIRECT_URI }}" >> /home/${{ secrets.VM_USER }}/.env
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "VERTEX_PROJECT_ID=${{ secrets.VERTEX_PROJECT_ID }}" >> /home/${{ secrets.VM_USER }}/.env
+            echo "VERTEX_ENDPOINT_ID=${{ secrets.VERTEX_ENDPOINT_ID }}" >> /home/${{ secrets.VM_USER }}/.env
 
       - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.10
