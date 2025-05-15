@@ -51,6 +51,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.io.File
 
 @Composable
 fun UploadPackagingRoute(
@@ -89,7 +90,7 @@ fun UploadPackagingScreen(
     paddingValues: PaddingValues,
     navigateUp: () -> Unit,
     state: ImageUiState<PackageImageEntity>,
-    submitImage: (Int, Uri) -> Unit,
+    submitImage: (Int, File) -> Unit,
     updatePermissionGranted: () -> Unit,
     updatePermissionNotGranted: () -> Unit,
     navigateToHome: () -> Unit,
@@ -189,7 +190,7 @@ fun UploadPackagingScreen(
 
 @Composable
 private fun CameraScreen(
-    submitImage: (Int, Uri) -> Unit
+    submitImage: (Int, File) -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraScope = rememberCoroutineScope()
@@ -224,11 +225,11 @@ private fun CameraScreen(
             text = "take a picture",
             onClick = {
                 CoroutineScope(Dispatchers.IO).launch {
-                    val uri = cameraX.takePicture()
-                    uri?.let {
-                        Timber.d("CameraX Photo Save: $uri")
+                    val file = cameraX.takePicture()
+                    file?.let {
+                        Timber.d("CameraX Photo Save: $file")
 
-                        submitImage(1, uri)
+                        submitImage(1, file)
                     }
                 }
             }

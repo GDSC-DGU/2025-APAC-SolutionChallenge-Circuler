@@ -1,15 +1,15 @@
 package com.example.circuler.presentation.ui.upload.camerax
 
 import android.content.Context
-import android.net.Uri
 import androidx.camera.view.PreviewView
 import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.flow.StateFlow
+import java.io.File
 
 interface CameraX {
     fun initialize(context: Context) // cameraX 초기화
     fun startCamera(lifecycleOwner: LifecycleOwner) // cameraX 시작
-    suspend fun takePicture(): Uri? // 사진 촬영
+    suspend fun takePicture(): File? // 사진 촬영
     fun flipCameraFacing() // 카메라 방향 전환
     fun unBindCamera() // 카메라 닫기
     fun getPreviewView(): PreviewView // 카메라 화면

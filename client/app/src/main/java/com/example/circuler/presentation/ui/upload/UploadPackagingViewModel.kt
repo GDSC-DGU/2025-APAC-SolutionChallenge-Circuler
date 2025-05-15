@@ -1,6 +1,5 @@
 package com.example.circuler.presentation.ui.upload
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.circuler.domain.entity.PackageImageEntity
@@ -16,6 +15,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.io.File
 
 @HiltViewModel
 class UploadPackagingViewModel @Inject constructor(
@@ -46,12 +46,12 @@ class UploadPackagingViewModel @Inject constructor(
         _state.value = _state.value.copy(uiState = ImageUiState.PermissionNotGranted)
     }
 
-    fun postPackageImage(submissionId: Int, imageUri: Uri) = viewModelScope.launch {
+    fun postPackageImage(submissionId: Int, imageFile: File) = viewModelScope.launch {
         _state.value = _state.value.copy(uiState = ImageUiState.Loading)
 
         submissionRepository.postPackageImage(
             submissionId = submissionId,
-            image = imageUri.toString()
+            file = imageFile
         )
             .onSuccess { response ->
                 val data = PackageImageEntity(

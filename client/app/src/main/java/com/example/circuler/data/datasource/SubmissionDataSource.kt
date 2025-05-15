@@ -14,5 +14,5 @@ internal class SubmissionDataSource @Inject constructor(
     suspend fun postPackagingDelivery(requestId: Int) = submissionService.postPackagingDelivery(packageSubmissionId = requestId)
     suspend fun getSubmittedData(requestId: Int) = submissionService.getSubmittedData(packagingRequestId = requestId)
     suspend fun getPackageAccept(requestId: Int, submissionId: Int) = submissionService.getPackageAccept(packagingRequestId = requestId, packageSubmissionId = submissionId)
-    suspend fun postPackageImage(submissionId: Int, image: MultipartBody.Part?) = submissionService.postPackageImage(packageSubmissionId = submissionId, image = image)
+    suspend fun postPackageImage(submissionId: Int, file: MultipartBody.Part?) = submissionService.postPackageImage(packageSubmissionId = submissionId, file = file)
 }

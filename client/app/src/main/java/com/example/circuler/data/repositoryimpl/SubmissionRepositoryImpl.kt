@@ -1,7 +1,6 @@
 package com.example.circuler.data.repositoryimpl
 
 import android.content.Context
-import android.net.Uri
 import com.example.circuler.data.datasource.SubmissionDataSource
 import com.example.circuler.data.dto.request.toDto
 import com.example.circuler.domain.entity.AcceptEntity
@@ -9,8 +8,12 @@ import com.example.circuler.domain.entity.PackageImageEntity
 import com.example.circuler.domain.entity.PackageListCardWithMethodEntity
 import com.example.circuler.domain.entity.SubmissionPackagingEntity
 import com.example.circuler.domain.repository.SubmissionRepository
-import com.example.circuler.presentation.core.network.ContentUriRequestBody
 import dagger.hilt.android.qualifiers.ApplicationContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import timber.log.Timber
+import java.io.File
 import javax.inject.Inject
 
 internal class SubmissionRepositoryImpl @Inject constructor(
@@ -49,19 +52,24 @@ internal class SubmissionRepositoryImpl @Inject constructor(
             ).result.toEntity()
         }
 
-    override suspend fun postPackageImage(submissionId: Int, image: String?): Result<PackageImageEntity> {
+    override suspend fun postPackageImage(submissionId: Int, file: File?): Result<PackageImageEntity> {
         return runCatching {
             submissionDataSource.postPackageImage(
                 submissionId = submissionId,
-                image = if (image == null) {
-                    image
+                file = if (file == null) {
+                    file
                 } else {
-                    ContentUriRequestBody(
-                        context,
-                        Uri.parse(image)
-                    ).toFormData("image")
+                    contentFileRequestBody(file = file)
                 }
             ).result.toEntity()
         }
     }
+}
+
+fun contentFileRequestBody(file: File) : MultipartBody.Part {
+    val contentType = "image/png".toMediaTypeOrNull()
+    val requestBody = file.asRequestBody(contentType)
+    val multipart = MultipartBody.Part.createFormData("file", file.name, requestBody)
+    Timber.d("contentFileRequestBody 실행 : ${file.name}, $requestBody, ${file.length()}")
+    return multipart
 }

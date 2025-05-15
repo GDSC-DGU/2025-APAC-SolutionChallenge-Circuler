@@ -2,7 +2,6 @@ package com.example.circuler.presentation.ui.upload.camerax
 
 import android.content.ContentValues
 import android.content.Context
-import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import androidx.annotation.OptIn
@@ -21,14 +20,8 @@ import androidx.camera.video.Recorder
 import androidx.camera.video.VideoCapture
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.lifecycle.LifecycleOwner
 import com.google.common.util.concurrent.ListenableFuture
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,6 +30,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 internal class CameraXImpl : CameraX {
 
@@ -125,7 +123,7 @@ internal class CameraXImpl : CameraX {
 
     // 사진 촬영
     @kotlin.OptIn(ExperimentalCoroutinesApi::class)
-    override suspend fun takePicture(): Uri? {
+    override suspend fun takePicture(): File? {
         val path =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "/cameraX")
 
@@ -136,7 +134,7 @@ internal class CameraXImpl : CameraX {
             SimpleDateFormat(
                 "yyyy-MM-dd-HH-mm-ss-SSS",
                 Locale.KOREA
-            ).format(System.currentTimeMillis()) + ".jpg"
+            ).format(System.currentTimeMillis()) + ".png"
         )
 
         val outputFileOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -147,17 +145,12 @@ internal class CameraXImpl : CameraX {
                 ContextCompat.getMainExecutor(context),
                 object : ImageCapture.OnImageSavedCallback {
                     override fun onError(error: ImageCaptureException) {
+                        error.printStackTrace()
                         continuation.resume(null) {} // 실패 시 null 반환
                     }
 
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                        // File -> Uri 변환
-                        val uri = FileProvider.getUriForFile(
-                            context,
-                            "${context.packageName}.provider",
-                            photoFile
-                        )
-                        continuation.resume(uri) {}
+                        continuation.resume(photoFile) {}
                     }
                 }
             )
