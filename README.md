@@ -1,14 +1,111 @@
-# 2025-APAC-SolutionChallenge-Circulo 
+### 2025 Google Solution Challenge
 
-### 📋 Commit Message Convention
-| Tag | Description |
-| :---: | --- |
-| `Feature` | 새로운 기능 추가 |
-| `Fix` | 버그 수정 |
-| `Docs` | 문서 추가, 수정, 삭제 |
-| `Test` | 테스트 코드 추가, 수정, 삭제 |
-| `Style` | 마크업 및 스타일 변경 |
-| `Refactor` | 코드 리팩토링 |
-| `Setting` | 개발 환경 설정 관련 변경 |
-| `Deploy` | 배포 관련 변경사항 |
-| `CrossBrowsing` | 브라우저 호환성 관련 변경 |
+# ♻️ Circulo : Pack it back, Earn it back
+> Circulo is a Packaging Reuse Platform that connects Individuals and Local Businesses to enable Community-driven Sustainability.
+
+<br>
+  
+## 🌱 How Circulo Works
+
+- 🏪 **Stores** post requests for reusable packaging they need  
+- 🙋‍♂️ **Individuals** respond to requests by offering packaging they already own  
+- 🛵 **Individuals** can also deliver the packaging from the provider to the store  
+- 🏅 **All Participants** receive **Reward Points** for each successful match and delivery
+
+<br>
+
+## 🚀 Features
+
+- 🔐 Google Social Login for seamless user onboarding
+- 🔄 Packaging registration and matching system
+- 🤖 AI-powered image verification for packaging type validation
+- 🎯 Reward point system for all participants (users, stores, deliverman)
+- 🚚 Delivery management interface
+
+<br>
+
+## 🙌 Developers
+
+<table align="center">
+  <tr align="center">
+    <td>Server</td>
+    <td>Client</td>
+    <td>AI</td>
+    <td>Server</td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://github.com/mandar2n.png" width="150"></td>
+    <td><img src="https://github.com/gitsuhyun.png" width="150"></td>
+    <td><img src="https://github.com/nicolao00.png" width="150"></td>
+    <td><img src="https://github.com/munjji.png" width="150"></td>
+  </tr>
+  <tr align="center">
+    <td><a href="https://github.com/mandar2n">Kyuree Kim</a></td>
+    <td><a href="https://github.com/gitsuhyun">Suhyeon Kim</a></td>
+    <td><a href="https://github.com/nicolao00">Jaehyoung Park</a></td>
+    <td><a href="https://github.com/munjji">Jihee Lee</a></td>
+  </tr>
+</table>
+<br/>
+
+## 🛠️ Tech Stacks
+
+<div align="center">
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Tech Stack</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend</strong></td>
+        <td>Kotlin (Android)</td>
+      </tr>
+      <tr>
+        <td><strong>Backend</strong></td>
+        <td>Spring Boot, MySQL, Redis</td>
+      </tr>
+      <tr>
+        <td><strong>AI/ML</strong></td>
+        <td>Google Vertex AI - AutoML Vision</td>
+      </tr>
+      <tr>
+        <td><strong>Authentication</strong></td>
+        <td>Google Identity (OAuth2)</td>
+      </tr>
+      <tr>
+        <td><strong>DevOps</strong></td>
+        <td>GitHub Actions, Docker</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br/>
+
+<br>
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/GDSC-DGU/2025-APAC-SolutionChallenge-Circulo.git
+cd 2025-APAC-SolutionChallenge-Circulo
+````
+
+<br>
+
+## 💡 Solution Overview
+![image](https://github.com/user-attachments/assets/292e5a35-f240-4da6-81ad-5ae56dcca0dd)
+![image](https://github.com/user-attachments/assets/c039f6f6-2f4b-4e16-ab6a-e1e85867ebcf)
+![image](https://github.com/user-attachments/assets/6f8a61cc-1d37-44bc-8418-130411917f29)
+![image](https://github.com/user-attachments/assets/89395d68-55e4-45bd-9903-f2bbef305c46)
+![image](https://github.com/user-attachments/assets/4e8ab82f-f8b3-49fb-92dd-19387e960aea)
+![image](https://github.com/user-attachments/assets/64ebdf19-62f4-4ee0-88ab-0b0f7f4fcb90)
+
+<br>
+
+## 📬 Contact
+For questions, suggestions, or collaborations:
+Open an issue or contact us via circulo20252@gmail.com
