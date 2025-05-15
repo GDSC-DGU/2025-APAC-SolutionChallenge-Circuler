@@ -47,6 +47,9 @@ dependencies {
 
 	// Redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+	// Google
+	implementation 'com.google.auth:google-auth-library-oauth2-http:1.19.0'
 }
 
 tasks.named('test') {
