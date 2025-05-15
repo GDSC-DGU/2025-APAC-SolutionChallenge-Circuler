@@ -7,4 +7,8 @@ services:
       - "8080:8080"
     env_file:
       - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/keys/gdg-circuler-e312845e0ce5.json
+    volumes:
+      - ./keys:/app/keys
     restart: always
