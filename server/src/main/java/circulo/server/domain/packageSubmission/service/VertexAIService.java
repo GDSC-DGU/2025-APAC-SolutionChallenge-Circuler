@@ -1,5 +1,6 @@
 package circulo.server.domain.packageSubmission.service;
 
+import com.google.auth.oauth2.GoogleCredentials;
 import com.nimbusds.jose.shaded.gson.JsonArray;
 import com.nimbusds.jose.shaded.gson.JsonObject;
 import com.nimbusds.jose.shaded.gson.JsonParser;
@@ -13,9 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Base64;
 
 @Service
@@ -71,10 +71,10 @@ public class VertexAIService {
     }
 
     private String getAccessToken() throws IOException {
-        Process process = new ProcessBuilder("gcloud", "auth", "application-default", "print-access-token")
-                .redirectErrorStream(true)
-                .start();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        return reader.readLine().trim();
+        GoogleCredentials credentials = GoogleCredentials
+                .fromStream(new FileInputStream(System.getenv("GOOGLE_APPLICATION_CREDENTIALS")))
+                .createScoped("https://www.googleapis.com/auth/cloud-platform");
+        credentials.refreshIfExpired();
+        return credentials.getAccessToken().getTokenValue();
     }
 }
