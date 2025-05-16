@@ -25,7 +25,7 @@ fun CirculoChip(
 ) {
     Text(
         modifier = modifier
-            .width((LocalConfiguration.current.screenWidthDp * 0.201).dp)
+            .width((LocalConfiguration.current.screenWidthDp * 0.225).dp)
             .roundedBackgroundWithBorder(
                 cornerRadius = 7.dp,
                 backgroundColor = chipType.backgroundColor,

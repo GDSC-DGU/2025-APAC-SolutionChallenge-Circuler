@@ -61,7 +61,7 @@ fun HomeNavigateButton(
         )
         Text(
             text = stringResource(homeNavigateButtonType.buttonTitle),
-            style = CirculerTheme.typography.title1R16,
+            style = CirculerTheme.typography.body4R12,
             color = CirculerTheme.colors.grayScale12
         )
     }
