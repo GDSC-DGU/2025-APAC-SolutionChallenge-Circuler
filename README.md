@@ -61,7 +61,7 @@
     <tbody>
       <tr>
         <td><strong>Frontend</strong></td>
-        <td>Kotlin (Android)</td>
+        <td>Kotlin (Jetpack Compose), Clean Architecture, Hilt, Gradle Version Catalog</td>
       </tr>
       <tr>
         <td><strong>Backend</strong></td>
