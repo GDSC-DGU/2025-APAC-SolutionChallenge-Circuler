@@ -100,7 +100,7 @@ cd 2025-APAC-SolutionChallenge-Circulo
 ![image](https://github.com/user-attachments/assets/292e5a35-f240-4da6-81ad-5ae56dcca0dd)
 ![image](https://github.com/user-attachments/assets/c039f6f6-2f4b-4e16-ab6a-e1e85867ebcf)
 ![image](https://github.com/user-attachments/assets/6f8a61cc-1d37-44bc-8418-130411917f29)
-![image](https://github.com/user-attachments/assets/89395d68-55e4-45bd-9903-f2bbef305c46)
+![KakaoTalk_20250516_111658324](https://github.com/user-attachments/assets/fd32b7a2-368c-4514-8c00-c68553d2fb1b)
 ![image](https://github.com/user-attachments/assets/4e8ab82f-f8b3-49fb-92dd-19387e960aea)
 ![image](https://github.com/user-attachments/assets/64ebdf19-62f4-4ee0-88ab-0b0f7f4fcb90)
 
