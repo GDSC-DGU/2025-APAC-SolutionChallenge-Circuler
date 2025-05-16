@@ -87,12 +87,46 @@
 <br>
 
 ## ⚙️ Getting Started
+### ✅ Prerequisites
 
+- [JDK 17 or higher](https://adoptium.net/)
+- [MySQL 8.0 or higher](https://dev.mysql.com/downloads/)
+- [Redis](https://redis.io/docs/getting-started/)
+- [Android Studio](https://developer.android.com/studio)
+- [Git](https://git-scm.com/)
+
+<br>
+
+### 📦 Installation
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/GDSC-DGU/2025-APAC-SolutionChallenge-Circulo.git
 cd 2025-APAC-SolutionChallenge-Circulo
 ````
+
+### 2. Set Up the Backend
+```bash
+cd server
+./gradlew bootRun
+````
+Create an application.yml or .env file and configure Database credentials, Redis host and port, Google Cloud credentials.
+
+### 3. Set Up the Android App (Frontend)
+```bash
+cd client
+````
+Open the client folder in Android Studio. Sync Gradle and click the Run ▶️ button to launch the app.
+
+<br>
+
+### 🌐 Deployment Notes
+The backend is deployed on Google Cloud Platform (GCP). For cloud deployment, we recommend using:
+
+Google Cloud Run (for containerized backend)
+
+Cloud SQL (managed MySQL instance)
+
+Memorystore or Compute Engine (for Redis)
 
 <br>
 
