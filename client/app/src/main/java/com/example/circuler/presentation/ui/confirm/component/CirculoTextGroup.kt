@@ -24,6 +24,6 @@ fun CirculoTextGroup(
     )
     CirculoText(
         title = "Distance",
-        subTitle = packageListCardEntity.distance
+        subTitle = "386.3m"
     )
 }

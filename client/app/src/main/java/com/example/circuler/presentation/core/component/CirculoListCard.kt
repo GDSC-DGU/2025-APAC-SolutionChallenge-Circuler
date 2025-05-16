@@ -25,9 +25,8 @@ import com.example.circuler.presentation.core.extension.customShadow
 import com.example.circuler.presentation.core.extension.noRippleClickable
 import com.example.circuler.presentation.core.extension.roundedBackgroundWithBorder
 import com.example.circuler.presentation.type.ChipType
+import com.example.circuler.presentation.type.StatusType
 import com.example.circuler.ui.theme.CirculerTheme
-
-// todo: 전체적인 icon 변경
 
 @Composable
 fun CirculoListCard(
@@ -229,13 +228,22 @@ fun CirculoListCardWithButton(
                 subTitle = packageListCardWithMethodEntity.method
             )
 
-            // todo: packageListCardWithMethodEntity.status
-            CirculoButton(
-                text = "accept",
-                textStyle = CirculerTheme.typography.body4R12,
-                verticalPadding = 10.dp,
-                onClick = onButtonClick
-            )
+            if (packageListCardWithMethodEntity.status == StatusType.DELIVERING.toString()) {
+                CirculoButton(
+                    text = "delivered",
+                    backgroundColor = CirculerTheme.colors.green2,
+                    textStyle = CirculerTheme.typography.body4R12,
+                    verticalPadding = 10.dp,
+                    onClick = onButtonClick
+                )
+            } else {
+                CirculoButton(
+                    text = "accept",
+                    textStyle = CirculerTheme.typography.body4R12,
+                    verticalPadding = 10.dp,
+                    onClick = onButtonClick
+                )
+            }
         }
     }
 }

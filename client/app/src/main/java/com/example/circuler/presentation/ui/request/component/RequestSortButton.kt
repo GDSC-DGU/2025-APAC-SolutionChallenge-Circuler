@@ -38,7 +38,7 @@ fun RequestSortButton(
             tint = CirculerTheme.colors.grayScale12
         )
         Text(
-            text = "Plasitc",
+            text = "Ice Pack",
             style = CirculerTheme.typography.title3M16,
             color = CirculerTheme.colors.grayScale12
         )

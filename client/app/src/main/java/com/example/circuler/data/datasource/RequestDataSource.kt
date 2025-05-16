@@ -20,6 +20,6 @@ internal class RequestDataSource @Inject constructor(
     suspend fun getPackagingRequestDetail(requestId: Int): BaseResponse<ResponsePackagingListDto> =
         requestService.getPackagingRequestDetail(packagingRequestId = requestId)
 
-    suspend fun getPackagingRequestMy(): List<ResponsePackageMyDto> =
+    suspend fun getPackagingRequestMy(): BaseResponse<List<ResponsePackageMyDto>> =
         requestService.getPackagingRequestMy()
 }
